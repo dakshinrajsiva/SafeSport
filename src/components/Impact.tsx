@@ -4,14 +4,14 @@ import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
 const STATS = [
-  { text: "1 in 3 women in India report workplace sexual harassment", size: "large", color: "bg-[#004AAD]" },
-  { text: "53% of children report abuse by a school teacher or relative", size: "medium", color: "bg-[#800020]" }, // Brand Maroon
-  { text: "Only ~10% of abuse cases are ever reported in India", size: "small", color: "bg-[#7CA57A]" }, // Brand Green
-  { text: "90% of athletes do not report harmful experiences", size: "medium", color: "bg-[#004AAD]" },
-  { text: "74% of athletes believe reporting would not lead to action", size: "small", color: "bg-[#FFBD59]", textColor: "text-[#1A1A1A]" }, // Brand Yellow
-  { text: "13,900 students died by suicide in 2023 — the highest globally", size: "large", color: "bg-[#800020]" },
-  { text: "Zero Tolerance. 100% Commitment.", size: "medium", color: "bg-[#004AAD]" },
-  { text: "95% of sporting bodies lack formal safeguarding policies", size: "small", color: "bg-[#1A1A1A]" },
+  { text: "1 in 3 women in India report workplace sexual harassment", size: "large" },
+  { text: "53% of children report abuse by a school teacher or relative", size: "medium" },
+  { text: "Only ~10% of abuse cases are ever reported in India", size: "small" },
+  { text: "90% of athletes do not report harmful experiences", size: "medium" },
+  { text: "74% of athletes believe reporting would not lead to action", size: "small" },
+  { text: "13,900 students died by suicide in 2023 — the highest globally", size: "large" },
+  { text: "Zero Tolerance. 100% Commitment.", size: "medium" },
+  { text: "95% of sporting bodies lack formal safeguarding policies", size: "small" },
 ];
 
 export default function Impact() {
@@ -44,11 +44,7 @@ export default function Impact() {
                 delay: index * 0.05,
                 ease: [0.215, 0.61, 0.355, 1]
               }}
-              className={cn(
-                "break-inside-avoid p-10 md:p-14 flex flex-col justify-center text-center group hover:shadow-3xl transition-all duration-700 cursor-default rounded-[2rem] relative overflow-hidden border border-transparent hover:border-white/20",
-                stat.color,
-                stat.textColor || "text-white"
-              )}
+              className="break-inside-avoid p-10 md:p-14 flex flex-col justify-center text-center group hover:shadow-3xl transition-all duration-700 cursor-default rounded-[2rem] relative overflow-hidden border border-transparent hover:border-white/20 bg-[#004AAD] text-white"
             >
               <div className="absolute top-6 left-6 text-[10px] font-mono opacity-20 group-hover:opacity-100 transition-opacity uppercase tracking-widest font-bold">
                 Data Point {index + 1}

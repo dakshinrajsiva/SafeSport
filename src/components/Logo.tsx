@@ -25,17 +25,24 @@ export default function Logo({
   const finalHeight = size ?? height;
 
   return (
-    <Image
-      src="/safesport-logo.svg"
-      alt="SafeSport India"
-      width={finalWidth}
-      height={finalHeight}
-      priority
+    <div 
       className={cn(
-        'object-contain',
-        variant === 'white' && 'brightness-0 invert',
+        'transition-all duration-500 ease-in-out',
+        variant === 'white' ? 'bg-white' : 'bg-[#004AAD]',
         className
       )}
+      style={{
+        maskImage: 'url(/safesport-logo.svg)',
+        maskRepeat: 'no-repeat',
+        maskSize: 'contain',
+        maskPosition: 'center',
+        WebkitMaskImage: 'url(/safesport-logo.svg)',
+        WebkitMaskRepeat: 'no-repeat',
+        WebkitMaskSize: 'contain',
+        WebkitMaskPosition: 'center',
+        width: finalWidth,
+        height: finalHeight
+      }}
     />
   );
 }

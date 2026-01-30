@@ -22,8 +22,9 @@ export default function Navbar() {
     )}>
       <a href="#" className="flex items-center shrink-0">
         <Logo
-          size={48}
-          className="transition-opacity duration-500"
+          size={isScrolled ? 100 : 70}
+          className="transition-all duration-500 transform origin-left"
+          variant={isScrolled ? 'default' : 'white'}
         />
       </a>
       
