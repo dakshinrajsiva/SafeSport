@@ -46,5 +46,60 @@ html.lenis body {
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
     background-clip: text;
+    background-image: inherit;
+  }
+
+  @keyframes slide-in-left {
+    from {
+      transform: translateX(-50px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-in-right {
+    from {
+      transform: translateX(50px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes fade-in-up {
+    from {
+      transform: translateY(30px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .animate-slide-in-left {
+    animation: slide-in-left 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-slide-in-right {
+    animation: slide-in-right 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 1.2s ease-out forwards;
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 }

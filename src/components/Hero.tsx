@@ -7,7 +7,9 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const maskRef = useRef<HTMLDivElement>(null);
+  const maskParentRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -23,10 +25,25 @@ export default function Hero() {
       }
     });
 
+    // Animate background overlay to solid blue
+    tl.fromTo(overlayRef.current,
+      { backgroundColor: 'rgba(0, 74, 173, 0.4)', mixBlendMode: 'multiply' },
+      { backgroundColor: 'rgba(0, 74, 173, 1)', mixBlendMode: 'normal', duration: 2 },
+      0
+    );
+
+    // Fade the white mask parent to blue
+    tl.to(maskParentRef.current, {
+      backgroundColor: 'rgba(0, 74, 173, 1)',
+      duration: 2,
+      mixBlendMode: 'normal',
+    }, 0);
+
     // Dramatic WWP scaling mask effect
     tl.fromTo(maskRef.current, 
       { scale: 0.8, opacity: 1 },
-      { scale: 100, opacity: 0, ease: "power4.inOut", duration: 2 }
+      { scale: 100, opacity: 0, ease: "power4.inOut", duration: 2 },
+      0
     );
 
     // Fade in the CTA and tagline
@@ -56,36 +73,48 @@ export default function Hero() {
         >
           <source src="https://assets.mixkit.co/videos/preview/mixkit-running-track-athlete-preparing-to-start-a-race-40502-large.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-[#004AAD]/40 mix-blend-multiply" />
+        <div ref={overlayRef} className="absolute inset-0 bg-[#004AAD]/40 mix-blend-multiply" />
       </div>
 
       {/* The WWP Text Mask Overlay - Using League Gothic */}
-      <div className="absolute inset-0 z-10 flex items-center justify-center bg-white mix-blend-screen pointer-events-none">
+      <div ref={maskParentRef} className="absolute inset-0 z-10 flex items-center justify-center bg-white mix-blend-screen pointer-events-none">
         <div 
           ref={maskRef}
           className="flex flex-col items-center"
         >
-          <h1 className="text-[25vw] font-league tracking-tight uppercase leading-[0.7] text-black text-center">
+          <h1 className="text-[20vw] font-league tracking-tight uppercase leading-[0.7] text-black text-center">
             SAFE <br /> SPORT
           </h1>
+          <p className="text-[5vw] font-league tracking-[0.2em] uppercase text-black -mt-4">
+            India
+          </p>
         </div>
       </div>
 
       {/* Floating UI Elements - Using Montserrat */}
       <div ref={contentRef} className="absolute inset-0 z-20 flex flex-col items-center justify-end pb-24 pointer-events-none">
         <div className="pointer-events-auto flex flex-col items-center">
-          <button className="bg-white text-[#004AAD] px-14 py-6 rounded-sm font-montserrat font-black uppercase tracking-[0.2em] text-xs hover:bg-[#004AAD] hover:text-white transition-all duration-700 shadow-[0_20px_50px_rgba(0,0,0,0.3)] group mb-10 overflow-hidden relative">
-            <span className="relative z-10">Get Certified</span>
-            <div className="absolute inset-0 bg-[#004AAD] translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
-          </button>
-          
-          <div className="flex flex-col items-center gap-4">
+          <div className="flex flex-col items-center gap-6">
             <div className="w-1 h-12 bg-white/30 rounded-full overflow-hidden relative">
               <div className="absolute top-0 left-0 w-full h-1/2 bg-white animate-bounce" />
             </div>
-            <p className="text-white font-montserrat font-bold tracking-[0.4em] uppercase text-[10px] md:text-xs text-center px-4">
-              Protecting Potential. Powering Performance.
-            </p>
+            
+            <div className="flex flex-col items-center gap-4 text-center px-4 max-w-4xl">
+              <div className="overflow-hidden">
+                <h2 className="text-white font-league text-4xl md:text-6xl uppercase tracking-wide leading-none">
+                  <span className="inline-block animate-slide-in-left opacity-0" style={{ animationDelay: '0.5s', animationFillMode: 'forwards' }}>
+                    Protecting Potential.
+                  </span>
+                  <span className="inline-block animate-slide-in-right opacity-0" style={{ animationDelay: '1.2s', animationFillMode: 'forwards' }}>
+                    &nbsp;Powering Performance.
+                  </span>
+                </h2>
+              </div>
+              
+              <p className="text-white/80 font-montserrat font-medium text-sm md:text-lg tracking-wide max-w-2xl opacity-0 animate-fade-in-up" style={{ animationDelay: '2.5s', animationFillMode: 'forwards' }}>
+                We help institutions build safe, accountable environments across sport, education, and youth-facing sectors.
+              </p>
+            </div>
           </div>
         </div>
       </div>

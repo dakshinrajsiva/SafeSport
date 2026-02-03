@@ -85,6 +85,7 @@ export default function WorkWith() {
 
   return (
     <section
+      id="who-we-work-with"
       ref={sectionRef}
       className="relative h-screen w-screen overflow-hidden bg-[#0a0a0a]"
     >

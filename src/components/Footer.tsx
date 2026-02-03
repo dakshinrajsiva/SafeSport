@@ -1,6 +1,6 @@
 'use client';
 
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin, Instagram, Linkedin, Globe } from 'lucide-react';
 import Logo from './Logo';
 
 export default function Footer() {
@@ -13,23 +13,37 @@ export default function Footer() {
           </h2>
           
           <div className="space-y-8 font-montserrat">
-            <div className="flex items-center gap-6 text-xl group cursor-pointer">
-              <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:bg-[#004AAD] group-hover:text-white transition-all duration-500">
+            <a href="mailto:safesportindia@gmail.com" className="flex items-center gap-6 text-xl group cursor-pointer w-fit">
+              <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:bg-[#004AAD] group-hover:text-white transition-all duration-500 border border-gray-100">
                 <Mail size={24} />
               </div>
-              <span className="font-bold tracking-tight text-[#1A1A1A]">contact@safesport.in</span>
-            </div>
-            <div className="flex items-center gap-6 text-xl group cursor-pointer">
-              <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:bg-[#004AAD] group-hover:text-white transition-all duration-500">
-                <Phone size={24} />
-              </div>
-              <span className="font-bold tracking-tight text-[#1A1A1A]">+91 98765 43210</span>
-            </div>
-            <div className="flex items-center gap-6 text-xl group cursor-pointer">
-              <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:bg-[#004AAD] group-hover:text-white transition-all duration-500">
-                <MapPin size={24} />
-              </div>
-              <span className="font-bold tracking-tight text-[#1A1A1A]">New Delhi, India</span>
+              <span className="font-bold tracking-tight text-[#1A1A1A]">safesportindia@gmail.com</span>
+            </a>
+            <div className="flex items-center gap-4 mt-12">
+              <a 
+                href="https://www.linkedin.com/in/safesport-india-6854a73a0/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-sm hover:bg-[#0077B5] hover:text-white transition-all duration-500 border border-gray-100 group"
+              >
+                <Linkedin size={28} />
+              </a>
+              <a 
+                href="https://www.instagram.com/safesportindia?igsh=MWx1d2NkdDlkZmVrZw%3D%3D" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-sm hover:bg-[#E4405F] hover:text-white transition-all duration-500 border border-gray-100 group"
+              >
+                <Instagram size={28} />
+              </a>
+              <a 
+                href="https://safesportindia.com/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-sm hover:bg-[#004AAD] hover:text-white transition-all duration-500 border border-gray-100 group"
+              >
+                <Globe size={28} />
+              </a>
             </div>
           </div>
         </div>
@@ -49,20 +63,24 @@ export default function Footer() {
             </div>
             <div>
               <h4 className="font-bold uppercase tracking-[0.3em] text-[10px] text-gray-400 mb-10">Navigation</h4>
-              <ul className="space-y-6">
-                <li><a href="#" className="text-sm font-bold uppercase tracking-widest hover:text-[#004AAD] transition-colors">Services</a></li>
-                <li><a href="#" className="text-sm font-bold uppercase tracking-widest hover:text-[#004AAD] transition-colors">About Us</a></li>
-                <li><a href="#" className="text-sm font-bold uppercase tracking-widest hover:text-[#004AAD] transition-colors">Certification</a></li>
-                <li><a href="#" className="text-sm font-bold uppercase tracking-widest hover:text-[#004AAD] transition-colors">Contact</a></li>
+              <ul className="grid grid-cols-2 gap-x-8 gap-y-4">
+                <li><a href="#" className="text-[10px] font-bold uppercase tracking-widest hover:text-[#004AAD] transition-colors">About Us</a></li>
+                <li><a href="#" className="text-[10px] font-bold uppercase tracking-widest hover:text-[#004AAD] transition-colors">Our Approach</a></li>
+                <li><a href="#" className="text-[10px] font-bold uppercase tracking-widest hover:text-[#004AAD] transition-colors">Our Services</a></li>
+                <li><a href="#" className="text-[10px] font-bold uppercase tracking-widest hover:text-[#004AAD] transition-colors">Who We Work With</a></li>
+                <li><a href="#" className="text-[10px] font-bold uppercase tracking-widest hover:text-[#004AAD] transition-colors">Our Standards</a></li>
+                <li><a href="#" className="text-[10px] font-bold uppercase tracking-widest hover:text-[#004AAD] transition-colors">Resources</a></li>
+                <li><a href="#" className="text-[10px] font-bold uppercase tracking-widest hover:text-[#004AAD] transition-colors">FAQs</a></li>
+                <li><a href="#" className="text-[10px] font-bold uppercase tracking-widest hover:text-[#004AAD] transition-colors">Contact</a></li>
               </ul>
             </div>
           </div>
 
           <div className="pt-24 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-8 mt-24">
             <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest font-montserrat">
-              © 2026 SafeSport India. Institutional Innovation in Safeguarding.
+              © 2026 SafeSport India.
             </p>
-            <Logo size={96} className="opacity-30" />
+            <Logo size={96} className="opacity-30" variant="default" />
           </div>
         </div>
       </div>

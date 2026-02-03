@@ -41,7 +41,7 @@ export default function Mission() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-48 px-4 md:px-24 bg-white relative">
+    <section id="about" ref={sectionRef} className="py-48 px-4 md:px-24 bg-white relative">
       <div className="max-w-6xl mx-auto">
         <h3 className="text-[#004AAD] font-montserrat font-bold uppercase tracking-[0.4em] mb-16 text-xs md:text-sm flex items-center gap-4">
           <span className="w-8 h-[1px] bg-[#004AAD]"></span>

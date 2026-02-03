@@ -1,16 +1,12 @@
 'use client';
 
-import Image from 'next/image';
 import { cn } from '@/lib/utils';
 
-/** Logo is 1:1 (square) per SVG viewBox 375×375 */
 interface LogoProps {
   className?: string;
-  /** Size in px — logo is square (1:1). Prefer over width/height. */
   size?: number;
   width?: number;
   height?: number;
-  /** Use 'white' when over dark backgrounds (e.g. hero video) */
   variant?: 'default' | 'white';
 }
 
@@ -27,11 +23,13 @@ export default function Logo({
   return (
     <div 
       className={cn(
-        'transition-all duration-500 ease-in-out',
-        variant === 'white' ? 'bg-white' : 'bg-[#004AAD]',
+        "transition-all duration-500", 
+        variant === 'default' ? "bg-[#004AAD]" : "bg-white",
         className
       )}
-      style={{
+      style={{ 
+        width: finalWidth, 
+        height: finalHeight,
         maskImage: 'url(/safesport-logo.svg)',
         maskRepeat: 'no-repeat',
         maskSize: 'contain',
@@ -40,8 +38,6 @@ export default function Logo({
         WebkitMaskRepeat: 'no-repeat',
         WebkitMaskSize: 'contain',
         WebkitMaskPosition: 'center',
-        width: finalWidth,
-        height: finalHeight
       }}
     />
   );

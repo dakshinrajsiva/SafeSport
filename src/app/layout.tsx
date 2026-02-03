@@ -3,6 +3,7 @@ import { Inter, Montserrat, League_Gothic } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import Navbar from "@/components/Navbar";
+import BackToTop from "@/components/BackToTop";
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -37,6 +38,7 @@ export default function RootLayout({
         <SmoothScroll>
           {children}
         </SmoothScroll>
+        <BackToTop />
       </body>
     </html>
   );

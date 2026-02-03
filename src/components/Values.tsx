@@ -177,7 +177,7 @@ export default function Values() {
   }, []);
 
   return (
-    <section className="py-32 bg-white overflow-hidden relative">
+    <section id="standards" className="py-32 bg-white overflow-hidden relative">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
           

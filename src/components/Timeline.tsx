@@ -6,8 +6,8 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
 const SAFESPORT_STEPS = [
   {
-    title: "Competency Audit",
-    content: "A thorough assessment of existing policies, culture, and reporting mechanisms to identify gaps and opportunities.",
+    title: "Training and Awareness",
+    content: "Building foundational knowledge and cultural buy-in through comprehensive safeguarding education for all stakeholders.",
     badge: "Step 1"
   },
   {
@@ -16,8 +16,8 @@ const SAFESPORT_STEPS = [
     badge: "Step 2"
   },
   {
-    title: "Awareness & Reporting",
-    content: "Launching visibility campaigns and setting up independent reporting channels to empower every member of your organization.",
+    title: "Systems and Readiness",
+    content: "Establishing robust reporting channels, audit-ready documentation, and incident response protocols for long-term accountability.",
     badge: "Step 3"
   }
 ];
@@ -67,7 +67,7 @@ export default function Timeline() {
   }, []);
 
   return (
-    <section ref={containerRef} className="py-32 bg-white relative overflow-hidden">
+    <section id="approach" ref={containerRef} className="py-32 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 md:px-8 relative">
         <div className="mb-32 text-center">
           <h2 className="text-5xl md:text-7xl font-league text-[#004AAD] tracking-tight mb-4 uppercase leading-none">
