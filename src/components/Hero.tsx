@@ -82,10 +82,10 @@ export default function Hero() {
           ref={maskRef}
           className="flex flex-col items-center"
         >
-          <h1 className="text-[20vw] font-league tracking-tight uppercase leading-[0.7] text-black text-center">
+          <h1 className="text-[20vw] font-league tracking-tight uppercase leading-[0.7] text-[#004AAD] text-center">
             SAFE <br /> SPORT
           </h1>
-          <p className="text-[5vw] font-league tracking-[0.2em] uppercase text-black -mt-4">
+          <p className="text-[5vw] font-league tracking-[0.2em] uppercase text-[#004AAD] -mt-4">
             India
           </p>
         </div>
