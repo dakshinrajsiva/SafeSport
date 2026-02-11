@@ -12,32 +12,32 @@ const PARTNERS = [
     number: "01",
     category: "Policy & Standards",
     description: "Evaluating and upgrading safeguarding policies to meet global and Indian standards.",
-    image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=2000",
-    overlay: "bg-black/60",
+    image: "/partners/1.jpg",
+    overlay: "bg-black/40",
   },
   {
     title: "Private Academies",
     number: "02",
     category: "Culture & Practice",
     description: "Embedding safe practices into daily routines, communication, reporting, and culture.",
-    image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=2000",
-    overlay: "bg-black/60",
+    image: "/partners/2.jpg",
+    overlay: "bg-black/40",
   },
   {
     title: "Institutions",
     number: "03",
     category: "Integration",
     description: "We help integrate safeguarding into daily practice, staff capability, & organisational systems.",
-    image: "https://images.unsplash.com/photo-1504450758481-7338eba7524a?q=80&w=2000",
-    overlay: "bg-black/60",
+    image: "/partners/3.jpg",
+    overlay: "bg-black/40",
   },
   {
     title: "National Bodies",
     number: "04",
     category: "Systems & Reporting",
     description: "We set up reporting systems, risk registers, codes of conduct, & protection systems.",
-    image: "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=2000",
-    overlay: "bg-black/60",
+    image: "/partners/4.jpg",
+    overlay: "bg-black/40",
   },
 ];
 
@@ -112,7 +112,7 @@ export default function WorkWith() {
               />
               <div
                 className={cn(
-                  'absolute inset-0 mix-blend-darken',
+                  'absolute inset-0 pointer-events-none',
                   partner.overlay
                 )}
               />

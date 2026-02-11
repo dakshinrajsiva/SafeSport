@@ -16,8 +16,8 @@ const SAFESPORT_STEPS = [
     badge: "Step 2"
   },
   {
-    title: "Systems and Readiness",
-    content: "Establishing robust reporting channels, audit-ready documentation, and incident response protocols for long-term accountability.",
+    title: "Consulting, Advisory, and Auditing",
+    content: "Independent reviews, advisory support, and audits aligned to Indian law and global safeguarding standards for long-term accountability.",
     badge: "Step 3"
   }
 ];
