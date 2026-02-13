@@ -58,14 +58,14 @@ export default function Footer() {
               <div className="flex flex-col gap-8">
                 <div className="flex items-center gap-6 group">
                   <div>
-                    <p className="text-2xl md:text-3xl font-black text-[#1A1A1A] tracking-tighter group-hover:text-[#004AAD] transition-colors font-league uppercase">Aman Jain</p>
+                    <p className="text-2xl md:text-3xl font-bold text-[#1A1A1A] tracking-tight group-hover:text-[#004AAD] transition-colors font-montserrat">Aman Jain</p>
                     <p className="text-xs uppercase tracking-[0.2em] text-gray-400 font-bold font-montserrat">Co-Founder</p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-6 group">
                   <div>
-                    <p className="text-2xl md:text-3xl font-black text-[#1A1A1A] tracking-tighter group-hover:text-[#004AAD] transition-colors font-league uppercase">Rania Mecca</p>
+                    <p className="text-2xl md:text-3xl font-bold text-[#1A1A1A] tracking-tight group-hover:text-[#004AAD] transition-colors font-montserrat">Rania Mecca</p>
                     <p className="text-xs uppercase tracking-[0.2em] text-gray-400 font-bold font-montserrat">Co-Founder</p>
                   </div>
                 </div>

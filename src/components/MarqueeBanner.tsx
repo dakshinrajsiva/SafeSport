@@ -13,18 +13,20 @@ export default function MarqueeBanner() {
         {[...Array(10)].map((_, i) => (
           <span
             key={`a-${i}`}
-            className="mx-8 md:mx-14 text-3xl md:text-5xl lg:text-6xl font-league font-bold uppercase tracking-tight text-white"
+            className="mx-8 md:mx-14 text-3xl md:text-5xl lg:text-6xl tracking-tight text-white inline-flex items-baseline"
           >
-            SafeSport India
+            <span className="font-league font-bold uppercase">SafeSport</span>
+            <span className="font-montserrat font-extralight uppercase ml-1">India</span>
           </span>
         ))}
         {/* Duplicate for seamless loop */}
         {[...Array(10)].map((_, i) => (
           <span
             key={`b-${i}`}
-            className="mx-8 md:mx-14 text-3xl md:text-5xl lg:text-6xl font-league font-bold uppercase tracking-tight text-white"
+            className="mx-8 md:mx-14 text-3xl md:text-5xl lg:text-6xl tracking-tight text-white inline-flex items-baseline"
           >
-            SafeSport India
+            <span className="font-league font-bold uppercase">SafeSport</span>
+            <span className="font-montserrat font-extralight uppercase ml-1">India</span>
           </span>
         ))}
       </div>
