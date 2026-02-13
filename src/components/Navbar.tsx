@@ -110,23 +110,26 @@ export default function Navbar() {
     }, 300);
   }, [router, pathname]);
 
+  // On non-home pages, always show solid header so it's visible on light backgrounds
+  const showSolidHeader = pathname !== '/' || isScrolled;
+
   return (
     <>
       <nav className={cn(
-        "fixed top-0 left-0 w-full z-[100] transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]",
-        isScrolled ? "bg-white/95 backdrop-blur-md py-3 shadow-sm" : "bg-transparent py-4"
+        "fixed top-0 left-0 w-full z-[100] transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] h-[100px] overflow-hidden",
+        showSolidHeader ? "bg-white/95 backdrop-blur-md shadow-sm" : "bg-transparent"
       )}>
-        <div className="max-w-[1800px] mx-auto px-6 md:px-12 flex items-center justify-between">
+        <div className="max-w-[1800px] mx-auto px-6 md:px-12 h-full flex items-center justify-between">
           
-          {/* Logo */}
+          {/* Logo 150px — header is shorter so logo is cropped at top/bottom */}
           <Link 
             href="/" 
-            className="relative z-[110] transition-transform hover:scale-105 duration-500 flex-shrink-0"
+            className="relative z-[110] transition-transform hover:scale-105 duration-500 flex-shrink-0 flex items-center"
           >
             <Logo
-              size={isScrolled ? 130 : 150}
+              size={150}
               className="transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]"
-              variant={isScrolled ? 'default' : 'white'}
+              variant={showSolidHeader ? 'default' : 'white'}
             />
           </Link>
           
@@ -141,7 +144,7 @@ export default function Navbar() {
                   onClick={() => scrollToSection(item.sectionId)}
                   className={cn(
                     "font-montserrat font-bold uppercase tracking-[0.15em] text-xs transition-all duration-300 relative group whitespace-nowrap",
-                    isScrolled ? "text-[#004AAD]" : "text-white"
+                    showSolidHeader ? "text-[#004AAD]" : "text-white"
                   )}
                 >
                   {title}
@@ -156,10 +159,10 @@ export default function Navbar() {
             <button
               onClick={() => { setIsMenuOpen(!isMenuOpen); setActiveGroup(null); }}
               className={cn(
-                "flex items-center gap-2 px-5 py-2.5 font-montserrat font-bold uppercase tracking-[0.2em] text-xs transition-all duration-500 border relative z-[110]",
+                "flex items-center gap-2 px-5 py-1 font-montserrat font-bold uppercase tracking-[0.2em] text-xs transition-all duration-500 border relative z-[110]",
                 isMenuOpen
                   ? "bg-transparent border-white text-white hover:bg-white hover:text-[#004AAD]"
-                  : isScrolled 
+                  : showSolidHeader 
                     ? "bg-[#004AAD] border-[#004AAD] text-white hover:bg-black hover:border-black" 
                     : "bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white hover:text-[#004AAD]"
               )}
