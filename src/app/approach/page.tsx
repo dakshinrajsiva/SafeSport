@@ -46,21 +46,22 @@ const COMMITMENTS = [
 
 export default function ApproachPage() {
   return (
-    <main className="relative bg-white text-[#1A1A1A]">
+    <main className="relative bg-[#F8FAFC] text-[#1A1A1A]">
       <div className="relative z-10 bg-white shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] mb-[100vh] min-h-screen pt-32">
         
-        {/* Header */}
-        <section className="px-6 md:px-12 lg:px-24 mb-20 md:mb-32">
+        {/* Header — brand band */}
+        <section className="px-6 md:px-12 lg:px-24 mb-20 md:mb-32 bg-[#004AAD]/[0.06] py-16 md:py-20 -mt-32 pt-48 md:pt-52">
           <div className="max-w-7xl mx-auto">
+            <div className="w-20 h-1 bg-[#004AAD] mb-8" />
             <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-league uppercase leading-[0.8] tracking-tighter text-[#004AAD] mb-8">
               Our Approach
             </h1>
-            <div className="w-full h-[1px] bg-gray-200" />
+            <div className="w-full h-[1px] bg-[#004AAD]/20" />
           </div>
         </section>
 
         {/* Philosophy */}
-        <section className="px-6 md:px-12 lg:px-24 mb-32">
+        <section className="px-6 md:px-12 lg:px-24 mb-32 bg-white py-16 md:py-20 rounded-t-3xl -mt-8 relative z-10">
           <div className="max-w-7xl mx-auto">
             <div className="grid md:grid-cols-12 gap-12 md:gap-16 items-start">
               <div className="md:col-span-4 sticky top-32">
@@ -78,7 +79,7 @@ export default function ApproachPage() {
                 </p>
                 
                 {/* Approach Graphic */}
-                <div className="relative w-full aspect-[16/9] my-8 rounded-xl overflow-hidden bg-gray-50">
+                <div className="relative w-full aspect-[16/9] my-8 rounded-xl overflow-hidden bg-[#004AAD]/5 border border-[#004AAD]/10">
                   <Image 
                     src="/images/approach-graphic.svg" 
                     alt="Our Philosophy Approach" 
@@ -90,7 +91,7 @@ export default function ApproachPage() {
                 <p>
                   We recognise that real environments are complex. Hierarchies exist. Pressure exists. Situations are rarely clear-cut. Our philosophy acknowledges this reality and focuses on helping organisations operate with <HoverReveal imageSrc="/images/values-graphic.svg">clarity and preparedness</HoverReveal> rather than assumption or reaction.
                 </p>
-                <p className="text-[#1A1A1A] font-medium border-l-4 border-[#004AAD] pl-6 py-2 bg-gray-50 rounded-r-lg">
+                <p className="text-[#1A1A1A] font-medium border-l-4 border-[#004AAD] pl-6 py-2 bg-[#004AAD]/5 rounded-r-lg">
                   Safeguarding, in our view, is not about control or fear. It is about enabling people to act responsibly, confidently, and consistently — supported by structures that make safe practice possible.
                 </p>
               </div>
@@ -99,9 +100,9 @@ export default function ApproachPage() {
         </section>
 
         {/* How We're Different */}
-        <section className="px-6 md:px-12 lg:px-24 mb-32 bg-[#F5F7FA] py-24 relative overflow-hidden">
+        <section className="px-6 md:px-12 lg:px-24 mb-32 bg-[#004AAD]/[0.08] py-24 relative overflow-hidden">
           {/* Background decoration */}
-          <div className="absolute top-0 right-0 w-1/2 h-full bg-[#004AAD]/5 skew-x-12 translate-x-1/4 pointer-events-none" />
+          <div className="absolute top-0 right-0 w-1/2 h-full bg-[#004AAD]/10 skew-x-12 translate-x-1/4 pointer-events-none" />
 
           <div className="max-w-7xl mx-auto relative z-10">
             <h2 className="text-4xl md:text-6xl font-league uppercase mb-16 text-[#1A1A1A] text-center">How We&apos;re Different</h2>
@@ -114,10 +115,10 @@ export default function ApproachPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.2 }}
-                  className="bg-white p-8 md:p-10 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-500 group"
+                  className="bg-white p-8 md:p-10 rounded-2xl shadow-sm border border-[#004AAD]/10 hover:shadow-xl hover:-translate-y-2 hover:border-[#004AAD]/30 transition-all duration-500 group"
                 >
-                  <div className="mb-6 bg-[#F0F4F8] w-16 h-16 rounded-2xl flex items-center justify-center group-hover:bg-[#004AAD] transition-colors duration-500">
-                    <div className="group-hover:text-white transition-colors duration-500">
+                  <div className="mb-6 bg-[#F0F4F8] w-16 h-16 rounded-2xl flex items-center justify-center group-hover:bg-[#004AAD]/15 transition-colors duration-500">
+                    <div className="text-[#004AAD] transition-colors duration-500">
                       {diff.icon}
                     </div>
                   </div>
@@ -132,11 +133,12 @@ export default function ApproachPage() {
         </section>
 
         {/* Our Commitments */}
-        <section className="px-6 md:px-12 lg:px-24 pb-32">
+        <section className="px-6 md:px-12 lg:px-24 pb-32 bg-[#004AAD]/[0.06] py-24 rounded-b-3xl">
           <div className="max-w-7xl mx-auto">
             <div className="mb-16 text-center max-w-3xl mx-auto">
+              <div className="w-16 h-1 bg-[#004AAD] mx-auto mb-6" />
               <h2 className="text-4xl md:text-6xl font-league uppercase mb-6 text-[#1A1A1A]">Our Commitments</h2>
-              <p className="text-lg font-montserrat text-gray-500">
+              <p className="text-lg font-montserrat text-gray-600">
                 At Safe Sport India, our work is guided by a clear set of commitments that shape how we partner with organisations and the standards we hold ourselves to.
               </p>
             </div>
@@ -159,7 +161,7 @@ export default function ApproachPage() {
               ))}
             </div>
             
-            <div className="mt-20 pt-12 border-t border-gray-100 text-center">
+            <div className="mt-20 pt-12 border-t border-[#004AAD]/20 text-center">
               <p className="text-xl font-league uppercase text-[#004AAD] tracking-widest">
                 These commitments guide our decisions, our partnerships, and our long-term vision.
               </p>

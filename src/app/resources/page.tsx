@@ -76,8 +76,8 @@ export default function ResourcesPage() {
 
                   <div className="relative z-10">
                     {/* Icon */}
-                    <div className="w-20 h-20 rounded-2xl bg-white flex items-center justify-center mb-8 group-hover:bg-[#004AAD] transition-colors duration-500 shadow-sm">
-                      <div className="text-[#004AAD] group-hover:text-white transition-colors duration-500">
+                    <div className="w-20 h-20 rounded-2xl bg-white flex items-center justify-center mb-8 group-hover:bg-[#004AAD]/15 transition-colors duration-500 shadow-sm">
+                      <div className="text-[#004AAD] transition-colors duration-500">
                         {resource.icon}
                       </div>
                     </div>

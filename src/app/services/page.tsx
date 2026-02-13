@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { cn } from '@/lib/utils';
 import Footer from '@/components/Footer';
 import { ShieldCheck, BookOpen, UserCheck, Layers, ArrowRight } from 'lucide-react';
 
@@ -46,27 +47,28 @@ const SERVICES = [
 
 export default function ServicesPage() {
   return (
-    <main className="relative bg-white text-[#1A1A1A]">
+    <main className="relative bg-[#F8FAFC] text-[#1A1A1A]">
       <div className="relative z-10 bg-white shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] mb-[100vh] min-h-screen pt-32">
         
-        {/* Header */}
-        <section className="px-6 md:px-12 lg:px-24 mb-20 md:mb-32">
+        {/* Header — brand band */}
+        <section className="px-6 md:px-12 lg:px-24 mb-20 md:mb-32 bg-[#004AAD]/[0.06] py-16 md:py-20 -mt-32 pt-48 md:pt-52">
           <div className="max-w-7xl mx-auto">
+            <div className="w-20 h-1 bg-[#004AAD] mb-8" />
             <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-league uppercase leading-[0.8] tracking-tighter text-[#004AAD] mb-8">
               Our Services
             </h1>
-            <div className="w-full h-[1px] bg-gray-200 mb-12" />
-            <p className="text-xl md:text-2xl font-montserrat text-gray-600 max-w-4xl leading-relaxed">
+            <div className="w-full h-[1px] bg-[#004AAD]/20 mb-12" />
+            <p className="text-xl md:text-2xl font-montserrat text-gray-700 max-w-4xl leading-relaxed">
               Safe Sport India supports organisations at different stages of their safeguarding journey — from building foundational understanding, to strengthening systems, to providing ongoing guidance and assurance.
             </p>
-            <p className="text-lg md:text-xl font-montserrat text-gray-500 max-w-4xl mt-6">
+            <p className="text-lg md:text-xl font-montserrat text-gray-600 max-w-4xl mt-6">
               Our services are designed to be context-specific, proportionate, and practical, recognising that safeguarding needs differ across institutions, environments, and levels of responsibility.
             </p>
           </div>
         </section>
 
         {/* Services List */}
-        <section className="px-6 md:px-12 lg:px-24 pb-32">
+        <section className="px-6 md:px-12 lg:px-24 pb-32 -mt-8 relative z-10">
           <div className="max-w-7xl mx-auto space-y-24">
             {SERVICES.map((service, i) => (
               <motion.div 
@@ -75,7 +77,10 @@ export default function ServicesPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="grid md:grid-cols-12 gap-12 p-8 md:p-12 rounded-[2.5rem] bg-white border-2 border-gray-100 hover:border-[#004AAD] transition-all duration-500 group relative overflow-hidden shadow-sm hover:shadow-2xl"
+                className={cn(
+                  "grid md:grid-cols-12 gap-12 p-8 md:p-12 rounded-[2.5rem] border-2 transition-all duration-500 group relative overflow-hidden shadow-sm hover:shadow-2xl hover:border-[#004AAD]/40",
+                  i % 2 === 0 ? "bg-white border-gray-100" : "bg-[#004AAD]/[0.05] border-[#004AAD]/15"
+                )}
               >
                 {/* Background Decoration */}
                 <div className="absolute -right-20 -top-20 w-64 h-64 bg-[#004AAD]/5 rounded-full blur-3xl group-hover:bg-[#004AAD]/10 transition-colors duration-500" />
@@ -83,8 +88,8 @@ export default function ServicesPage() {
                 {/* Icon & Title */}
                 <div className="md:col-span-4 flex flex-col justify-between relative z-10 h-full">
                   <div>
-                    <div className="w-24 h-24 rounded-2xl bg-[#F5F7FA] flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500 group-hover:bg-[#004AAD] group-hover:text-white">
-                      <div className="text-[#004AAD] group-hover:text-white transition-colors duration-500">
+                    <div className="w-24 h-24 rounded-2xl bg-[#F5F7FA] flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500 group-hover:bg-[#004AAD]/15">
+                      <div className="text-[#004AAD] transition-colors duration-500">
                         {service.icon}
                       </div>
                     </div>
