@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
+import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import Logo from './Logo';
 import { Menu, X, ArrowRight } from 'lucide-react';
@@ -50,6 +52,8 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeGroup, setActiveGroup] = useState<number | null>(null);
+  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -72,6 +76,30 @@ export default function Navbar() {
   const scrollToSection = useCallback((sectionId: string) => {
     setIsMenuOpen(false);
     setActiveGroup(null);
+    
+    // Pages
+    const pages = ['about', 'approach', 'services', 'who-we-work-with', 'standards', 'resources'];
+    if (pages.includes(sectionId)) {
+      router.push(`/${sectionId}`);
+      return;
+    }
+
+    // FAQs: scroll on home, or navigate to home then scroll via hash
+    if (sectionId === 'faqs') {
+      if (pathname !== '/') {
+        router.push('/#faqs');
+        return;
+      }
+      const el = document.getElementById('faqs');
+      if (el) {
+        const offset = 100;
+        const top = el.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+      return;
+    }
+
+    // Fallback scroll (for same page scroll)
     setTimeout(() => {
       const el = document.getElementById(sectionId);
       if (el) {
@@ -80,28 +108,27 @@ export default function Navbar() {
         window.scrollTo({ top, behavior: 'smooth' });
       }
     }, 300);
-  }, []);
+  }, [router, pathname]);
 
   return (
     <>
       <nav className={cn(
         "fixed top-0 left-0 w-full z-[100] transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]",
-        isScrolled ? "bg-white/95 backdrop-blur-md py-3 shadow-sm" : "bg-transparent py-6"
+        isScrolled ? "bg-white/95 backdrop-blur-md py-3 shadow-sm" : "bg-transparent py-4"
       )}>
         <div className="max-w-[1800px] mx-auto px-6 md:px-12 flex items-center justify-between">
           
           {/* Logo */}
-          <a 
-            href="#" 
-            onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+          <Link 
+            href="/" 
             className="relative z-[110] transition-transform hover:scale-105 duration-500 flex-shrink-0"
           >
             <Logo
-              size={isScrolled ? 130 : 180}
+              size={isScrolled ? 130 : 150}
               className="transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]"
               variant={isScrolled ? 'default' : 'white'}
             />
-          </a>
+          </Link>
           
           {/* Center: Quick section links (desktop) */}
           <div className="hidden xl:flex items-center gap-7">
@@ -163,6 +190,16 @@ export default function Navbar() {
           <div className="flex-1 flex items-start">
             <div className="w-full max-w-7xl mx-auto px-6 md:px-12">
               
+              {/* Close button inside menu */}
+              <div className="absolute top-0 right-0 p-6 md:p-12 lg:hidden">
+                 <button
+                  onClick={() => setIsMenuOpen(false)}
+                  className="flex items-center gap-2 px-5 py-2.5 font-montserrat font-bold uppercase tracking-[0.2em] text-xs transition-all duration-500 border border-white/30 text-white hover:bg-white hover:text-[#004AAD]"
+                >
+                  Close <X size={14} />
+                </button>
+              </div>
+
               {/* Two-column layout: nav titles left, sub-items right */}
               <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-12 lg:gap-24">
                 
@@ -171,6 +208,7 @@ export default function Navbar() {
                   {NAV_ITEMS.map((item, index) => (
                     <button
                       key={item.title}
+                      onMouseEnter={() => setActiveGroup(index)}
                       onClick={() => {
                         if (activeGroup === index) {
                           scrollToSection(item.sectionId);

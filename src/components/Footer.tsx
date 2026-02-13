@@ -3,18 +3,19 @@
 import { Mail, Instagram, Linkedin, Globe } from 'lucide-react';
 import Logo from './Logo';
 import Image from 'next/image';
+import MarqueeBanner from './MarqueeBanner';
 
 export default function Footer() {
   return (
     <footer className="fixed bottom-0 left-0 w-full bg-[#F5F7FA] text-[#1A1A1A] -z-10 flex flex-col h-[100vh]">
 
-      {/* Main footer content */}
-      <div className="flex-1 flex flex-col justify-end pb-12 md:pb-20">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24 w-full">
+      {/* Main footer content — slightly lower (more space above than below) */}
+      <div className="flex-1 flex flex-col justify-center pt-32 md:pt-40 pb-20 md:pb-24">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24 w-full items-start">
           
           {/* Left: CTA + Socials */}
-          <div className="flex flex-col justify-end">
-            <h2 className="text-6xl md:text-8xl font-league text-[#004AAD] mb-12 tracking-tight uppercase leading-[0.8]">
+          <div className="flex flex-col w-full">
+            <h2 className="text-7xl md:text-9xl font-league text-[#004AAD] mb-12 tracking-tight uppercase leading-[0.8]">
               Let&apos;s build a <br /> safer future.
             </h2>
             
@@ -51,38 +52,26 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Right: Founders */}
-          <div className="flex flex-col justify-end">
-            <h4 className="font-bold uppercase tracking-[0.3em] text-xs text-gray-400 mb-10 font-montserrat">Founders</h4>
-            <div className="flex flex-col gap-8">
-              <div className="flex items-center gap-6 group">
-                <div className="relative w-28 h-28 flex-shrink-0">
-                  <div className="absolute inset-0 bg-[#004AAD] rounded-full translate-x-1 translate-y-1 opacity-20 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500" />
-                  <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-white shadow-xl">
-                    <Image src="/aman-photo.jpg" alt="Aman Jain" fill className="object-cover transition-transform duration-700 group-hover:scale-110" sizes="112px" />
+            {/* Right: Founders — aligned with "Let's build a safer future" headline */}
+            <div className="flex flex-col w-full">
+              <h4 className="font-bold uppercase tracking-[0.3em] text-xs text-gray-400 mb-10 font-montserrat">Founders</h4>
+              <div className="flex flex-col gap-8">
+                <div className="flex items-center gap-6 group">
+                  <div>
+                    <p className="text-2xl md:text-3xl font-black text-[#1A1A1A] tracking-tighter group-hover:text-[#004AAD] transition-colors font-league uppercase">Aman Jain</p>
+                    <p className="text-xs uppercase tracking-[0.2em] text-gray-400 font-bold font-montserrat">Co-Founder</p>
                   </div>
                 </div>
-                <div>
-                  <p className="text-2xl md:text-3xl font-black text-[#1A1A1A] tracking-tighter group-hover:text-[#004AAD] transition-colors font-league uppercase">Aman Jain</p>
-                  <p className="text-xs uppercase tracking-[0.2em] text-gray-400 font-bold font-montserrat">Co-Founder</p>
+
+                <div className="flex items-center gap-6 group">
+                  <div>
+                    <p className="text-2xl md:text-3xl font-black text-[#1A1A1A] tracking-tighter group-hover:text-[#004AAD] transition-colors font-league uppercase">Rania Mecca</p>
+                    <p className="text-xs uppercase tracking-[0.2em] text-gray-400 font-bold font-montserrat">Co-Founder</p>
+                  </div>
                 </div>
               </div>
 
-              <div className="flex items-center gap-6 group">
-                <div className="relative w-28 h-28 flex-shrink-0">
-                  <div className="absolute inset-0 bg-[#004AAD] rounded-full translate-x-1 translate-y-1 opacity-20 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500" />
-                  <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-white shadow-xl">
-                    <Image src="/rania-photo.jpg" alt="Rania Mecca" fill className="object-cover transition-transform duration-700 group-hover:scale-110" sizes="112px" />
-                  </div>
-                </div>
-                <div>
-                  <p className="text-2xl md:text-3xl font-black text-[#1A1A1A] tracking-tighter group-hover:text-[#004AAD] transition-colors font-league uppercase">Rania Mecca</p>
-                  <p className="text-xs uppercase tracking-[0.2em] text-gray-400 font-bold font-montserrat">Co-Founder</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Bottom row: copyright + big logo */}
+              {/* Bottom row: copyright + big logo */}
             <div className="pt-12 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-8 mt-12">
               <p className="text-xs text-gray-400 font-bold uppercase tracking-widest font-montserrat">
                 &copy; 2026 SafeSport India.
@@ -91,6 +80,11 @@ export default function Footer() {
             </div>
           </div>
         </div>
+      </div>
+      
+      {/* Marquee Banner at the bottom */}
+      <div className="absolute bottom-0 left-0 w-full z-10">
+        <MarqueeBanner />
       </div>
     </footer>
   );

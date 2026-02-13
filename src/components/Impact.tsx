@@ -4,14 +4,14 @@ import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
 const STATS = [
-  { text: "1 in 3 women in India report workplace sexual harassment", size: "large" },
-  { text: "53% of children report abuse by a school teacher or relative", size: "medium" },
-  { text: "Only ~10% of abuse cases are ever reported in India", size: "small" },
-  { text: "90% of athletes do not report harmful experiences", size: "medium" },
-  { text: "74% of athletes believe reporting would not lead to action", size: "small" },
-  { text: "13,900 students died by suicide in 2023 — the highest globally", size: "large" },
+  { text: "16 of 30 National Sports Federations lack mandated Internal Complaints Committees", size: "large" },
+  { text: "Workplace harassment complaints rose by 29% in top Indian firms in 2023-24", size: "medium" },
+  { text: "53% of children in India report abuse by a person in a position of trust", size: "medium" },
+  { text: "Only ~1% of sexual violence cases in India are reported to police", size: "small" },
+  { text: "Pending harassment cases in corporate India rose by 67% in one year", size: "medium" },
+  { text: "13,000+ student suicides reported in 2023 — highlighting the mental health crisis", size: "large" },
   { text: "Zero Tolerance. 100% Commitment.", size: "medium" },
-  { text: "95% of sporting bodies lack formal safeguarding policies", size: "small" },
+  { text: "Systemic underreporting masks the true scale of abuse in Indian sport", size: "small" },
 ];
 
 export default function Impact() {
@@ -31,8 +31,9 @@ export default function Impact() {
           </p>
         </div>
         
-        {/* Authentic Masonry Grid (Lando Norris style) */}
-        <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
+      {/* Authentic Masonry Grid (Lando Norris style) */}
+      {/* TODO: Update stats with new data. User requested "Get different stats". */}
+      <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
           {STATS.map((stat, index) => (
             <motion.div
               key={index}

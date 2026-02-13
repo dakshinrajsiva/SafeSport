@@ -4,26 +4,32 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
+import { FileText, Book, HelpCircle, Newspaper } from 'lucide-react';
+
 const RESOURCES = [
   {
     title: "Toolkits",
     description: "Plug-and-play templates for codes of conduct, reporting forms, and induction checklists.",
-    icon: "01",
+    icon: <FileText size={24} />,
+    number: "01",
   },
   {
     title: "Guides",
     description: "Plain-language explainers for boards, staff, and coaches on their safeguarding duties.",
-    icon: "02",
+    icon: <Book size={24} />,
+    number: "02",
   },
   {
-    title: "Safeguarding explainers",
+    title: "Safeguarding Explainers",
     description: "Short primers on key concepts like grooming, power, consent, and trauma-informed practice.",
-    icon: "03",
+    icon: <HelpCircle size={24} />,
+    number: "03",
   },
   {
     title: "Articles",
     description: "Commentary on emerging risks, case studies, and lessons from global safeguarding practice.",
-    icon: "04",
+    icon: <Newspaper size={24} />,
+    number: "04",
   },
 ];
 
@@ -88,18 +94,36 @@ export default function Resources() {
         <div ref={cardsRef} className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {RESOURCES.map((resource) => (
             <div
-              key={resource.icon}
-              className="resource-card group p-8 rounded-2xl bg-[#F5F7FA] border border-gray-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 cursor-default relative overflow-hidden"
+              key={resource.number}
+              className="resource-card group p-8 rounded-3xl bg-white border border-gray-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 cursor-default relative overflow-hidden"
             >
-              <div className="w-10 h-10 rounded-full bg-[#004AAD]/10 flex items-center justify-center mb-6 group-hover:bg-[#004AAD] transition-colors duration-500">
-                <span className="text-xs font-black text-[#004AAD] group-hover:text-white transition-colors duration-500 font-montserrat">{resource.icon}</span>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#004AAD]/5 rounded-bl-[100px] transition-all duration-500 group-hover:scale-150 group-hover:bg-[#004AAD]/10" />
+              
+              <div className="relative z-10 flex flex-col h-full justify-between">
+                <div>
+                  <div className="w-14 h-14 rounded-2xl bg-[#F5F7FA] flex items-center justify-center mb-8 group-hover:bg-[#004AAD] transition-colors duration-500 shadow-sm">
+                    <div className="text-[#004AAD] group-hover:text-white transition-colors duration-500">
+                      {resource.icon}
+                    </div>
+                  </div>
+                  
+                  <h4 className="text-2xl font-league uppercase text-[#1A1A1A] mb-4 leading-tight group-hover:text-[#004AAD] transition-colors">
+                    {resource.title}
+                  </h4>
+                  <p className="text-base text-gray-500 leading-relaxed font-montserrat">
+                    {resource.description}
+                  </p>
+                </div>
+                
+                <div className="mt-8 pt-6 border-t border-gray-100 flex justify-between items-center group-hover:border-[#004AAD]/20 transition-colors">
+                  <span className="text-sm font-bold font-montserrat text-[#004AAD] uppercase tracking-widest">
+                    Read More
+                  </span>
+                  <span className="text-4xl font-league text-gray-100 group-hover:text-[#004AAD]/20 transition-colors duration-500">
+                    {resource.number}
+                  </span>
+                </div>
               </div>
-              <h4 className="text-base md:text-lg font-bold text-[#1A1A1A] mb-3 leading-snug">
-                {resource.title}
-              </h4>
-              <p className="text-sm md:text-base text-gray-500 leading-relaxed font-montserrat">
-                {resource.description}
-              </p>
             </div>
           ))}
         </div>

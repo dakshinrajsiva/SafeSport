@@ -67,9 +67,9 @@ export default function Timeline() {
   }, []);
 
   return (
-    <section id="approach" ref={containerRef} className="py-32 bg-white relative overflow-hidden">
+    <section id="approach" ref={containerRef} className="py-12 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 md:px-8 relative">
-        <div className="mb-32 text-center">
+        <div className="mb-12 text-center">
           <h2 className="text-5xl md:text-7xl font-league text-[#004AAD] tracking-tight mb-4 uppercase leading-none">
             This is how our collaboration works
           </h2>
@@ -82,11 +82,11 @@ export default function Timeline() {
             <div ref={lineRef} className="w-full bg-[#004AAD] h-0 origin-top"></div>
           </div>
 
-          <div className="space-y-24 md:space-y-0">
+          <div className="space-y-16 md:space-y-0">
             {SAFESPORT_STEPS.map((step, index) => (
               <div 
                 key={index} 
-                className={`collaboration-item flex flex-col md:flex-row items-center w-full mb-0 md:mb-32 ${
+                className={`collaboration-item flex flex-col md:flex-row items-center w-full mb-0 md:mb-16 ${
                   index % 2 === 0 ? 'md:flex-row-reverse' : 'md:flex-row'
                 }`}
               >
