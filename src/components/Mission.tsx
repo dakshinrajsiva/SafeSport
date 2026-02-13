@@ -48,7 +48,7 @@ export default function Mission() {
           The Vision
         </h3>
         <p ref={textRef} className="text-4xl md:text-7xl font-bold leading-[1.05] text-[#1A1A1A] tracking-tight font-sans">
-          SafeSport India is India’s first dedicated safeguarding enterprise dedicated to building a safe, ethical, and inclusive sporting, organizational, and educational environment across the country.
+          SafeSport India is India’s first dedicated safeguarding enterprise committed to building a safe, ethical, and inclusive sporting, organizational, and educational environment across the country.
         </p>
       </div>
     </section>
