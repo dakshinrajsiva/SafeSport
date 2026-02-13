@@ -6,8 +6,16 @@ import Footer from '@/components/Footer';
 const SECTORS = [
   {
     title: "NGOs & S4D Organisations",
-    whyMatters: "NGOs and sport-for-development organisations work in high-trust environments, often with children and young people from vulnerable or underserved communities. These settings involve close relationships, informal structures, travel, and long hours — all of which increase both impact and responsibility. Safeguarding in this context is not just about protection. It is about maintaining trust, ensuring ethical practice, and protecting both participants and staff. When safeguarding systems are unclear or inconsistent, responsibility often falls on individuals rather than being shared by the organisation. Strong safeguarding enables NGOs to deliver programmes with confidence, credibility, and long-term sustainability.",
-    howWeWork: "We support NGOs to move beyond intention and embed safeguarding into everyday practice. Our approach is collaborative, context-aware, and sensitive to resource realities. We focus on building staff and volunteer confidence in recognising and responding to concerns, creating clear, proportionate reporting pathways, strengthening organisational accountability without overburdening teams, and aligning safeguarding practice with donor, CSR, and partnership expectations. Our work is designed to support mission delivery, not disrupt it.",
+    whyMatters: [
+      "NGOs and sport-for-development organisations work in high-trust environments, often with children and young people from vulnerable or underserved communities. These settings involve close relationships, informal structures, travel, and long hours — all of which increase both impact and responsibility.",
+      "Safeguarding in this context is not just about protection. It is about maintaining trust, ensuring ethical practice, and protecting both participants and staff. When safeguarding systems are unclear or inconsistent, responsibility often falls on individuals rather than being shared by the organisation.",
+      "Strong safeguarding enables NGOs to deliver programmes with confidence, credibility, and long-term sustainability."
+    ],
+    howWeWork: [
+      "We support NGOs to move beyond intention and embed safeguarding into everyday practice. Our approach is collaborative, context-aware, and sensitive to resource realities.",
+      "We focus on building staff and volunteer confidence in recognising and responding to concerns, creating clear, proportionate reporting pathways, strengthening organisational accountability without overburdening teams, and aligning safeguarding practice with donor, CSR, and partnership expectations.",
+      "Our work is designed to support mission delivery, not disrupt it."
+    ],
     support: [
       "Safeguarding foundations training for staff and volunteers",
       "Development or strengthening of safeguarding policies and codes of conduct",
@@ -18,8 +26,15 @@ const SECTORS = [
   },
   {
     title: "Private Academies & Training Centres",
-    whyMatters: "Private academies operate in performance-driven environments where ambition, authority, and trust intersect. Coaches and staff hold significant influence, and young athletes or trainees may be reluctant to raise concerns due to fear of selection, progression, or reputation. Safeguarding in academies is not about limiting coaching or performance. It is about creating environments where development can happen safely, consistently, and sustainably — without fear, silence, or harm. Strong safeguarding protects athletes, staff, and the academy itself.",
-    howWeWork: "We work closely with academies to embed safeguarding into coaching practice, leadership behaviour, and daily operations — not just policy documents. Our approach focuses on clarity around boundaries and professional conduct, confidence in handling concerns without overreaction or avoidance, alignment between safeguarding, performance, and wellbeing, and reducing reliance on informal judgement through clear systems. We respect the realities of high-performance environments and design safeguarding that supports, rather than undermines, excellence.",
+    whyMatters: [
+      "Private academies operate in performance-driven environments where ambition, authority, and trust intersect. Coaches and staff hold significant influence, and young athletes or trainees may be reluctant to raise concerns due to fear of selection, progression, or reputation.",
+      "Safeguarding in academies is not about limiting coaching or performance. It is about creating environments where development can happen safely, consistently, and sustainably — without fear, silence, or harm.",
+      "Strong safeguarding protects athletes, staff, and the academy itself."
+    ],
+    howWeWork: [
+      "We work closely with academies to embed safeguarding into coaching practice, leadership behaviour, and daily operations — not just policy documents. Our approach focuses on clarity around boundaries and professional conduct, confidence in handling concerns without overreaction or avoidance.",
+      "We align safeguarding with performance and wellbeing, and reduce reliance on informal judgement through clear systems. We respect the realities of high-performance environments and design safeguarding that supports, rather than undermines, excellence."
+    ],
     support: [
       "Coach and staff safeguarding training",
       "Safeguarding policy and system development",
@@ -30,8 +45,15 @@ const SECTORS = [
   },
   {
     title: "Educational Institutions",
-    whyMatters: "Educational institutions are responsible for more than academic outcomes. They are environments where children and young people learn, socialise, travel, and develop their understanding of boundaries, authority, and trust. Safeguarding in schools and colleges is a professional skill — one that supports teachers and staff to recognise concerns early, respond appropriately, and create safe learning environments. It also helps students understand their rights, boundaries, and sense of agency. Effective safeguarding strengthens trust with families, protects staff, and supports institutional integrity.",
-    howWeWork: "We support institutions to embed safeguarding into everyday practice, rather than treating it as a compliance requirement. Our work focuses on building staff confidence and clarity in identifying and responding to concerns, strengthening systems around supervision, conduct, travel, and reporting, supporting leadership in creating safe, accountable cultures, and ensuring safeguarding is understood, not just documented. Our approach is age-appropriate, role-specific, and aligned with Indian legal and institutional realities.",
+    whyMatters: [
+      "Educational institutions are responsible for more than academic outcomes. They are environments where children and young people learn, socialise, travel, and develop their understanding of boundaries, authority, and trust.",
+      "Safeguarding in schools and colleges is a professional skill — one that supports teachers and staff to recognise concerns early, respond appropriately, and create safe learning environments. It also helps students understand their rights, boundaries, and sense of agency.",
+      "Effective safeguarding strengthens trust with families, protects staff, and supports institutional integrity."
+    ],
+    howWeWork: [
+      "We support institutions to embed safeguarding into everyday practice, rather than treating it as a compliance requirement. Our work focuses on building staff confidence and clarity in identifying and responding to concerns.",
+      "We strengthen systems around supervision, conduct, travel, and reporting, support leadership in creating safe, accountable cultures, and ensure safeguarding is understood, not just documented. Our approach is age-appropriate, role-specific, and aligned with Indian legal and institutional realities."
+    ],
     support: [
       "Safeguarding training for teachers and staff",
       "Leadership and management safeguarding guidance",
@@ -42,8 +64,15 @@ const SECTORS = [
   },
   {
     title: "National Bodies & Federations",
-    whyMatters: "National bodies and governing institutions play a critical role in setting expectations, standards, and culture across entire sectors. Safeguarding at this level is about governance, consistency, and credibility. As expectations from athletes, parents, partners, and international stakeholders increase, national bodies are expected to demonstrate leadership in safeguarding — not only through policy, but through implementation and oversight. Strong safeguarding frameworks support integrity, trust, and long-term institutional legitimacy.",
-    howWeWork: "We support national bodies to design and strengthen safeguarding systems that are scalable, consistent, and aligned with international best practice — while remaining practical for diverse Indian contexts. Our work focuses on translating safeguarding standards into implementable frameworks, supporting leadership and governance structures, strengthening reporting and response systems, and aligning safeguarding with broader governance and performance goals. We work as thought partners, not just service providers.",
+    whyMatters: [
+      "National bodies and governing institutions play a critical role in setting expectations, standards, and culture across entire sectors. Safeguarding at this level is about governance, consistency, and credibility.",
+      "As expectations from athletes, parents, partners, and international stakeholders increase, national bodies are expected to demonstrate leadership in safeguarding — not only through policy, but through implementation and oversight.",
+      "Strong safeguarding frameworks support integrity, trust, and long-term institutional legitimacy."
+    ],
+    howWeWork: [
+      "We support national bodies to design and strengthen safeguarding systems that are scalable, consistent, and aligned with international best practice — while remaining practical for diverse Indian contexts.",
+      "Our work focuses on translating safeguarding standards into implementable frameworks, supporting leadership and governance structures, strengthening reporting and response systems, and aligning safeguarding with broader governance and performance goals. We work as thought partners, not just service providers."
+    ],
     support: [
       "Safeguarding framework and policy development",
       "Leadership and governance advisory",
@@ -107,9 +136,13 @@ export default function WhoWeWorkWithPage() {
                       <h3 className="text-xl font-bold font-montserrat uppercase tracking-wider text-[#1A1A1A] mb-4 border-l-4 border-[#004AAD] pl-4">
                         Why Safeguarding Matters
                       </h3>
-                      <p className="text-lg font-montserrat text-gray-600 leading-relaxed">
-                        {sector.whyMatters}
-                      </p>
+                      <div className="space-y-4">
+                        {sector.whyMatters.map((para, j) => (
+                          <p key={j} className="text-lg font-montserrat text-gray-600 leading-relaxed">
+                            {para}
+                          </p>
+                        ))}
+                      </div>
                     </div>
 
                     {/* How We Work */}
@@ -117,9 +150,13 @@ export default function WhoWeWorkWithPage() {
                       <h3 className="text-xl font-bold font-montserrat uppercase tracking-wider text-[#1A1A1A] mb-4 border-l-4 border-[#004AAD] pl-4">
                         How We Work
                       </h3>
-                      <p className="text-lg font-montserrat text-gray-600 leading-relaxed">
-                        {sector.howWeWork}
-                      </p>
+                      <div className="space-y-4">
+                        {sector.howWeWork.map((para, j) => (
+                          <p key={j} className="text-lg font-montserrat text-gray-600 leading-relaxed">
+                            {para}
+                          </p>
+                        ))}
+                      </div>
                     </div>
 
                     {/* Support */}
