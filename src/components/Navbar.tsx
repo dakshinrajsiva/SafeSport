@@ -188,21 +188,21 @@ export default function Navbar() {
           isMenuOpen ? "translate-y-0" : "-translate-y-full"
         )} />
 
+        {/* Close button — fixed top right when menu is open */}
+        <div className="fixed top-0 right-0 z-[110] p-6 md:p-8">
+          <button
+            onClick={() => setIsMenuOpen(false)}
+            className="flex items-center gap-2 px-5 py-2.5 font-montserrat font-bold uppercase tracking-[0.2em] text-xs transition-all duration-500 border border-white/30 text-white hover:bg-white hover:text-[#004AAD]"
+          >
+            Close <X size={14} />
+          </button>
+        </div>
+
         {/* Menu content */}
         <div className="relative z-10 min-h-screen flex flex-col pt-28 pb-12">
           <div className="flex-1 flex items-start">
             <div className="w-full max-w-7xl mx-auto px-6 md:px-12">
               
-              {/* Close button inside menu */}
-              <div className="absolute top-0 right-0 p-6 md:p-12 lg:hidden">
-                 <button
-                  onClick={() => setIsMenuOpen(false)}
-                  className="flex items-center gap-2 px-5 py-2.5 font-montserrat font-bold uppercase tracking-[0.2em] text-xs transition-all duration-500 border border-white/30 text-white hover:bg-white hover:text-[#004AAD]"
-                >
-                  Close <X size={14} />
-                </button>
-              </div>
-
               {/* Two-column layout: nav titles left, sub-items right */}
               <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-12 lg:gap-24">
                 
