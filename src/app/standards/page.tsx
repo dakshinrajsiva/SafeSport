@@ -2,49 +2,29 @@
 
 import { motion } from 'framer-motion';
 import Footer from '@/components/Footer';
-import { useState } from 'react';
-import { cn } from '@/lib/utils';
+import { ShieldCheck, BookOpen, UserCheck, Layers } from 'lucide-react';
 
-const SAFEGUARDS = [
+const STANDARDS = [
   {
-    title: "Safeguarding Is Clearly Understood and Practised",
-    description: "Safeguarding is communicated in simple, accessible ways and reflected in everyday behaviour, not just written policies."
+    title: "We've done the work for you",
+    description: "We work with expert partners to curate high-impact restoration projects that promote positive change for communities and nature. We will also tailor your support to projects that reflect your specific goals and your fans’ ethos.",
+    icon: <ShieldCheck className="w-12 h-12 text-[#004AAD]" />,
+    align: 'left',
+    number: '01'
   },
   {
-    title: "Everyone Knows How to Raise a Concern Safely",
-    description: "Clear, fear-reduced reporting pathways exist so concerns can be raised without risk of retaliation or harm."
+    title: "Pick your path",
+    description: "We work together to select a funding model that works for you. Whether you choose to designate proceeds from an existing piece of merch or a percentage of event/tour revenue, we make sure that more of every dollar donated goes directly to your high-impact restoration projects.",
+    icon: <BookOpen className="w-12 h-12 text-[#004AAD]" />,
+    align: 'right',
+    number: '02'
   },
   {
-    title: "Roles, Responsibilities, and Support Are Clear",
-    description: "Athletes, coaches, parents, and staff understand their safeguarding role and know where to seek guidance and support."
-  },
-  {
-    title: "Risks Are Actively Identified and Reduced",
-    description: "Safeguarding risks - including physical, psychological, and power-based risks - are recognised and addressed proactively."
-  },
-  {
-    title: "Clear Boundaries Define Acceptable Behaviour",
-    description: "Explicit standards distinguish coaching, discipline, and unacceptable behaviour, with attention to power and hierarchy."
-  },
-  {
-    title: "Staff Are Recruited and Developed Safely",
-    description: "Recruitment and training prioritise values, boundaries, and safeguarding competence alongside technical expertise."
-  },
-  {
-    title: "Safeguarding Extends Across the Entire Ecosystem",
-    description: "Safeguarding expectations are shared with partners, affiliates, and collaborators to protect athletes across settings."
-  },
-  {
-    title: "Responses Are Timely, Fair, and Trauma-Informed",
-    description: "Concerns are handled with care, dignity, transparency, and a focus on the wellbeing of those affected."
-  },
-  {
-    title: "Families and Communities Are Engaged in Safeguarding",
-    description: "Parents and communities are informed partners in creating safe, supportive environments."
-  },
-  {
-    title: "Safeguarding Is Continuously Reviewed and Improved",
-    description: "Safeguarding is treated as a living system, regularly monitored, evaluated, and strengthened over time."
+    title: "Amplify your impact",
+    description: "This first-of-its-kind platform shows exactly where your money is going, and constantly monitors progress to ensure transparency and measurable results. Showcase the impact of your contributions with fans through custom social media reports.",
+    icon: <UserCheck className="w-12 h-12 text-[#004AAD]" />,
+    align: 'left',
+    number: '03'
   }
 ];
 
@@ -55,56 +35,52 @@ export default function StandardsPage() {
         
         {/* Header */}
         <section className="px-6 md:px-12 lg:px-24 mb-20 md:mb-32">
-          <div className="max-w-7xl mx-auto">
+          <div className="max-w-7xl mx-auto text-center">
             <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-league uppercase leading-[0.8] tracking-tighter text-[#004AAD] mb-8">
-              Our Standards
+              How It Works
             </h1>
-            <div className="w-full h-[1px] bg-gray-200 mb-12" />
-            
-            <div className="max-w-4xl">
-              <h2 className="text-3xl md:text-5xl font-league uppercase text-[#1A1A1A] mb-6">
-                The 10 Contextualised Safeguards
-              </h2>
-              <p className="text-lg md:text-xl font-montserrat text-gray-600 leading-relaxed mb-8">
-                Safeguarding frameworks developed internationally are robust, evidence-based, and essential. However, their effectiveness depends on the context in which they are applied. Indian sport and youth ecosystems differ structurally, culturally, and operationally from many Western systems.
-              </p>
-              <p className="text-lg md:text-xl font-montserrat text-gray-600 leading-relaxed border-l-4 border-[#004AAD] pl-6 py-6 bg-[#F5F7FA] rounded-r-lg shadow-sm">
-                <span className="font-bold text-[#004AAD]">SafeSport India’s approach</span> does not replace international safeguards - it operationalises them for <span className="font-bold text-[#1A1A1A]">Indian realities</span>, ensuring they are not only compliant, but actually usable.
-              </p>
-            </div>
+            <div className="w-20 h-1 bg-[#004AAD] mx-auto mb-12" />
+            <p className="text-xl md:text-2xl font-montserrat text-gray-600 max-w-4xl mx-auto leading-relaxed">
+              Our standards are built on global best practices, contextualized for the unique challenges and opportunities within the Indian sporting ecosystem.
+            </p>
           </div>
         </section>
 
-        {/* Safeguards Grid */}
+        {/* Standards Steps - Surf & Turf Style */}
         <section className="px-6 md:px-12 lg:px-24 pb-32">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {SAFEGUARDS.map((item, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.05 }}
-                  className="group relative h-[320px] bg-[#F5F7FA] rounded-2xl overflow-hidden cursor-default border border-gray-100 shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
-                >
-                  {/* Default State: Number & Title */}
-                  <div className="absolute inset-0 p-8 flex flex-col justify-between transition-opacity duration-500 group-hover:opacity-0">
-                    <span className="text-6xl font-league text-[#004AAD]/10 font-bold">{String(i + 1).padStart(2, '0')}</span>
-                    <h3 className="text-2xl font-league uppercase text-[#1A1A1A] leading-tight pr-4">
-                      {item.title}
-                    </h3>
-                    <div className="w-8 h-1 bg-[#004AAD]" />
+          <div className="max-w-7xl mx-auto relative">
+            {/* Center Line */}
+            <div className="absolute left-1/2 top-0 bottom-0 w-[1px] bg-gray-200 -translate-x-1/2 hidden md:block" />
+
+            <div className="space-y-24">
+              {STANDARDS.map((std, i) => (
+                <div key={i} className={`flex flex-col md:flex-row items-center gap-12 md:gap-24 ${i % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
+                  
+                  {/* Text Side */}
+                  <div className="flex-1 text-center md:text-left">
+                    <div className={`flex flex-col ${i % 2 === 1 ? 'md:items-end md:text-right' : 'md:items-start'}`}>
+                      <span className="text-8xl font-league font-bold text-[#004AAD]/10 leading-none mb-6 block">
+                        {std.number}
+                      </span>
+                      <h2 className="text-4xl md:text-5xl font-league uppercase text-[#1A1A1A] mb-6 leading-tight">
+                        {std.title}
+                      </h2>
+                      <p className="text-lg font-montserrat text-gray-600 leading-relaxed max-w-xl">
+                        {std.description}
+                      </p>
+                    </div>
                   </div>
 
-                  {/* Hover State: Description */}
-                  <div className="absolute inset-0 bg-[#004AAD] p-8 flex flex-col justify-center items-center text-center translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]">
-                    <span className="text-4xl font-league text-white/20 font-bold mb-4">{String(i + 1).padStart(2, '0')}</span>
-                    <p className="text-white font-montserrat text-base leading-relaxed font-medium">
-                      {item.description}
-                    </p>
+                  {/* Icon/Image Side (Center Marker) */}
+                  <div className="relative z-10 flex-shrink-0">
+                    <div className="w-24 h-24 rounded-full bg-white border-4 border-[#004AAD] flex items-center justify-center shadow-xl">
+                      {std.icon}
+                    </div>
                   </div>
-                </motion.div>
+
+                  {/* Empty Side for balance */}
+                  <div className="flex-1 hidden md:block" />
+                </div>
               ))}
             </div>
           </div>

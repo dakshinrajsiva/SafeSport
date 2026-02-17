@@ -1,11 +1,12 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Footer from '@/components/Footer';
-import { ArrowRight, CheckCircle, Shield, Users, Globe, Layout } from 'lucide-react';
 import Image from 'next/image';
-
+import { useState } from 'react';
 import HoverReveal from '@/components/ui/HoverReveal';
+import MovingLine from '@/components/ui/MovingLine';
+import { Layout, Users, Globe, ChevronDown, ChevronUp } from 'lucide-react';
 
 const DIFFERENCES = [
   {
@@ -45,6 +46,8 @@ const COMMITMENTS = [
 ];
 
 export default function ApproachPage() {
+  const [openDifference, setOpenDifference] = useState<number | null>(null);
+
   return (
     <main className="relative bg-[#F8FAFC] text-[#1A1A1A]">
       <div className="relative z-10 bg-white shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] mb-[100vh] min-h-screen pt-32">
@@ -61,8 +64,9 @@ export default function ApproachPage() {
         </section>
 
         {/* Philosophy */}
-        <section className="px-6 md:px-12 lg:px-24 mb-32 bg-white py-16 md:py-20 rounded-t-3xl -mt-8 relative z-10">
-          <div className="max-w-7xl mx-auto">
+        <section className="px-6 md:px-12 lg:px-24 mb-32 bg-white py-16 md:py-20 rounded-t-3xl -mt-8 relative z-10 overflow-hidden">
+          <MovingLine className="opacity-40" />
+          <div className="max-w-7xl mx-auto relative z-10">
             <div className="grid md:grid-cols-12 gap-12 md:gap-16 items-start">
               <div className="md:col-span-4 sticky top-32">
                 <h2 className="text-4xl md:text-5xl font-league uppercase mb-6 text-[#1A1A1A] leading-tight">
@@ -78,13 +82,13 @@ export default function ApproachPage() {
                   At Safe Sport India, our philosophy is grounded in a simple idea: <HoverReveal imageSrc="/images/approach-graphic.svg">safe environments</HoverReveal> are built through clear systems, shared understanding, and sound judgement. Awareness alone is not enough. Safeguarding becomes effective when it is embedded into <HoverReveal imageSrc="/images/values-graphic.svg">everyday practice</HoverReveal> — how people lead, teach, coach, supervise, and make decisions.
                 </p>
                 
-                {/* Approach Graphic */}
-                <div className="relative w-full aspect-[16/9] my-8 rounded-xl overflow-hidden bg-[#004AAD]/5 border border-[#004AAD]/10">
+                {/* Approach Graphic - Cropped via object-cover and height constraint */}
+                <div className="relative w-full h-[400px] my-8 rounded-xl overflow-hidden bg-[#004AAD]/5 border border-[#004AAD]/10">
                   <Image 
                     src="/images/approach-graphic.svg" 
                     alt="Our Philosophy Approach" 
                     fill
-                    className="object-contain p-4"
+                    className="object-cover"
                   />
                 </div>
 
@@ -99,7 +103,7 @@ export default function ApproachPage() {
           </div>
         </section>
 
-        {/* How We're Different */}
+        {/* How We're Different - Accordion */}
         <section className="px-6 md:px-12 lg:px-24 mb-32 bg-[#004AAD]/[0.08] py-24 relative overflow-hidden">
           {/* Background decoration */}
           <div className="absolute top-0 right-0 w-1/2 h-full bg-[#004AAD]/10 skew-x-12 translate-x-1/4 pointer-events-none" />
@@ -107,39 +111,65 @@ export default function ApproachPage() {
           <div className="max-w-7xl mx-auto relative z-10">
             <h2 className="text-4xl md:text-6xl font-league uppercase mb-16 text-[#1A1A1A] text-center">How We&apos;re Different</h2>
             
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="max-w-4xl mx-auto space-y-4">
               {DIFFERENCES.map((diff, i) => (
-                <motion.div 
+                <div 
                   key={i}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.2 }}
-                  className="bg-white p-8 md:p-10 rounded-2xl shadow-sm border border-[#004AAD]/10 hover:shadow-xl hover:-translate-y-2 hover:border-[#004AAD]/30 transition-all duration-500 group"
+                  className="bg-white rounded-2xl shadow-sm border border-[#004AAD]/10 overflow-hidden"
                 >
-                  <div className="mb-6 bg-[#F0F4F8] w-16 h-16 rounded-2xl flex items-center justify-center group-hover:bg-[#004AAD]/15 transition-colors duration-500">
-                    <div className="text-[#004AAD] transition-colors duration-500">
-                      {diff.icon}
+                  <button
+                    onClick={() => setOpenDifference(openDifference === i ? null : i)}
+                    className="w-full flex items-center justify-between p-6 md:p-8 text-left hover:bg-gray-50 transition-colors"
+                  >
+                    <div className="flex items-center gap-6">
+                      <div className="w-12 h-12 rounded-xl bg-[#004AAD]/5 flex items-center justify-center text-[#004AAD]">
+                        {diff.icon}
+                      </div>
+                      <div>
+                        <h3 className="text-xl md:text-2xl font-league uppercase text-[#1A1A1A]">{diff.title}</h3>
+                        {/* Show first sentence as preview if closed */}
+                        {openDifference !== i && (
+                          <p className="text-sm font-montserrat text-gray-500 mt-2 line-clamp-1">
+                            {diff.content.split('.')[0]}.
+                          </p>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                  <h3 className="text-2xl font-league uppercase mb-4 text-[#1A1A1A] leading-tight group-hover:text-[#004AAD] transition-colors">{diff.title}</h3>
-                  <p className="text-sm font-montserrat text-gray-500 leading-relaxed">
-                    {diff.content}
-                  </p>
-                </motion.div>
+                    <div className="text-[#004AAD]">
+                      {openDifference === i ? <ChevronUp /> : <ChevronDown />}
+                    </div>
+                  </button>
+                  
+                  <AnimatePresence>
+                    {openDifference === i && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <div className="px-6 md:px-8 pb-8 pt-0 pl-[5.5rem]">
+                          <p className="text-base font-montserrat text-gray-600 leading-relaxed">
+                            {diff.content}
+                          </p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Our Commitments */}
-        <section className="px-6 md:px-12 lg:px-24 pb-32 bg-[#004AAD]/[0.06] py-24 rounded-b-3xl">
+        {/* Our Commitments - Brand Blue Background */}
+        <section className="px-6 md:px-12 lg:px-24 pb-32 bg-[#004AAD] py-24 rounded-b-3xl text-white">
           <div className="max-w-7xl mx-auto">
             <div className="mb-16 text-center max-w-3xl mx-auto">
-              <div className="w-16 h-1 bg-[#004AAD] mx-auto mb-6" />
-              <h2 className="text-4xl md:text-6xl font-league uppercase mb-6 text-[#1A1A1A]">Our Commitments</h2>
-              <p className="text-lg font-montserrat text-gray-600">
-                At Safe Sport India, our work is guided by a clear set of commitments that shape how we partner with organisations and the standards we hold ourselves to.
+              <div className="w-16 h-1 bg-white/20 mx-auto mb-6" />
+              <h2 className="text-4xl md:text-6xl font-league uppercase mb-6 text-white">Our Commitments</h2>
+              <p className="text-lg font-montserrat text-white/70">
+                At SafeSport India, our work is guided by a clear set of commitments that shape how we partner with organisations and the standards we hold ourselves to.
               </p>
             </div>
 
@@ -147,13 +177,13 @@ export default function ApproachPage() {
               {COMMITMENTS.map((comm, i) => (
                 <div key={i} className="flex gap-6 group">
                   <div className="flex-shrink-0 mt-2">
-                    <div className="w-10 h-10 rounded-full border-2 border-[#004AAD] flex items-center justify-center text-[#004AAD] font-league text-lg group-hover:bg-[#004AAD] group-hover:text-white transition-all duration-300">
+                    <div className="w-10 h-10 rounded-full border-2 border-white/30 flex items-center justify-center text-white font-league text-lg group-hover:bg-white group-hover:text-[#004AAD] transition-all duration-300">
                       {i + 1}
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-2xl font-league uppercase mb-3 text-[#1A1A1A]">{comm.title}</h3>
-                    <p className="text-base font-montserrat text-gray-600 leading-relaxed">
+                    <h3 className="text-2xl font-league uppercase mb-3 text-white">{comm.title}</h3>
+                    <p className="text-base font-montserrat text-white/70 leading-relaxed group-hover:text-white transition-colors">
                       {comm.content}
                     </p>
                   </div>
@@ -161,8 +191,8 @@ export default function ApproachPage() {
               ))}
             </div>
             
-            <div className="mt-20 pt-12 border-t border-[#004AAD]/20 text-center">
-              <p className="text-xl font-league uppercase text-[#004AAD] tracking-widest">
+            <div className="mt-20 pt-12 border-t border-white/10 text-center">
+              <p className="text-xl font-league uppercase text-white tracking-widest opacity-60">
                 These commitments guide our decisions, our partnerships, and our long-term vision.
               </p>
             </div>

@@ -4,6 +4,7 @@ import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import Navbar from "@/components/Navbar";
 import BackToTop from "@/components/BackToTop";
+import ScrollToTopOnLoad from "@/components/ScrollToTopOnLoad";
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -34,6 +35,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${montserrat.variable} ${leagueGothic.variable} font-sans`}>
+        <ScrollToTopOnLoad />
         <Navbar />
         <SmoothScroll>
           {children}

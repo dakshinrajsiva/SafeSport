@@ -19,36 +19,46 @@ export default function Footer() {
               Let&apos;s build a <br /> safer future.
             </h2>
             
-            <div className="flex items-center gap-4 font-montserrat">
-              <a href="mailto:safesportindia@gmail.com" className="flex items-center group cursor-pointer" aria-label="Email us">
-                <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:bg-[#004AAD] group-hover:text-white transition-all duration-500 border border-gray-100">
-                  <Mail size={24} />
-                </div>
-              </a>
-              <a 
-                href="https://www.linkedin.com/in/safesport-india-6854a73a0/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-sm hover:bg-[#0077B5] hover:text-white transition-all duration-500 border border-gray-100 group"
-              >
-                <Linkedin size={24} />
-              </a>
-              <a 
-                href="https://www.instagram.com/safesportindia?igsh=MWx1d2NkdDlkZmVrZw%3D%3D" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-sm hover:bg-[#E4405F] hover:text-white transition-all duration-500 border border-gray-100 group"
-              >
-                <Instagram size={24} />
-              </a>
-              <a 
-                href="https://safesportindia.com/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-sm hover:bg-[#004AAD] hover:text-white transition-all duration-500 border border-gray-100 group"
-              >
-                <Globe size={24} />
-              </a>
+            <div className="flex flex-col gap-6 font-montserrat">
+              {/* Email display */}
+              <div className="flex items-center gap-4 group">
+                <a href="mailto:safesportindia@gmail.com" className="flex items-center gap-4 group cursor-pointer" aria-label="Email us">
+                  <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:bg-[#004AAD] group-hover:text-white transition-all duration-500 border border-gray-100 shrink-0">
+                    <Mail size={24} />
+                  </div>
+                  <span className="text-xl md:text-2xl font-bold text-[#1A1A1A] group-hover:text-[#004AAD] transition-colors">
+                    safesportindia@gmail.com
+                  </span>
+                </a>
+              </div>
+
+              {/* Other socials */}
+              <div className="flex items-center gap-4 mt-4">
+                <a 
+                  href="https://www.linkedin.com/in/safesport-india-6854a73a0/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-sm hover:bg-[#0077B5] hover:text-white transition-all duration-500 border border-gray-100 group"
+                >
+                  <Linkedin size={24} />
+                </a>
+                <a 
+                  href="https://www.instagram.com/safesportindia?igsh=MWx1d2NkdDlkZmVrZw%3D%3D" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-sm hover:bg-[#E4405F] hover:text-white transition-all duration-500 border border-gray-100 group"
+                >
+                  <Instagram size={24} />
+                </a>
+                <a 
+                  href="https://safesportindia.com/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-sm hover:bg-[#004AAD] hover:text-white transition-all duration-500 border border-gray-100 group"
+                >
+                  <Globe size={24} />
+                </a>
+              </div>
             </div>
           </div>
 

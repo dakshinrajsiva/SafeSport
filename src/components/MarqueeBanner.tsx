@@ -16,7 +16,7 @@ export default function MarqueeBanner() {
             className="mx-8 md:mx-14 text-3xl md:text-5xl lg:text-6xl tracking-tight text-white inline-flex items-baseline"
           >
             <span className="font-league font-bold uppercase">SafeSport</span>
-            <span className="font-montserrat font-extralight uppercase ml-1">India</span>
+            <span className="font-league font-bold uppercase ml-2">India</span>
           </span>
         ))}
         {/* Duplicate for seamless loop */}
@@ -26,7 +26,7 @@ export default function MarqueeBanner() {
             className="mx-8 md:mx-14 text-3xl md:text-5xl lg:text-6xl tracking-tight text-white inline-flex items-baseline"
           >
             <span className="font-league font-bold uppercase">SafeSport</span>
-            <span className="font-montserrat font-extralight uppercase ml-1">India</span>
+            <span className="font-league font-bold uppercase ml-2">India</span>
           </span>
         ))}
       </div>

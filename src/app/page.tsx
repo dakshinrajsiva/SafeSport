@@ -4,9 +4,9 @@ import Mission from '@/components/Mission';
 import WorkWith from '@/components/WorkWith';
 import Timeline from '@/components/Timeline';
 import Footer from '@/components/Footer';
-import Services from '@/components/Services';
 import FAQ from '@/components/FAQ';
 import ScrollToHash from '@/components/ScrollToHash';
+import MovingLine from '@/components/ui/MovingLine';
 
 export default function Home() {
   return (
@@ -17,10 +17,12 @@ export default function Home() {
       {/* Content wrapper with higher z-index and solid background to cover the footer */}
       <div className="relative z-10 bg-white shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] mb-[100vh]">
         <Hero />
-        <Mission />
+        <div className="relative">
+          <MovingLine />
+          <Mission />
+        </div>
         <WorkWith />
         <Timeline />
-        <Services />
 
         {/* FAQs */}
         <section id="faqs" className="py-32 px-4 md:px-24 bg-white border-t border-gray-100">
