@@ -23,8 +23,76 @@ const leagueGothic = League_Gothic({
 });
 
 export const metadata: Metadata = {
-  title: "SafeSport India | Institutional Innovation in Safeguarding",
-  description: "India's first dedicated safeguarding enterprise, protecting potential and powering performance.",
+  metadataBase: new URL("https://safesportindia.in"),
+  title: {
+    default: "SafeSport India | Institutional Safeguarding for Sport & Education",
+    template: "%s | SafeSport India",
+  },
+  description:
+    "SafeSport India is India's first dedicated safeguarding enterprise, helping schools, academies, NGOs, and sports bodies build safe, accountable environments for children, athletes, and young people.",
+  applicationName: "SafeSport India",
+  keywords: [
+    "safesport india",
+    "safeguarding india",
+    "child protection india",
+    "sports safeguarding",
+    "school safeguarding",
+    "athlete safety",
+    "safe sport india",
+    "safeguarding training india",
+    "safeguarding policies india",
+    "safeguarding consultancy india",
+  ],
+  authors: [{ name: "SafeSport India" }],
+  creator: "SafeSport India",
+  publisher: "SafeSport India",
+  metadataBase: new URL("https://safesportindia.in"),
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "/",
+    siteName: "SafeSport India",
+    title: "SafeSport India | Institutional Safeguarding for Sport, Education, and Youth Settings",
+    description:
+      "Institutional safeguarding support for Indian schools, sports academies, NGOs, and national bodies. Training, systems, advisory, and safeguarding standards tailored to Indian contexts.",
+    images: [
+      {
+        url: "/safesport-logo.svg",
+        width: 500,
+        height: 500,
+        alt: "SafeSport India logo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "SafeSport India | Institutional Safeguarding",
+    description:
+      "Institutional safeguarding support for Indian sport, education, and youth-facing organisations.",
+    images: ["/safesport-logo.svg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      maxSnippet: -1,
+      maxImagePreview: "large",
+      maxVideoPreview: -1,
+    },
+  },
+  alternates: {
+    canonical: "/",
+    languages: {
+      "en-IN": "/",
+    },
+  },
+  icons: {
+    icon: "/icon.svg",
+    apple: "/icon.svg",
+  },
+  themeColor: "#004AAD",
 };
 
 export default function RootLayout({
@@ -32,14 +100,36 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "SafeSport India",
+    url: "https://safesportindia.in",
+    logo: "https://safesportindia.in/icon.svg",
+    description:
+      "SafeSport India partners with Indian schools, sports academies, NGOs, and national bodies to design and implement safeguarding systems, training, and standards.",
+    sameAs: [
+      "https://www.linkedin.com/in/safesport-india-6854a73a0/",
+      "https://www.instagram.com/safesportindia",
+    ],
+    address: {
+      "@type": "PostalAddress",
+      addressCountry: "IN",
+    },
+  };
+
   return (
-    <html lang="en">
-      <body className={`${inter.variable} ${montserrat.variable} ${leagueGothic.variable} font-sans`}>
+    <html lang="en-IN">
+      <body
+        className={`${inter.variable} ${montserrat.variable} ${leagueGothic.variable} font-sans`}
+      >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
         <ScrollToTopOnLoad />
         <Navbar />
-        <SmoothScroll>
-          {children}
-        </SmoothScroll>
+        <SmoothScroll>{children}</SmoothScroll>
         <BackToTop />
       </body>
     </html>

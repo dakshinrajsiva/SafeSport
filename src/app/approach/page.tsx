@@ -69,8 +69,7 @@ export default function ApproachPage() {
             <div className="grid md:grid-cols-12 gap-12 md:gap-16 items-start">
               <div className="md:col-span-4 sticky top-32">
                 <h2 className="text-4xl md:text-5xl font-league uppercase mb-6 text-[#1A1A1A] leading-tight">
-                  Our Philosophy <br />
-                  <span className="text-[#004AAD] text-2xl md:text-3xl tracking-wide">Safeguarding as a Capability</span>
+                  Our Philosophy
                 </h2>
                 <p className="text-sm font-montserrat uppercase tracking-widest text-gray-400 mt-4">
                   Systems. Understanding. Judgement.

@@ -16,7 +16,7 @@ const NAV_ITEMS = [
   {
     title: "Our approach",
     sectionId: "approach",
-    items: ["Our philosophy / safeguarding as a capability", "How we're different", "Our commitment"]
+    items: ["Our philosophy", "How we're different", "Our commitment"]
   },
   {
     title: "Our services",
