@@ -47,11 +47,11 @@ const SERVICES = [
 
 export default function ServicesPage() {
   return (
-    <main className="relative bg-[#F8FAFC] text-[#1A1A1A]">
-      <div className="relative z-10 bg-white shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] mb-[100vh] min-h-screen pt-32">
+    <main className="relative bg-[#004AAD] text-[#1A1A1A]">
+      <div className="relative z-10 bg-[#004AAD] shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] mb-[100vh] min-h-screen pt-32 rounded-b-[3rem]">
         
         {/* Header — brand band */}
-        <section className="px-6 md:px-12 lg:px-24 mb-20 md:mb-32 bg-[#004AAD]/[0.06] py-16 md:py-20 -mt-32 pt-48 md:pt-52">
+        <section className="px-6 md:px-12 lg:px-24 mb-20 md:mb-32 bg-[#F8FAFC] py-16 md:py-20 -mt-32 pt-48 md:pt-52">
           <div className="max-w-7xl mx-auto">
             <div className="w-20 h-1 bg-[#004AAD] mb-8" />
             <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-league uppercase leading-[0.8] tracking-tighter text-[#004AAD] mb-8">
@@ -64,40 +64,44 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        {/* Services List - Redesigned with Brand Blue Sections */}
-        <section className="px-6 md:px-12 lg:px-24 pb-32 -mt-8 relative z-10">
+        {/* Services List - Redesigned with Brand Blue Background */}
+        <section className="px-6 md:px-12 lg:px-24 pb-32 -mt-8 relative z-10 bg-[#004AAD] pt-24 rounded-t-3xl rounded-b-[3rem]">
           <div className="max-w-7xl mx-auto space-y-24">
             {SERVICES.map((service, i) => (
               <motion.div 
                 key={i}
+                id={`service-${i}`}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="relative grid md:grid-cols-12 gap-0 rounded-[2.5rem] overflow-hidden shadow-xl group"
+                className="relative grid md:grid-cols-12 gap-0 rounded-[2.5rem] overflow-hidden shadow-2xl group scroll-mt-32 bg-white sticky"
+                style={{ top: `${120 + i * 40}px` }}
               >
-                {/* Left: Blue Brand Section with Number & Icon */}
-                <div className="md:col-span-4 bg-[#004AAD] p-10 md:p-12 text-white flex flex-col justify-between relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+                {/* Left: Number & Icon */}
+                <div className="md:col-span-4 bg-gray-50 p-10 md:p-12 flex flex-col justify-between relative overflow-hidden border-r border-gray-100">
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-[#004AAD]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
                   
                   <div>
-                    <span className="text-8xl font-league font-bold text-white/20 leading-none block mb-8">
+                    <span className="text-8xl font-league font-bold text-[#004AAD]/10 leading-none block mb-8">
                       {String(i + 1).padStart(2, '0')}
                     </span>
-                    <div className="w-20 h-20 rounded-2xl bg-white/10 flex items-center justify-center mb-8 backdrop-blur-sm border border-white/20">
-                      {service.icon}
+                    <div className="w-20 h-20 rounded-2xl bg-[#004AAD] flex items-center justify-center mb-8 shadow-lg">
+                      <div className="text-white scale-150">
+                        {service.icon}
+                      </div>
                     </div>
-                    <h2 className="text-4xl md:text-5xl font-league uppercase leading-[0.9] tracking-tight relative z-10">
+                    <h2 className="text-4xl md:text-5xl font-league uppercase leading-[0.9] tracking-tight relative z-10 text-[#1A1A1A]">
                       {service.title}
                     </h2>
                   </div>
 
-                  <div className="mt-12 w-12 h-1 bg-white/30 rounded-full" />
+                  <div className="mt-12 w-12 h-1 bg-[#004AAD] rounded-full" />
                 </div>
 
                 {/* Right: Content Section */}
-                <div className="md:col-span-8 bg-white p-10 md:p-12 flex flex-col justify-center border-y border-r border-gray-100 rounded-r-[2.5rem]">
-                  <p className="text-xl md:text-2xl font-montserrat font-medium text-[#004AAD] leading-relaxed mb-8">
+                <div className="md:col-span-8 p-10 md:p-12 flex flex-col justify-center">
+                  <p className="text-xl md:text-2xl font-montserrat font-medium text-gray-800 leading-relaxed mb-8">
                     {service.description}
                   </p>
                   
@@ -112,12 +116,12 @@ export default function ServicesPage() {
 
                   {service.outcomes && (
                     <div className="pt-8 border-t border-gray-100">
-                      <h4 className="text-sm font-black font-montserrat uppercase tracking-[0.2em] text-[#004AAD]/60 mb-6">
+                      <h4 className="text-sm font-black font-montserrat uppercase tracking-[0.2em] text-[#004AAD] mb-6">
                         Key Outcomes
                       </h4>
                       <div className="grid sm:grid-cols-2 gap-4">
                         {service.outcomes.map((outcome, idx) => (
-                          <div key={idx} className="flex items-center gap-3 text-sm font-bold font-montserrat text-gray-700 bg-[#F5F7FA] p-4 rounded-xl border border-gray-100 group-hover:border-[#004AAD]/20 transition-colors">
+                          <div key={idx} className="flex items-center gap-3 text-sm font-bold font-montserrat text-gray-700 bg-gray-50 p-4 rounded-xl border border-gray-100 group-hover:border-[#004AAD]/20 transition-colors">
                             <UserCheck size={16} className="text-[#004AAD]" />
                             {outcome}
                           </div>

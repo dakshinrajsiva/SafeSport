@@ -11,22 +11,22 @@ const VALUES = [
   {
     letter: "S",
     title: "Standards",
-    description: "Setting the benchmark for safety."
+    description: "We set and uphold the global benchmark for safeguarding in the Indian context."
   },
   {
     letter: "A",
     title: "Accountability",
-    description: "Ensuring responsibility at all levels."
+    description: "Transparency and ethical action at every level of the sporting ecosystem."
   },
   {
     letter: "F",
     title: "Fairness",
-    description: "Creating equitable environments for all."
+    description: "Equal protection and respect for every athlete, regardless of background."
   },
   {
     letter: "E",
     title: "Empowerment",
-    description: "Building confidence to act."
+    description: "Turning awareness into the confidence and courage to act."
   }
 ];
 
@@ -80,10 +80,12 @@ export default function AboutPage() {
                       />
                     </div>
                     
-                    <div className="absolute inset-0 bg-[#004AAD]/0 group-hover:bg-[#004AAD]/10 transition-colors duration-500 flex items-center justify-center opacity-0 group-hover:opacity-100">
-                      <span className="bg-white px-6 py-3 rounded-full text-[#004AAD] font-bold uppercase tracking-widest text-xs shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                        View Bio
-                      </span>
+                    <div className="absolute inset-0 bg-[#004AAD]/0 group-hover:bg-[#004AAD]/10 transition-colors duration-500 opacity-0 group-hover:opacity-100">
+                      <div className="absolute bottom-6 left-1/2 -translate-x-1/2">
+                        <span className="bg-white px-6 py-3 rounded-full text-[#004AAD] font-bold uppercase tracking-widest text-xs shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 inline-block whitespace-nowrap">
+                          Know more
+                        </span>
+                      </div>
                     </div>
                   </div>
                   <h3 className="text-3xl font-league uppercase tracking-wide mb-1 text-[#1A1A1A] group-hover:text-[#004AAD] transition-colors">{founder.name}</h3>
@@ -95,22 +97,22 @@ export default function AboutPage() {
         </section>
 
         {/* Background */}
-        <section className="px-6 md:px-12 lg:px-24 mb-32 bg-[#F5F7FA] py-24">
+        <section className="px-6 md:px-12 lg:px-24 mb-32 bg-[#004AAD] py-24 text-white">
           <div className="max-w-7xl mx-auto">
             <div className="grid md:grid-cols-12 gap-12 md:gap-24">
               <div className="md:col-span-5">
-                <h2 className="text-4xl md:text-5xl font-league uppercase mb-6 text-[#1A1A1A]">Our Background</h2>
-                <div className="w-20 h-1 bg-[#004AAD] mb-8" />
+                <h2 className="text-4xl md:text-5xl font-league uppercase mb-6 text-white">Our Background</h2>
+                <div className="w-20 h-1 bg-white/20 mb-8" />
               </div>
-              <div className="md:col-span-7 space-y-8 text-lg font-montserrat text-gray-600 leading-relaxed">
+              <div className="md:col-span-7 space-y-8 text-lg font-montserrat text-white/80 leading-relaxed">
                 <p>
-                  SafeSport India was established by founders who have worked closely with <HoverReveal>athletes</HoverReveal>, <HoverReveal>educators</HoverReveal>, and institutions, seeing first-hand the consequences of systems that rely on intent rather than structure.
+                  SafeSport India was established by founders who have worked closely with <span className="font-bold text-white border-b-2 border-white/30">athletes</span>, <span className="font-bold text-white border-b-2 border-white/30">educators</span>, and institutions, seeing first-hand the consequences of systems that rely on intent rather than structure.
                 </p>
                 <p>
-                  Trained internationally in <HoverReveal>sport psychology</HoverReveal> and safeguarding, they recognised the need for an organisation that can translate global standards into practical, culturally relevant systems for India.
+                  Trained internationally in <span className="font-bold text-white border-b-2 border-white/30">sport psychology</span> and safeguarding, they recognised the need for an organisation that can translate global standards into practical, culturally relevant systems for India.
                 </p>
                 <p>
-                  Their approach combines research, applied psychology, and <HoverReveal>organisational insight</HoverReveal> to help institutions move beyond compliance and build genuine safeguarding capacity. SafeSport India reflects their belief that safeguarding is not a legal formality, but a professional capability, one that must be embedded into everyday practice to protect people and sustain performance.
+                  Their approach combines research, applied psychology, and <span className="font-bold text-white border-b-2 border-white/30">organisational insight</span> to help institutions move beyond compliance and build genuine safeguarding capacity. SafeSport India reflects their belief that safeguarding is not a legal formality, but a professional capability, one that must be embedded into everyday practice to protect people and sustain performance.
                 </p>
               </div>
             </div>
@@ -133,7 +135,7 @@ export default function AboutPage() {
                   key={i} 
                   className="aspect-square relative group bg-white border border-gray-100 hover:border-[#004AAD] transition-all duration-500 flex flex-col items-center justify-center overflow-hidden"
                 >
-                  <span className="text-[8rem] md:text-[12rem] font-league font-bold text-[#004AAD]/10 group-hover:text-[#004AAD] transition-colors duration-500 leading-none select-none">
+                  <span className="text-[8rem] md:text-[12rem] font-league font-bold text-[#004AAD] transition-colors duration-500 leading-none select-none">
                     {val.letter}
                   </span>
                   

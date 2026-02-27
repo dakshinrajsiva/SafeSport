@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
@@ -11,6 +11,43 @@ export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const [audioTriggered, setAudioTriggered] = useState(false);
+
+  // Intro audio: try autoplay, fall back to first interaction
+  useEffect(() => {
+    const audioEl = audioRef.current;
+    if (!audioEl || audioTriggered) return;
+
+    audioEl.volume = 0.5;
+
+    const tryPlay = () => {
+      if (!audioEl.paused) return;
+      audioEl.play().then(() => {
+        setAudioTriggered(true);
+      }).catch(() => {
+        // Autoplay blocked; will retry on user interaction
+      });
+    };
+
+    // Try immediately on mount (may be blocked)
+    tryPlay();
+
+    // Then try on first user interaction
+    const handleUserInteract = () => {
+      if (!audioTriggered) {
+        tryPlay();
+      }
+    };
+
+    window.addEventListener('click', handleUserInteract, { once: true });
+    window.addEventListener('scroll', handleUserInteract, { once: true });
+
+    return () => {
+      window.removeEventListener('click', handleUserInteract);
+      window.removeEventListener('scroll', handleUserInteract);
+    };
+  }, [audioTriggered]);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -61,6 +98,7 @@ export default function Hero() {
 
   return (
     <section ref={containerRef} className="relative h-screen w-full overflow-hidden bg-white">
+      <audio ref={audioRef} src="/mixkit-relaxing-harp-sweep-2628.wav" preload="auto" />
       {/* Background Video */}
       <div className="absolute inset-0 z-0">
         <video
@@ -116,8 +154,8 @@ export default function Hero() {
               </p>
             </div>
             
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-0 animate-fade-in-up" style={{ animationDelay: '3s', animationFillMode: 'forwards' }}>
-              <span className="text-white/60 font-montserrat text-xs tracking-[0.2em] uppercase">Scroll for more</span>
+            <div className="absolute bottom-12 right-6 md:right-12 flex flex-col items-center gap-2 opacity-0 animate-fade-in-up" style={{ animationDelay: '3s', animationFillMode: 'forwards' }}>
+              <span className="text-white/60 font-montserrat text-xs tracking-[0.2em] uppercase font-bold">Let's get started</span>
               <div className="w-[1px] h-12 bg-gradient-to-b from-white to-transparent" />
             </div>
           </div>

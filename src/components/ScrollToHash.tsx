@@ -15,9 +15,9 @@ export default function ScrollToHash() {
     if (hash !== 'faqs') return;
     const el = document.getElementById('faqs');
     if (el) {
-      const offset = 100;
-      const top = el.getBoundingClientRect().top + window.scrollY - offset;
-      window.scrollTo({ top, behavior: 'smooth' });
+      setTimeout(() => {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }, 500);
     }
   }, [pathname]);
 

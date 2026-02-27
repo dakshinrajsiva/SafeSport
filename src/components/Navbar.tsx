@@ -88,13 +88,13 @@ export default function Navbar() {
     if (sectionId === 'faqs') {
       if (pathname !== '/') {
         router.push('/#faqs');
-        return;
-      }
-      const el = document.getElementById('faqs');
-      if (el) {
-        const offset = 100;
-        const top = el.getBoundingClientRect().top + window.scrollY - offset;
-        window.scrollTo({ top, behavior: 'smooth' });
+      } else {
+        const el = document.getElementById('faqs');
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        } else {
+           router.push('/#faqs');
+        }
       }
       return;
     }
@@ -116,7 +116,7 @@ export default function Navbar() {
   return (
     <>
       <nav className={cn(
-        "fixed top-0 left-0 w-full z-[100] transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] h-[100px] overflow-hidden",
+        "fixed top-0 left-0 w-full z-[100] transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] h-[100px]",
         showSolidHeader ? "bg-white/95 backdrop-blur-md shadow-sm" : "bg-transparent"
       )}>
         <div className="max-w-[1800px] mx-auto px-6 md:px-12 h-full flex items-center justify-between">
@@ -126,11 +126,13 @@ export default function Navbar() {
             href="/" 
             className="relative z-[110] transition-transform hover:scale-105 duration-500 flex-shrink-0 flex items-center"
           >
-            <Logo
-              size={150}
-              className="transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]"
-              variant={showSolidHeader ? 'default' : 'white'}
-            />
+            <div className="mt-8"> {/* Adjusted margin to move logo down slightly */}
+              <Logo
+                size={150}
+                className="transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]"
+                variant={showSolidHeader ? 'default' : 'white'}
+              />
+            </div>
           </Link>
           
           {/* Center: Quick section links (desktop) */}
@@ -138,18 +140,38 @@ export default function Navbar() {
             {QUICK_LINKS.map((title) => {
               const item = NAV_ITEMS.find(n => n.title === title);
               if (!item) return null;
+              
+              // Only FAQs has no sub-items to show in dropdown normally, but we have items for it in NAV_ITEMS.
               return (
-                <button
-                  key={title}
-                  onClick={() => scrollToSection(item.sectionId)}
-                  className={cn(
-                    "font-montserrat font-bold uppercase tracking-[0.15em] text-xs transition-all duration-300 relative group whitespace-nowrap",
-                    showSolidHeader ? "text-[#004AAD]" : "text-white"
+                <div key={title} className="relative group/nav py-4">
+                  <button
+                    onClick={() => scrollToSection(item.sectionId)}
+                    className={cn(
+                      "font-montserrat font-bold uppercase tracking-[0.15em] text-xs transition-all duration-300 relative whitespace-nowrap",
+                      showSolidHeader ? "text-[#004AAD]" : "text-white"
+                    )}
+                  >
+                    {title}
+                    <span className="absolute -bottom-1 left-0 w-0 h-[1.5px] bg-current transition-all duration-300 group-hover/nav:w-full" />
+                  </button>
+
+                  {/* Hover Dropdown */}
+                  {item.items.length > 0 && (
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 translate-y-4 pointer-events-none group-hover/nav:opacity-100 group-hover/nav:translate-y-0 group-hover/nav:pointer-events-auto transition-all duration-300 z-50">
+                      <div className="bg-white shadow-xl border border-gray-100 rounded-xl p-4 min-w-[240px] flex flex-col gap-2">
+                        {item.items.map((subItem, idx) => (
+                          <button
+                            key={idx}
+                            onClick={() => scrollToSection(item.sectionId)}
+                            className="text-left text-xs font-montserrat font-medium text-gray-600 hover:text-[#004AAD] hover:bg-gray-50 px-4 py-2 rounded-lg transition-colors whitespace-nowrap"
+                          >
+                            {subItem}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
                   )}
-                >
-                  {title}
-                  <span className="absolute -bottom-1 left-0 w-0 h-[1.5px] bg-current transition-all duration-300 group-hover:w-full" />
-                </button>
+                </div>
               );
             })}
           </div>

@@ -1,6 +1,6 @@
 'use client';
 
-import { Mail, Instagram, Linkedin, Globe } from 'lucide-react';
+import { Mail, Instagram, Linkedin, Facebook, Twitter } from 'lucide-react';
 import Logo from './Logo';
 import Image from 'next/image';
 import MarqueeBanner from './MarqueeBanner';
@@ -51,12 +51,20 @@ export default function Footer() {
                   <Instagram size={24} />
                 </a>
                 <a 
-                  href="https://safesportindia.com/" 
+                  href="#" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-sm hover:bg-[#004AAD] hover:text-white transition-all duration-500 border border-gray-100 group"
+                  className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-sm hover:bg-[#1877F2] hover:text-white transition-all duration-500 border border-gray-100 group"
                 >
-                  <Globe size={24} />
+                  <Facebook size={24} />
+                </a>
+                <a 
+                  href="#" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-sm hover:bg-[#1DA1F2] hover:text-white transition-all duration-500 border border-gray-100 group"
+                >
+                  <Twitter size={24} />
                 </a>
               </div>
             </div>
@@ -68,15 +76,29 @@ export default function Footer() {
               <div className="flex flex-col gap-8">
                 <div className="flex items-center gap-6 group">
                   <div>
-                    <p className="text-2xl md:text-3xl font-bold text-[#1A1A1A] tracking-tight group-hover:text-[#004AAD] transition-colors font-montserrat">Aman Jain</p>
-                    <p className="text-xs uppercase tracking-[0.2em] text-gray-400 font-bold font-montserrat">Co-Founder</p>
+                    <div className="flex items-center gap-3">
+                      <a href="/about" className="text-2xl md:text-3xl font-bold text-[#1A1A1A] tracking-tight group-hover:text-[#004AAD] transition-colors font-montserrat">
+                        Aman Jain
+                      </a>
+                      <a href="#" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#0077B5] transition-colors">
+                        <Linkedin size={20} />
+                      </a>
+                    </div>
+                    <p className="text-xs uppercase tracking-[0.2em] text-gray-400 font-bold font-montserrat mt-1">Co-Founder</p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-6 group">
                   <div>
-                    <p className="text-2xl md:text-3xl font-bold text-[#1A1A1A] tracking-tight group-hover:text-[#004AAD] transition-colors font-montserrat">Rania Mecca</p>
-                    <p className="text-xs uppercase tracking-[0.2em] text-gray-400 font-bold font-montserrat">Co-Founder</p>
+                    <div className="flex items-center gap-3">
+                      <a href="/about" className="text-2xl md:text-3xl font-bold text-[#1A1A1A] tracking-tight group-hover:text-[#004AAD] transition-colors font-montserrat">
+                        Rania Mecca
+                      </a>
+                      <a href="#" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#0077B5] transition-colors">
+                        <Linkedin size={20} />
+                      </a>
+                    </div>
+                    <p className="text-xs uppercase tracking-[0.2em] text-gray-400 font-bold font-montserrat mt-1">Co-Founder</p>
                   </div>
                 </div>
               </div>
