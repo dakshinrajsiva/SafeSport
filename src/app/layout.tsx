@@ -76,10 +76,10 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      maxSnippet: -1,
-      maxImagePreview: "large",
-      maxVideoPreview: -1,
-    },
+    // For Google-specific directives like max-snippet, use string form:
+    // "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+    // googleBot: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+    } as any,
   },
   alternates: {
     canonical: "/",
