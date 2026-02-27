@@ -23,7 +23,7 @@ const leagueGothic = League_Gothic({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://safesportindia.in"),
+  metadataBase: new URL("https://www.safesportindia.com"),
   title: {
     default: "SafeSport India | Institutional Safeguarding for Sport & Education",
     template: "%s | SafeSport India",
@@ -46,7 +46,6 @@ export const metadata: Metadata = {
   authors: [{ name: "SafeSport India" }],
   creator: "SafeSport India",
   publisher: "SafeSport India",
-  metadataBase: new URL("https://safesportindia.in"),
   openGraph: {
     type: "website",
     locale: "en_IN",
@@ -104,8 +103,8 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "SafeSport India",
-    url: "https://safesportindia.in",
-    logo: "https://safesportindia.in/icon.svg",
+    url: "https://www.safesportindia.com",
+    logo: "https://www.safesportindia.com/icon.svg",
     description:
       "SafeSport India partners with Indian schools, sports academies, NGOs, and national bodies to design and implement safeguarding systems, training, and standards.",
     sameAs: [
