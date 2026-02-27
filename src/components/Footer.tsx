@@ -80,7 +80,12 @@ export default function Footer() {
                       <a href="/about" className="text-2xl md:text-3xl font-bold text-[#1A1A1A] tracking-tight group-hover:text-[#004AAD] transition-colors font-montserrat">
                         Aman Jain
                       </a>
-                      <a href="#" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#0077B5] transition-colors">
+                      <a 
+                        href="https://www.linkedin.com/in/aman-jain-b648b319a/" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="text-gray-400 hover:text-[#0077B5] transition-colors"
+                      >
                         <Linkedin size={20} />
                       </a>
                     </div>
@@ -94,7 +99,12 @@ export default function Footer() {
                       <a href="/about" className="text-2xl md:text-3xl font-bold text-[#1A1A1A] tracking-tight group-hover:text-[#004AAD] transition-colors font-montserrat">
                         Rania Mecca
                       </a>
-                      <a href="#" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#0077B5] transition-colors">
+                      <a 
+                        href="https://www.linkedin.com/in/rania-mecca-508805204" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="text-gray-400 hover:text-[#0077B5] transition-colors"
+                      >
                         <Linkedin size={20} />
                       </a>
                     </div>
