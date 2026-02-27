@@ -84,16 +84,21 @@ export default function Navbar() {
       return;
     }
 
-    // FAQs: scroll on home, or navigate to home then scroll via hash
+    // FAQs: always navigate to home first, then scroll
     if (sectionId === 'faqs') {
       if (pathname !== '/') {
-        router.push('/#faqs');
+        router.push('/');
+        // Wait for navigation, then scroll
+        setTimeout(() => {
+          const el = document.getElementById('faqs');
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 500);
       } else {
         const el = document.getElementById('faqs');
         if (el) {
           el.scrollIntoView({ behavior: 'smooth' });
-        } else {
-           router.push('/#faqs');
         }
       }
       return;

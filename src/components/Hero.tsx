@@ -155,7 +155,6 @@ export default function Hero() {
             </div>
             
             <div className="absolute bottom-12 right-6 md:right-12 flex flex-col items-center gap-2 opacity-0 animate-fade-in-up" style={{ animationDelay: '3s', animationFillMode: 'forwards' }}>
-              <span className="text-white/60 font-montserrat text-xs tracking-[0.2em] uppercase font-bold">Let's get started</span>
               <div className="w-[1px] h-12 bg-gradient-to-b from-white to-transparent" />
             </div>
           </div>

@@ -47,11 +47,11 @@ const SERVICES = [
 
 export default function ServicesPage() {
   return (
-    <main className="relative bg-[#004AAD] text-[#1A1A1A]">
-      <div className="relative z-10 bg-[#004AAD] shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] mb-[100vh] min-h-screen pt-32 rounded-b-[3rem]">
+    <main className="relative bg-[#F8FAFC] text-[#1A1A1A]">
+      <div className="relative z-10 bg-white shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] mb-[100vh] min-h-screen pt-32">
         
         {/* Header — brand band */}
-        <section className="px-6 md:px-12 lg:px-24 mb-20 md:mb-32 bg-[#F8FAFC] py-16 md:py-20 -mt-32 pt-48 md:pt-52">
+        <section className="px-6 md:px-12 lg:px-24 mb-20 md:mb-32 bg-[#004AAD]/[0.06] py-16 md:py-20 -mt-32 pt-48 md:pt-52">
           <div className="max-w-7xl mx-auto">
             <div className="w-20 h-1 bg-[#004AAD] mb-8" />
             <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-league uppercase leading-[0.8] tracking-tighter text-[#004AAD] mb-8">
@@ -64,74 +64,63 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        {/* Services List - Redesigned with Brand Blue Background */}
-        <section className="px-6 md:px-12 lg:px-24 pb-32 -mt-8 relative z-10 bg-[#004AAD] pt-24 rounded-t-3xl rounded-b-[3rem]">
-          <div className="max-w-7xl mx-auto space-y-24">
-            {SERVICES.map((service, i) => (
-              <motion.div 
-                key={i}
-                id={`service-${i}`}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="relative grid md:grid-cols-12 gap-0 rounded-[2.5rem] overflow-hidden shadow-2xl group scroll-mt-32 bg-white sticky"
-                style={{ top: `${120 + i * 40}px` }}
-              >
-                {/* Left: Number & Icon */}
-                <div className="md:col-span-4 bg-gray-50 p-10 md:p-12 flex flex-col justify-between relative overflow-hidden border-r border-gray-100">
-                  <div className="absolute top-0 right-0 w-64 h-64 bg-[#004AAD]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-                  
-                  <div>
-                    <span className="text-8xl font-league font-bold text-[#004AAD]/10 leading-none block mb-8">
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
-                    <div className="w-20 h-20 rounded-2xl bg-[#004AAD] flex items-center justify-center mb-8 shadow-lg">
-                      <div className="text-white scale-150">
-                        {service.icon}
-                      </div>
+        {/* Services List - Horizontal scroll */}
+        <section className="px-6 md:px-12 lg:px-24 pb-32 bg-white">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex gap-8 overflow-x-auto snap-x snap-mandatory pb-8 scrollbar-hide">
+              {SERVICES.map((service, i) => (
+                <motion.div 
+                  key={i}
+                  id={`service-${i}`}
+                  initial={{ opacity: 0, x: 60 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.15 }}
+                  className="flex-shrink-0 w-[90vw] md:w-[600px] snap-center bg-white border border-gray-200 rounded-3xl p-10 md:p-12 shadow-lg hover:shadow-2xl transition-shadow"
+                >
+                  <div className="flex flex-col h-full">
+                    <div className="mb-8">
+                      <span className="text-6xl font-league font-bold text-gray-200 leading-none block mb-6">
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <h2 className="text-3xl md:text-4xl font-league uppercase leading-tight tracking-tight text-[#1A1A1A] mb-4">
+                        {service.title}
+                      </h2>
+                      <div className="w-12 h-1 bg-[#004AAD] rounded-full" />
                     </div>
-                    <h2 className="text-4xl md:text-5xl font-league uppercase leading-[0.9] tracking-tight relative z-10 text-[#1A1A1A]">
-                      {service.title}
-                    </h2>
+
+                    <p className="text-lg md:text-xl font-montserrat font-medium text-gray-800 leading-relaxed mb-6">
+                      {service.description}
+                    </p>
+                    
+                    <ul className="space-y-3 mb-8">
+                      {service.details.map((detail, idx) => (
+                        <li key={idx} className="flex gap-3 items-start text-base font-montserrat text-gray-600">
+                          <span className="mt-2 w-1.5 h-1.5 bg-[#004AAD] rounded-full flex-shrink-0" />
+                          <span className="leading-relaxed">{detail}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    {service.outcomes && (
+                      <div className="mt-auto pt-6 border-t border-gray-100">
+                        <h4 className="text-xs font-black font-montserrat uppercase tracking-[0.2em] text-[#004AAD] mb-4">
+                          Key Outcomes
+                        </h4>
+                        <div className="flex flex-col gap-2">
+                          {service.outcomes.map((outcome, idx) => (
+                            <div key={idx} className="flex items-center gap-2 text-sm font-medium font-montserrat text-gray-700">
+                              <UserCheck size={14} className="text-[#004AAD] flex-shrink-0" />
+                              {outcome}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
-
-                  <div className="mt-12 w-12 h-1 bg-[#004AAD] rounded-full" />
-                </div>
-
-                {/* Right: Content Section */}
-                <div className="md:col-span-8 p-10 md:p-12 flex flex-col justify-center">
-                  <p className="text-xl md:text-2xl font-montserrat font-medium text-gray-800 leading-relaxed mb-8">
-                    {service.description}
-                  </p>
-                  
-                  <ul className="space-y-4 mb-10">
-                    {service.details.map((detail, idx) => (
-                      <li key={idx} className="flex gap-4 items-start text-lg font-montserrat text-gray-600">
-                        <span className="mt-2.5 w-1.5 h-1.5 bg-[#004AAD] rounded-full flex-shrink-0" />
-                        <span className="leading-relaxed">{detail}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  {service.outcomes && (
-                    <div className="pt-8 border-t border-gray-100">
-                      <h4 className="text-sm font-black font-montserrat uppercase tracking-[0.2em] text-[#004AAD] mb-6">
-                        Key Outcomes
-                      </h4>
-                      <div className="grid sm:grid-cols-2 gap-4">
-                        {service.outcomes.map((outcome, idx) => (
-                          <div key={idx} className="flex items-center gap-3 text-sm font-bold font-montserrat text-gray-700 bg-gray-50 p-4 rounded-xl border border-gray-100 group-hover:border-[#004AAD]/20 transition-colors">
-                            <UserCheck size={16} className="text-[#004AAD]" />
-                            {outcome}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              ))}
+            </div>
           </div>
         </section>
 

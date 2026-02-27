@@ -157,12 +157,15 @@ export default function ApproachPage() {
         </section>
 
         {/* Our Commitments - Brand Blue Background */}
-        <section className="px-6 md:px-12 lg:px-24 pb-32 bg-[#F5F7FA] py-24 rounded-b-3xl">
-          <div className="max-w-7xl mx-auto">
+        <section className="px-6 md:px-12 lg:px-24 pb-32 bg-[#004AAD] py-24 rounded-b-3xl relative overflow-hidden">
+          {/* Background decoration */}
+          <div className="absolute top-0 left-0 w-1/2 h-full bg-white/5 -skew-x-12 -translate-x-1/4 pointer-events-none" />
+          
+          <div className="max-w-7xl mx-auto relative z-10">
             <div className="mb-16 text-center max-w-3xl mx-auto">
-              <div className="w-16 h-1 bg-[#004AAD] mx-auto mb-6" />
-              <h2 className="text-4xl md:text-6xl font-league uppercase mb-6 text-[#1A1A1A]">Our Commitments</h2>
-              <p className="text-lg font-montserrat text-gray-600">
+              <div className="w-16 h-1 bg-white mx-auto mb-6" />
+              <h2 className="text-4xl md:text-6xl font-league uppercase mb-6 text-white">Our Commitments</h2>
+              <p className="text-lg font-montserrat text-white/80">
                 At SafeSport India, our work is guided by a clear set of commitments that shape how we partner with organisations and the standards we hold ourselves to.
               </p>
             </div>
@@ -171,13 +174,13 @@ export default function ApproachPage() {
               {COMMITMENTS.map((comm, i) => (
                 <div key={i} className="flex gap-6 group">
                   <div className="flex-shrink-0 mt-2">
-                    <div className="w-10 h-10 rounded-full border-2 border-[#004AAD] flex items-center justify-center text-[#004AAD] font-league text-lg group-hover:bg-[#004AAD] group-hover:text-white transition-all duration-300">
+                    <div className="w-10 h-10 rounded-full border-2 border-white flex items-center justify-center text-white font-league text-lg group-hover:bg-white group-hover:text-[#004AAD] transition-all duration-300">
                       {i + 1}
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-2xl font-league uppercase mb-3 text-[#1A1A1A]">{comm.title}</h3>
-                    <p className="text-base font-montserrat text-gray-600 leading-relaxed">
+                    <h3 className="text-2xl font-league uppercase mb-3 text-white">{comm.title}</h3>
+                    <p className="text-base font-montserrat text-white/80 leading-relaxed">
                       {comm.content}
                     </p>
                   </div>
@@ -185,8 +188,8 @@ export default function ApproachPage() {
               ))}
             </div>
             
-            <div className="mt-20 pt-12 border-t border-gray-200 text-center">
-              <p className="text-xl font-league uppercase text-[#004AAD] tracking-widest">
+            <div className="mt-20 pt-12 border-t border-white/20 text-center">
+              <p className="text-xl font-league uppercase text-white tracking-widest">
                 These commitments guide our decisions, our partnerships, and our long-term vision.
               </p>
             </div>
