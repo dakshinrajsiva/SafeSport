@@ -1,14 +1,14 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { cn } from '@/lib/utils';
+import { useRef, useEffect } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import Footer from '@/components/Footer';
-import { ShieldCheck, BookOpen, UserCheck, Layers, ArrowRight } from 'lucide-react';
+import { UserCheck } from 'lucide-react';
 
 const SERVICES = [
   {
     title: "Safeguarding Foundations & Training",
-    icon: <BookOpen className="w-12 h-12 text-white" />,
     description: "Safeguarding is most effective when people clearly understand their roles and feel confident acting within them.",
     details: [
       "Building shared understanding, professional judgement, and practical confidence among staff, coaches, teachers, volunteers, and leaders.",
@@ -24,7 +24,6 @@ const SERVICES = [
   },
   {
     title: "Systems and Readiness",
-    icon: <Layers className="w-12 h-12 text-white" />,
     description: "The greater challenge comes after training: how safeguarding is actually implemented in day-to-day practice.",
     details: [
       "We work with institutions to strengthen the systems and structures that make safeguarding easier to apply in practice.",
@@ -34,7 +33,6 @@ const SERVICES = [
   },
   {
     title: "Consulting, Advisory, and Audit",
-    icon: <ShieldCheck className="w-12 h-12 text-white" />,
     description: "Safeguarding is not static. As organisations grow, face new challenges, or operate across multiple locations, safeguarding needs evolve.",
     details: [
       "Ongoing consulting, advisory, and review support to help organisations anticipate risk, strengthen decision-making, and maintain safeguarding integrity.",
@@ -42,10 +40,60 @@ const SERVICES = [
       "Independent perspectives, structured reviews, and practical guidance to support informed leadership.",
       "Helping leaders and teams operate with clarity, preparedness, and confidence in high-pressure settings."
     ]
+  },
+  {
+    title: "Get Started",
+    description: "Ready to strengthen safeguarding in your organisation? Let's build a safer future together.",
+    details: [
+      "We work with organisations at different stages of their safeguarding journey.",
+      "From initial consultation to ongoing support, we're here to help you build safe, accountable environments.",
+      "Contact us to discuss how we can support your specific needs and context."
+    ]
   }
 ];
 
 export default function ServicesPage() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const section = sectionRef.current;
+    const track = trackRef.current;
+    if (!section || !track) return;
+
+    // Create a timeline for the horizontal scroll
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: 'top top',
+        // Scroll distance: 4 viewport heights (1 screen per card)
+        end: () => `+=${window.innerHeight * 4}`,
+        pin: true,
+        scrub: 1,
+        invalidateOnRefresh: true,
+      },
+    });
+
+    // Animate the track horizontally
+    tl.to(track, {
+      x: () => -(track.scrollWidth - window.innerWidth),
+      ease: 'none',
+    });
+
+    // Refresh ScrollTrigger after a short delay
+    const timeout = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 500);
+
+    return () => {
+      clearTimeout(timeout);
+      if (tl.scrollTrigger) tl.scrollTrigger.kill();
+      tl.kill();
+    };
+  }, []);
+
   return (
     <main className="relative bg-[#F8FAFC] text-[#1A1A1A]">
       <div className="relative z-10 bg-white shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] mb-[100vh] min-h-screen pt-32">
@@ -64,53 +112,56 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        {/* Services List - Horizontal scroll */}
-        <section className="px-6 md:px-12 lg:px-24 pb-32 bg-white">
-          <div className="max-w-7xl mx-auto">
-            <div className="flex gap-8 overflow-x-auto snap-x snap-mandatory pb-8 scrollbar-hide">
-              {SERVICES.map((service, i) => (
-                <motion.div 
-                  key={i}
-                  id={`service-${i}`}
-                  initial={{ opacity: 0, x: 60 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.15 }}
-                  className="flex-shrink-0 w-[90vw] md:w-[600px] snap-center bg-white border border-gray-200 rounded-3xl p-10 md:p-12 shadow-lg hover:shadow-2xl transition-shadow"
-                >
-                  <div className="flex flex-col h-full">
+        {/* Services List - Horizontal scroll with GSAP */}
+        <section
+          ref={sectionRef}
+          className="relative h-screen w-screen overflow-hidden bg-white"
+        >
+          {/* Horizontal track */}
+          <div
+            ref={trackRef}
+            className="absolute top-0 left-0 h-full flex flex-nowrap will-change-transform items-center"
+          >
+            {SERVICES.map((service, i) => (
+              <div
+                key={i}
+                className="relative flex-shrink-0 h-full flex items-center justify-center px-12 md:px-24"
+                style={{ width: '100vw', minWidth: '100vw' }}
+              >
+                <div className="max-w-4xl w-full bg-white border-2 border-gray-200 rounded-3xl p-10 md:p-16 shadow-2xl">
+                  <div className="flex flex-col">
                     <div className="mb-8">
-                      <span className="text-6xl font-league font-bold text-gray-200 leading-none block mb-6">
+                      <span className="text-7xl md:text-8xl font-league font-bold text-[#004AAD]/10 leading-none block mb-6">
                         {String(i + 1).padStart(2, '0')}
                       </span>
-                      <h2 className="text-3xl md:text-4xl font-league uppercase leading-tight tracking-tight text-[#1A1A1A] mb-4">
+                      <h2 className="text-4xl md:text-5xl lg:text-6xl font-league uppercase leading-tight tracking-tight text-[#1A1A1A] mb-4">
                         {service.title}
                       </h2>
-                      <div className="w-12 h-1 bg-[#004AAD] rounded-full" />
+                      <div className="w-16 h-1 bg-[#004AAD] rounded-full" />
                     </div>
 
-                    <p className="text-lg md:text-xl font-montserrat font-medium text-gray-800 leading-relaxed mb-6">
+                    <p className="text-xl md:text-2xl font-montserrat font-medium text-gray-800 leading-relaxed mb-8">
                       {service.description}
                     </p>
                     
-                    <ul className="space-y-3 mb-8">
+                    <ul className="space-y-4 mb-8">
                       {service.details.map((detail, idx) => (
-                        <li key={idx} className="flex gap-3 items-start text-base font-montserrat text-gray-600">
-                          <span className="mt-2 w-1.5 h-1.5 bg-[#004AAD] rounded-full flex-shrink-0" />
+                        <li key={idx} className="flex gap-4 items-start text-base md:text-lg font-montserrat text-gray-600">
+                          <span className="mt-2 w-2 h-2 bg-[#004AAD] rounded-full flex-shrink-0" />
                           <span className="leading-relaxed">{detail}</span>
                         </li>
                       ))}
                     </ul>
 
                     {service.outcomes && (
-                      <div className="mt-auto pt-6 border-t border-gray-100">
-                        <h4 className="text-xs font-black font-montserrat uppercase tracking-[0.2em] text-[#004AAD] mb-4">
+                      <div className="pt-8 border-t border-gray-200">
+                        <h4 className="text-xs font-black font-montserrat uppercase tracking-[0.2em] text-[#004AAD] mb-6">
                           Key Outcomes
                         </h4>
-                        <div className="flex flex-col gap-2">
+                        <div className="grid sm:grid-cols-2 gap-4">
                           {service.outcomes.map((outcome, idx) => (
-                            <div key={idx} className="flex items-center gap-2 text-sm font-medium font-montserrat text-gray-700">
-                              <UserCheck size={14} className="text-[#004AAD] flex-shrink-0" />
+                            <div key={idx} className="flex items-start gap-3 text-sm font-medium font-montserrat text-gray-700">
+                              <UserCheck size={16} className="text-[#004AAD] flex-shrink-0 mt-0.5" />
                               {outcome}
                             </div>
                           ))}
@@ -118,9 +169,24 @@ export default function ServicesPage() {
                       </div>
                     )}
                   </div>
-                </motion.div>
-              ))}
-            </div>
+                </div>
+
+                {/* Counter - bottom right */}
+                <div className="absolute bottom-8 right-8 md:right-16 text-gray-300 font-league text-2xl md:text-3xl">
+                  {String(i + 1).padStart(2, '0')} / 04
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Fixed header - "Our Services" */}
+          <div className="absolute top-8 left-6 md:left-16 z-[100] pointer-events-none">
+            <h2 className="text-2xl md:text-3xl font-league text-[#004AAD] uppercase tracking-tight">
+              Our Services
+            </h2>
+            <p className="text-xs md:text-sm font-montserrat text-gray-500 mt-1 tracking-wide">
+              Scroll to explore
+            </p>
           </div>
         </section>
 
