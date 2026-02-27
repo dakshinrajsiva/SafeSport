@@ -3,7 +3,6 @@
 import { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-import Link from 'next/link';
 
 const SAFESPORT_STEPS = [
   {
@@ -93,9 +92,11 @@ export default function Timeline() {
               >
                 {/* Content Area */}
                 <div className="w-full md:w-1/2 flex justify-center px-4 md:px-12 z-10">
-                  <Link href={`/services#service-${index}`} className={`w-full max-w-lg block cursor-pointer bg-[#F5F7FA] p-8 md:p-12 rounded-[2.5rem] group hover:bg-white hover:shadow-2xl transition-all duration-500 border border-transparent hover:border-[#004AAD]/20 ${
-                    index % 2 === 0 ? 'md:ml-auto' : 'md:mr-auto'
-                  }`}>
+                  <div
+                    className={`w-full max-w-lg bg-[#F5F7FA] p-8 md:p-12 rounded-[2.5rem] group hover:bg-white hover:shadow-2xl transition-all duration-500 border border-transparent hover:border-[#004AAD]/20 ${
+                      index % 2 === 0 ? 'md:ml-auto' : 'md:mr-auto'
+                    }`}
+                  >
                     <div className="inline-block px-4 py-1 rounded-full bg-[#004AAD]/10 text-[#004AAD] text-xs font-montserrat font-bold uppercase tracking-widest mb-6 transition-colors group-hover:bg-[#004AAD] group-hover:text-white">
                       {step.badge}
                     </div>
@@ -105,7 +106,7 @@ export default function Timeline() {
                     <p className="text-gray-500 text-lg leading-relaxed group-hover:text-gray-600 transition-colors">
                       {step.content}
                     </p>
-                  </Link>
+                  </div>
                 </div>
 
                 {/* Center Node */}

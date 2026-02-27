@@ -56,9 +56,9 @@ export const metadata: Metadata = {
       "Institutional safeguarding support for Indian schools, sports academies, NGOs, and national bodies. Training, systems, advisory, and safeguarding standards tailored to Indian contexts.",
     images: [
       {
-        url: "/safesport-logo.svg",
-        width: 500,
-        height: 500,
+        url: "/safesi.png",
+        width: 1200,
+        height: 630,
         alt: "SafeSport India logo",
       },
     ],
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     title: "SafeSport India | Institutional Safeguarding",
     description:
       "Institutional safeguarding support for Indian sport, education, and youth-facing organisations.",
-    images: ["/safesport-logo.svg"],
+    images: ["/safesi.png"],
   },
   robots: {
     index: true,
@@ -88,8 +88,8 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/icon.svg",
-    apple: "/icon.svg",
+    icon: "/safesi.png",
+    apple: "/safesi.png",
   },
   themeColor: "#004AAD",
 };
