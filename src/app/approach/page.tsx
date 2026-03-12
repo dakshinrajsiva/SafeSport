@@ -49,22 +49,21 @@ export default function ApproachPage() {
   const [openDifference, setOpenDifference] = useState<number | null>(null);
 
   return (
-    <main className="relative bg-[#F8FAFC] text-[#1A1A1A]">
+    <main className="relative bg-white text-[#1A1A1A]">
       <div className="relative z-10 bg-white shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] mb-[100vh] min-h-screen pt-32">
         
-        {/* Header — brand band */}
-        <section className="px-6 md:px-12 lg:px-24 mb-20 md:mb-32 bg-[#004AAD]/[0.06] py-16 md:py-20 -mt-32 pt-48 md:pt-52">
+        {/* Header */}
+        <section className="px-6 md:px-12 lg:px-24 mb-20 md:mb-32">
           <div className="max-w-7xl mx-auto">
-            <div className="w-20 h-1 bg-[#004AAD] mb-8" />
             <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-league uppercase leading-[0.8] tracking-tighter text-[#004AAD] mb-8">
               Our Approach
             </h1>
-            <div className="w-full h-[1px] bg-[#004AAD]/20" />
+            <div className="w-full h-[1px] bg-gray-200" />
           </div>
         </section>
 
         {/* Philosophy */}
-        <section className="px-6 md:px-12 lg:px-24 mb-32 bg-white py-16 md:py-20 rounded-t-3xl -mt-8 relative z-10 overflow-hidden">
+        <section className="px-6 md:px-12 lg:px-24 mb-32 bg-white py-16 md:py-20 relative z-10 overflow-hidden">
           <div className="max-w-7xl mx-auto relative z-10">
             <div className="grid md:grid-cols-12 gap-12 md:gap-16 items-start">
               <div className="md:col-span-4 sticky top-32">
@@ -97,7 +96,7 @@ export default function ApproachPage() {
         </section>
 
         {/* How We're Different - Accordion */}
-        <section className="px-6 md:px-12 lg:px-24 mb-32 bg-[#004AAD] py-24 relative overflow-hidden">
+        <section className="px-6 md:px-12 lg:px-24 bg-[#004AAD] py-24 relative overflow-hidden">
           {/* Background decoration */}
           <div className="absolute top-0 right-0 w-1/2 h-full bg-white/5 skew-x-12 translate-x-1/4 pointer-events-none" />
 

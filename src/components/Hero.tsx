@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
@@ -11,43 +11,6 @@ export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const audioRef = useRef<HTMLAudioElement>(null);
-  const [audioTriggered, setAudioTriggered] = useState(false);
-
-  // Intro audio: try autoplay, fall back to first interaction
-  useEffect(() => {
-    const audioEl = audioRef.current;
-    if (!audioEl || audioTriggered) return;
-
-    audioEl.volume = 0.5;
-
-    const tryPlay = () => {
-      if (!audioEl.paused) return;
-      audioEl.play().then(() => {
-        setAudioTriggered(true);
-      }).catch(() => {
-        // Autoplay blocked; will retry on user interaction
-      });
-    };
-
-    // Try immediately on mount (may be blocked)
-    tryPlay();
-
-    // Then try on first user interaction
-    const handleUserInteract = () => {
-      if (!audioTriggered) {
-        tryPlay();
-      }
-    };
-
-    window.addEventListener('click', handleUserInteract, { once: true });
-    window.addEventListener('scroll', handleUserInteract, { once: true });
-
-    return () => {
-      window.removeEventListener('click', handleUserInteract);
-      window.removeEventListener('scroll', handleUserInteract);
-    };
-  }, [audioTriggered]);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -62,28 +25,24 @@ export default function Hero() {
       }
     });
 
-    // Animate background overlay to solid blue
     tl.fromTo(overlayRef.current,
       { backgroundColor: 'rgba(0, 74, 173, 0.4)', mixBlendMode: 'multiply' },
       { backgroundColor: 'rgba(0, 74, 173, 1)', mixBlendMode: 'normal', duration: 2 },
       0
     );
 
-    // Fade the white mask parent to blue
     tl.to(maskParentRef.current, {
       backgroundColor: 'rgba(0, 74, 173, 1)',
       duration: 2,
       mixBlendMode: 'normal',
     }, 0);
 
-    // Dramatic WWP scaling mask effect
     tl.fromTo(maskRef.current, 
       { scale: 0.8, opacity: 1 },
       { scale: 100, opacity: 0, ease: "power4.inOut", duration: 2 },
       0
     );
 
-    // Fade in the CTA and tagline
     tl.fromTo(contentRef.current,
       { opacity: 0, y: 50 },
       { opacity: 1, y: 0, duration: 0.5 },
@@ -98,8 +57,6 @@ export default function Hero() {
 
   return (
     <section ref={containerRef} className="relative h-screen w-full overflow-hidden bg-white">
-      <audio ref={audioRef} src="/mixkit-relaxing-harp-sweep-2628.wav" preload="auto" />
-      {/* Background Video */}
       <div className="absolute inset-0 z-0">
         <video
           ref={videoRef}
@@ -114,7 +71,6 @@ export default function Hero() {
         <div ref={overlayRef} className="absolute inset-0 bg-[#004AAD]/40 mix-blend-multiply" />
       </div>
 
-      {/* The WWP Text Mask Overlay - Using League Gothic */}
       <div ref={maskParentRef} className="absolute inset-0 z-10 flex items-center justify-center bg-white mix-blend-screen pointer-events-none">
         <div 
           ref={maskRef}
@@ -129,7 +85,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Floating UI Elements - Using Montserrat */}
       <div ref={contentRef} className="absolute inset-0 z-20 flex flex-col items-center justify-end pb-24 pointer-events-none">
         <div className="pointer-events-auto flex flex-col items-center">
           <div className="flex flex-col items-center gap-6">

@@ -8,6 +8,13 @@ export default function Preloader() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    const hasLoaded = sessionStorage.getItem('safesport-preloader-shown');
+    if (hasLoaded) {
+      setIsLoading(false);
+      return;
+    }
+
+    sessionStorage.setItem('safesport-preloader-shown', 'true');
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 2000);

@@ -5,53 +5,58 @@ import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import Logo from './Logo';
-import { Menu, X, ArrowRight } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 const NAV_ITEMS = [
   {
     title: "About us",
     sectionId: "about",
-    items: ["Our founders", "Our background / why we exist", "Why SafeSport — and beyond sport", "Our values"]
+    description: "Meet our founders and learn about our mission to make safeguarding real in India."
   },
   {
     title: "Our approach",
     sectionId: "approach",
-    items: ["Our philosophy", "How we're different", "Our commitment"]
+    description: "Systems, understanding, and judgement — our framework for effective safeguarding."
   },
   {
     title: "Our services",
     sectionId: "services",
-    items: ["Safeguarding Foundations", "Systems and Readiness", "Consulting, Advisory, and Audit"]
+    description: "Training, systems, and advisory support at every stage of your safeguarding journey."
   },
   {
     title: "Who we work with",
     sectionId: "who-we-work-with",
-    items: ["NGO/S4D", "Private academies", "Educational institutions", "National bodies"]
+    description: "From grassroots NGOs to national bodies — we work across the sporting ecosystem."
   },
   {
     title: "Our standards",
     sectionId: "standards",
-    items: ["Localised Safeguards", "Indian legal and regulatory context", "Contextualization for India", "Our partners", "Ethical and professional commitments"]
+    description: "Global best practices, adapted for the Indian legal and sporting context."
   },
   {
     title: "Resources",
     sectionId: "resources",
-    items: ["Toolkits", "Guides", "Safeguarding explainers", "Articles"]
+    description: "Practical tools, explainers, and guides to make safeguarding actionable."
   },
   {
     title: "FAQs",
     sectionId: "faqs",
-    items: ["Is this only for children?", "Is this only for sport?", "Do we need this if we already have policies?", "Is this compliance or culture?", "How do we start?"]
+    description: "Common questions organisations ask us about safeguarding."
+  },
+  {
+    title: "Reach out",
+    sectionId: "contact",
+    description: "Get in touch to start your safeguarding journey with us."
   }
 ];
 
-// Top-level quick links shown in the header bar — only sections that exist on page
-const QUICK_LINKS = ["About us", "Our approach", "Our services", "Who we work with", "Resources", "FAQs"];
+const QUICK_LINKS = ["About us", "Our approach", "Our services", "Who we work with", "Resources", "Reach out"];
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeGroup, setActiveGroup] = useState<number | null>(null);
+  const [hoveredTile, setHoveredTile] = useState<number | null>(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const router = useRouter();
   const pathname = usePathname();
 
@@ -63,7 +68,6 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Lock body scroll when menu is open
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -75,20 +79,16 @@ export default function Navbar() {
 
   const scrollToSection = useCallback((sectionId: string) => {
     setIsMenuOpen(false);
-    setActiveGroup(null);
     
-    // Pages
-    const pages = ['about', 'approach', 'services', 'who-we-work-with', 'standards', 'resources'];
+    const pages = ['about', 'approach', 'services', 'who-we-work-with', 'standards', 'resources', 'contact'];
     if (pages.includes(sectionId)) {
       router.push(`/${sectionId}`);
       return;
     }
 
-    // FAQs: always navigate to home first, then scroll
     if (sectionId === 'faqs') {
       if (pathname !== '/') {
         router.push('/');
-        // Wait for navigation, then scroll
         setTimeout(() => {
           const el = document.getElementById('faqs');
           if (el) {
@@ -104,7 +104,6 @@ export default function Navbar() {
       return;
     }
 
-    // Fallback scroll (for same page scroll)
     setTimeout(() => {
       const el = document.getElementById(sectionId);
       if (el) {
@@ -115,38 +114,41 @@ export default function Navbar() {
     }, 300);
   }, [router, pathname]);
 
-  // On non-home pages, always show solid header so it's visible on light backgrounds
   const showSolidHeader = pathname !== '/' || isScrolled;
 
   return (
     <>
       <nav className={cn(
         "fixed top-0 left-0 w-full z-[100] transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] h-[100px]",
-        showSolidHeader ? "bg-white/95 backdrop-blur-md shadow-sm" : "bg-transparent"
+        isMenuOpen ? "bg-[#F5F0E8]" : showSolidHeader ? "bg-white/95 backdrop-blur-md shadow-sm" : "bg-transparent"
       )}>
         <div className="max-w-[1800px] mx-auto px-6 md:px-12 h-full flex items-center justify-between">
           
-          {/* Logo 150px — header is shorter so logo is cropped at top/bottom */}
           <Link 
             href="/" 
             className="relative z-[110] transition-transform hover:scale-105 duration-500 flex-shrink-0 flex items-center"
           >
-            <div className="mt-8"> {/* Adjusted margin to move logo down slightly */}
+            <div className="mt-8">
               <Logo
                 size={150}
-                className="transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]"
-                variant={showSolidHeader ? 'default' : 'white'}
+                className={cn(
+                  "transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]",
+                  isMenuOpen && "brightness-0" // Makes logo black when menu is open
+                )}
+                variant={isMenuOpen ? 'default' : showSolidHeader ? 'default' : 'white'}
               />
             </div>
           </Link>
           
           {/* Center: Quick section links (desktop) */}
-          <div className="hidden xl:flex items-center gap-7">
+          <div className={cn(
+            "hidden xl:flex items-center gap-7 transition-all duration-300",
+            isMenuOpen && "opacity-0 pointer-events-none"
+          )}>
             {QUICK_LINKS.map((title) => {
               const item = NAV_ITEMS.find(n => n.title === title);
               if (!item) return null;
               
-              // Only FAQs has no sub-items to show in dropdown normally, but we have items for it in NAV_ITEMS.
               return (
                 <div key={title} className="relative group/nav py-4">
                   <button
@@ -159,36 +161,19 @@ export default function Navbar() {
                     {title}
                     <span className="absolute -bottom-1 left-0 w-0 h-[1.5px] bg-current transition-all duration-300 group-hover/nav:w-full" />
                   </button>
-
-                  {/* Hover Dropdown */}
-                  {item.items.length > 0 && (
-                    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 translate-y-4 pointer-events-none group-hover/nav:opacity-100 group-hover/nav:translate-y-0 group-hover/nav:pointer-events-auto transition-all duration-300 z-50">
-                      <div className="bg-white shadow-xl border border-gray-100 rounded-xl p-4 min-w-[240px] flex flex-col gap-2">
-                        {item.items.map((subItem, idx) => (
-                          <button
-                            key={idx}
-                            onClick={() => scrollToSection(item.sectionId)}
-                            className="text-left text-xs font-montserrat font-medium text-gray-600 hover:text-[#004AAD] hover:bg-gray-50 px-4 py-2 rounded-lg transition-colors whitespace-nowrap"
-                          >
-                            {subItem}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  )}
                 </div>
               );
             })}
           </div>
 
-          {/* Right: Menu toggle */}
+          {/* Right: Menu toggle (hidden when menu is open because the close button takes over) */}
           <div className="flex items-center gap-4 flex-shrink-0">
             <button
-              onClick={() => { setIsMenuOpen(!isMenuOpen); setActiveGroup(null); }}
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
               className={cn(
-                "flex items-center gap-2 px-5 py-1 font-montserrat font-bold uppercase tracking-[0.2em] text-xs transition-all duration-500 border relative z-[110]",
+                "flex items-center gap-2 px-6 py-2.5 font-montserrat font-bold uppercase tracking-[0.2em] text-xs transition-all duration-500 border rounded-full relative z-[110]",
                 isMenuOpen
-                  ? "bg-transparent border-white text-white hover:bg-white hover:text-[#004AAD]"
+                  ? "opacity-0 pointer-events-none" // Hide the original button when open
                   : showSolidHeader 
                     ? "bg-[#004AAD] border-[#004AAD] text-white hover:bg-black hover:border-black" 
                     : "bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white hover:text-[#004AAD]"
@@ -204,153 +189,107 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Full-screen menu overlay */}
+      {/* Full-screen tile menu — jailhouselawyers.org style */}
       <div className={cn(
         "fixed inset-0 z-[105] transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] overflow-y-auto",
         isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
       )}>
-        {/* Background */}
+        {/* Blue background matching brand */}
         <div className={cn(
           "absolute inset-0 bg-[#004AAD] transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)]",
           isMenuOpen ? "translate-y-0" : "-translate-y-full"
         )} />
 
-        {/* Close button — fixed top right when menu is open */}
-        <div className="fixed top-0 right-0 z-[110] p-6 md:p-8">
-          <button
-            onClick={() => setIsMenuOpen(false)}
-            className="flex items-center gap-2 px-5 py-2.5 font-montserrat font-bold uppercase tracking-[0.2em] text-xs transition-all duration-500 border border-white/30 text-white hover:bg-white hover:text-[#004AAD]"
-          >
-            Close <X size={14} />
-          </button>
-        </div>
+        <div className="relative z-10 min-h-screen flex flex-col pt-32 pb-8">
+          
+          {/* Close button (only visible when menu is open) */}
+          <div className={cn(
+            "fixed top-8 right-6 md:right-12 z-50 transition-all duration-500",
+            isMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"
+          )}>
+            <button
+              onClick={() => setIsMenuOpen(false)}
+              className="flex items-center gap-2 px-6 py-2.5 font-montserrat font-bold uppercase tracking-[0.2em] text-xs transition-all duration-500 border rounded-full bg-white border-white text-[#004AAD] hover:bg-transparent hover:text-white"
+            >
+              Close <X size={14} />
+            </button>
+          </div>
 
-        {/* Menu content */}
-        <div className="relative z-10 min-h-screen flex flex-col pt-28 pb-12">
           <div className="flex-1 flex items-start">
-            <div className="w-full max-w-7xl mx-auto px-6 md:px-12">
-              
-              {/* Two-column layout: nav titles left, sub-items right */}
-              <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-12 lg:gap-24">
-                
-                {/* Left: Nav titles */}
-                <div className="flex flex-col gap-2">
-                  {NAV_ITEMS.map((item, index) => (
-                    <button
-                      key={item.title}
-                      onMouseEnter={() => setActiveGroup(index)}
-                      onClick={() => {
-                        if (activeGroup === index) {
-                          scrollToSection(item.sectionId);
-                        } else {
-                          setActiveGroup(index);
-                        }
-                      }}
-                      className={cn(
-                        "text-left text-3xl md:text-5xl font-league uppercase tracking-tight py-2 transition-all duration-300 flex items-center gap-4 group",
-                        activeGroup === index ? "text-white" : "text-white/40 hover:text-white/70",
-                        isMenuOpen ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-                      )}
-                      style={{ transitionDelay: isMenuOpen ? `${index * 60 + 200}ms` : '0ms' }}
-                    >
-                      <span className="text-xs font-montserrat font-bold tracking-[0.3em] opacity-50 w-6">
-                        {String(index + 1).padStart(2, '0')}
-                      </span>
-                      {item.title}
-                      <ArrowRight 
-                        size={20} 
-                        className={cn(
-                          "transition-all duration-300 ml-auto",
-                          activeGroup === index ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"
-                        )} 
-                      />
-                    </button>
-                  ))}
-                </div>
+            <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12">
+              {/* Tile grid - Compact 4-column layout */}
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                {NAV_ITEMS.map((item, index) => (
+                  <button
+                    key={item.title}
+                    onClick={() => scrollToSection(item.sectionId)}
+                    onMouseMove={(e) => {
+                      const rect = e.currentTarget.getBoundingClientRect();
+                      setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+                    }}
+                    onMouseEnter={() => setHoveredTile(index)}
+                    onMouseLeave={() => setHoveredTile(null)}
+                    className={cn(
+                      "group relative text-left rounded-2xl border border-white/20 bg-transparent overflow-hidden cursor-pointer",
+                      "p-6 md:p-8 min-h-[180px] md:min-h-[220px] flex flex-col justify-between",
+                      isMenuOpen ? "translate-y-0 opacity-100" : "translate-y-16 opacity-0"
+                    )}
+                    style={{ 
+                      transitionDelay: isMenuOpen ? `${index * 40 + 100}ms` : '0ms',
+                      transitionDuration: '500ms',
+                      transitionProperty: 'transform, opacity'
+                    }}
+                  >
+                    {/* Content Layer */}
+                    <div className="relative z-10 w-full h-full flex flex-col justify-between pointer-events-none">
+                      <div>
+                        {/* Number label */}
+                        <span className="text-sm font-league font-bold text-white block mb-4">
+                          {String(index + 1).padStart(2, '0')}
+                        </span>
 
-                {/* Right: Sub items for active group */}
-                <div className="hidden lg:flex flex-col justify-start pt-4">
-                  {activeGroup !== null && (
-                    <div className="animate-fade-in">
-                      <div className="mb-8">
-                        <p className="text-xs font-montserrat font-bold uppercase tracking-[0.4em] text-white/40 mb-2">
-                          {NAV_ITEMS[activeGroup].title}
-                        </p>
-                        <div className="w-12 h-[1px] bg-white/20" />
+                        {/* Title */}
+                        <h3 className="text-2xl md:text-3xl lg:text-4xl font-league uppercase leading-[0.9] tracking-tight text-white mb-4">
+                          {item.title}
+                        </h3>
                       </div>
-                      <div className="flex flex-col gap-5">
-                        {NAV_ITEMS[activeGroup].items.map((subItem, i) => (
-                          <button
-                            key={subItem}
-                            onClick={() => scrollToSection(NAV_ITEMS[activeGroup].sectionId)}
-                            className="text-left text-lg md:text-xl font-montserrat text-white/70 hover:text-white transition-all duration-300 group flex items-center gap-3"
-                            style={{ animationDelay: `${i * 80}ms` }}
-                          >
-                            <span className="w-1.5 h-1.5 rounded-full bg-white/30 group-hover:bg-white group-hover:scale-150 transition-all duration-300" />
-                            {subItem}
-                          </button>
-                        ))}
-                      </div>
-                      <button
-                        onClick={() => scrollToSection(NAV_ITEMS[activeGroup].sectionId)}
-                        className="mt-10 inline-flex items-center gap-2 px-6 py-3 border border-white/30 text-white text-xs font-bold uppercase tracking-[0.2em] font-montserrat hover:bg-white hover:text-[#004AAD] transition-all duration-300"
-                      >
-                        Go to section
-                        <ArrowRight size={14} />
-                      </button>
-                    </div>
-                  )}
-                  {activeGroup === null && (
-                    <div className="flex items-center justify-center h-full">
-                      <p className="text-white/20 font-montserrat text-sm uppercase tracking-[0.3em]">
-                        Select a section
+
+                      {/* Description */}
+                      <p className="text-xs md:text-sm font-montserrat leading-relaxed text-white/80 font-medium max-w-[90%]">
+                        {item.description}
                       </p>
                     </div>
-                  )}
-                </div>
-              </div>
 
-              {/* Mobile: show sub-items inline */}
-              <div className="lg:hidden mt-8">
-                {activeGroup !== null && (
-                  <div className="animate-fade-in border-t border-white/10 pt-6">
-                    <div className="flex flex-col gap-3">
-                      {NAV_ITEMS[activeGroup].items.map((subItem) => (
-                        <button
-                          key={subItem}
-                          onClick={() => scrollToSection(NAV_ITEMS[activeGroup].sectionId)}
-                          className="text-left text-sm font-montserrat text-white/60 hover:text-white transition-colors flex items-center gap-2"
-                        >
-                          <span className="w-1 h-1 rounded-full bg-white/40" />
-                          {subItem}
-                        </button>
-                      ))}
-                    </div>
-                    <button
-                      onClick={() => scrollToSection(NAV_ITEMS[activeGroup].sectionId)}
-                      className="mt-6 inline-flex items-center gap-2 px-5 py-2.5 border border-white/30 text-white text-xs font-bold uppercase tracking-[0.2em] font-montserrat hover:bg-white hover:text-[#004AAD] transition-all duration-300"
-                    >
-                      Go to section <ArrowRight size={12} />
-                    </button>
-                  </div>
-                )}
+                    {/* Spotlight Hover Circle (Mix Blend Mode) */}
+                    <div 
+                      className="absolute rounded-full pointer-events-none transition-opacity duration-300 mix-blend-difference z-20"
+                      style={{
+                        width: 300,
+                        height: 300,
+                        left: mousePos.x - 150,
+                        top: mousePos.y - 150,
+                        opacity: hoveredTile === index ? 1 : 0,
+                        background: '#FFFFFF',
+                      }}
+                    />
+                  </button>
+                ))}
               </div>
-
             </div>
           </div>
 
-          {/* Bottom bar in menu */}
-          <div className="max-w-7xl mx-auto px-6 md:px-12 w-full mt-auto pt-12">
-            <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
-              <Logo size={60} variant="white" className="opacity-40" />
+          {/* Bottom bar */}
+          <div className="max-w-[1600px] mx-auto px-6 md:px-12 w-full mt-10">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+              <Logo size={80} className="opacity-50" variant="white" />
               <div className="flex items-center gap-8">
-                <a href="mailto:safesportindia@gmail.com" className="text-xs font-montserrat text-white/40 hover:text-white transition-colors uppercase tracking-[0.2em]">
+                <a href="mailto:safesportindia@gmail.com" className="text-xs font-montserrat text-white/60 hover:text-white transition-colors uppercase tracking-[0.2em] font-bold">
                   Email
                 </a>
-                <a href="https://www.linkedin.com/in/safesport-india-6854a73a0/" target="_blank" rel="noopener noreferrer" className="text-xs font-montserrat text-white/40 hover:text-white transition-colors uppercase tracking-[0.2em]">
+                <a href="https://www.linkedin.com/in/safesport-india-6854a73a0/" target="_blank" rel="noopener noreferrer" className="text-xs font-montserrat text-white/60 hover:text-white transition-colors uppercase tracking-[0.2em] font-bold">
                   LinkedIn
                 </a>
-                <a href="https://www.instagram.com/safesportindia" target="_blank" rel="noopener noreferrer" className="text-xs font-montserrat text-white/40 hover:text-white transition-colors uppercase tracking-[0.2em]">
+                <a href="https://www.instagram.com/safesportindia" target="_blank" rel="noopener noreferrer" className="text-xs font-montserrat text-white/60 hover:text-white transition-colors uppercase tracking-[0.2em] font-bold">
                   Instagram
                 </a>
               </div>

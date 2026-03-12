@@ -6,7 +6,6 @@ import Timeline from '@/components/Timeline';
 import Footer from '@/components/Footer';
 import FAQ from '@/components/FAQ';
 import ScrollToHash from '@/components/ScrollToHash';
-import MovingLine from '@/components/ui/MovingLine';
 
 export default function Home() {
   return (
@@ -17,10 +16,7 @@ export default function Home() {
       {/* Content wrapper with higher z-index and solid background to cover the footer */}
       <div className="relative z-10 bg-white shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] mb-[100vh]">
         <Hero />
-        <div className="relative">
-          <MovingLine />
-          <Mission />
-        </div>
+        <Mission />
         <WorkWith />
         <Timeline />
 

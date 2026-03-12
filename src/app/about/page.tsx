@@ -119,6 +119,31 @@ export default function AboutPage() {
           </div>
         </section>
 
+        {/* Why SafeSport */}
+        <section className="px-6 md:px-12 lg:px-24 mb-32">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid md:grid-cols-12 gap-12 md:gap-16">
+              <div className="md:col-span-5">
+                <h2 className="text-4xl md:text-5xl font-league uppercase mb-6 text-[#1A1A1A] leading-tight">
+                  Why SafeSport —<br />And Beyond Sport
+                </h2>
+                <div className="w-20 h-1 bg-[#004AAD] mb-8" />
+              </div>
+              <div className="md:col-span-7 space-y-8 text-lg font-montserrat text-gray-600 leading-relaxed">
+                <p>
+                  The principles of safeguarding extend far beyond the world of sport. Wherever there is a duty of care — in schools, youth programmes, community organisations, and residential settings — the same foundations apply: clear boundaries, shared understanding, accountable systems, and cultures where people feel safe to speak up.
+                </p>
+                <p>
+                  We chose the name <span className="font-bold text-[#004AAD]">SafeSport India</span> because sport is where some of the most pressing safeguarding challenges exist — and where our founders&apos; deepest expertise lies. But our work is designed to serve any organisation that works with children, young people, or vulnerable populations.
+                </p>
+                <p>
+                  Whether you&apos;re a school, academy, NGO, or national body — the question isn&apos;t whether safeguarding applies to you. It&apos;s whether you&apos;re ready to make it part of how you operate.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Our Values - S A F E Letters */}
         <section className="px-6 md:px-12 lg:px-24 pb-32">
           <div className="max-w-7xl mx-auto">

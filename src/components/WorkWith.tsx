@@ -108,7 +108,7 @@ export default function WorkWith() {
                 fill
                 className="object-cover"
                 sizes="100vw"
-                priority={index === 0}
+                priority
               />
               <div
                 className={cn(

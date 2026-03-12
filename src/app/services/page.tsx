@@ -95,17 +95,16 @@ export default function ServicesPage() {
   }, []);
 
   return (
-    <main className="relative bg-[#F8FAFC] text-[#1A1A1A]">
+    <main className="relative bg-white text-[#1A1A1A]">
       <div className="relative z-10 bg-white shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] mb-[100vh] min-h-screen pt-32">
         
-        {/* Header — brand band */}
-        <section className="px-6 md:px-12 lg:px-24 mb-20 md:mb-32 bg-[#004AAD]/[0.06] py-16 md:py-20 -mt-32 pt-48 md:pt-52">
+        {/* Header */}
+        <section className="px-6 md:px-12 lg:px-24 mb-20 md:mb-32">
           <div className="max-w-7xl mx-auto">
-            <div className="w-20 h-1 bg-[#004AAD] mb-8" />
             <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-league uppercase leading-[0.8] tracking-tighter text-[#004AAD] mb-8">
               Our Services
             </h1>
-            <div className="w-full h-[1px] bg-[#004AAD]/20 mb-12" />
+            <div className="w-full h-[1px] bg-gray-200 mb-12" />
             <p className="text-xl md:text-2xl font-montserrat text-gray-700 max-w-4xl leading-relaxed">
               Safe Sport India supports organisations at different stages of their safeguarding journey — from building foundational understanding, to strengthening systems, to providing ongoing guidance and assurance.
             </p>
