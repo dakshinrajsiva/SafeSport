@@ -31,7 +31,16 @@ export default function ContactPage() {
                 <h2 className="text-3xl md:text-4xl font-league uppercase text-[#1A1A1A] mb-12">Get In Touch</h2>
                 
                 <div className="space-y-10">
-                  <a href="mailto:safesportindia@gmail.com" className="flex items-start gap-6 group">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const subject = encodeURIComponent("Safeguarding Inquiry");
+                      const body = encodeURIComponent("");
+                      const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=safesportindia@gmail.com&su=${subject}&body=${body}`;
+                      window.open(gmailUrl, "_blank");
+                    }}
+                    className="flex items-start gap-6 group text-left"
+                  >
                     <div className="w-16 h-16 rounded-2xl bg-[#004AAD]/5 flex items-center justify-center group-hover:bg-[#004AAD] transition-colors duration-500 flex-shrink-0">
                       <Mail className="w-7 h-7 text-[#004AAD] group-hover:text-white transition-colors duration-500" />
                     </div>
@@ -113,8 +122,12 @@ export default function ContactPage() {
                     const email = (form.elements.namedItem('email') as HTMLInputElement)?.value || '';
                     const org = (form.elements.namedItem('organisation') as HTMLInputElement)?.value || '';
                     const msg = (form.elements.namedItem('message') as HTMLTextAreaElement)?.value || '';
-                    const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0AOrganisation: ${org}%0D%0A%0D%0A${msg}`;
-                    window.location.href = `mailto:safesportindia@gmail.com?subject=Safeguarding Inquiry from ${name}&body=${body}`; 
+                    const subject = encodeURIComponent(`Safeguarding Inquiry from ${name}`);
+                    const body = encodeURIComponent(
+                      `Name: ${name}\nEmail: ${email}\nOrganisation: ${org}\n\n${msg}`
+                    );
+                    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=safesportindia@gmail.com&su=${subject}&body=${body}`;
+                    window.open(gmailUrl, "_blank");
                   }}
                 >
                   <div>
