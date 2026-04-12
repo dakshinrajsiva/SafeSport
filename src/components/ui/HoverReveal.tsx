@@ -9,7 +9,7 @@ interface HoverRevealProps {
   alt?: string;
 }
 
-/** Blue highlight only — no hover image. imageSrc/alt kept for API compatibility but unused. */
+/** Blue highlight only - no hover image. imageSrc/alt kept for API compatibility but unused. */
 export default function HoverReveal({ children, className }: HoverRevealProps) {
   return (
     <span

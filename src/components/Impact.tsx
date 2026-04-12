@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 
 const STATS = [
   {
-    number: "40–50%",
+    number: "40-50%",
     text: "of athletes globally have experienced some form of harassment or abuse during their sporting career.",
     source: "IOC Consensus Statement on Harassment and Abuse in Sport, 2016",
     size: "large",
@@ -86,7 +86,7 @@ export default function Impact() {
               </p>
 
               <cite className="block mt-6 text-[10px] md:text-xs font-montserrat text-white/40 not-italic leading-snug">
-                — {stat.source}
+                - {stat.source}
               </cite>
             </motion.div>
           ))}

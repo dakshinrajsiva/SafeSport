@@ -16,7 +16,7 @@ const NAV_ITEMS = [
   {
     title: "Our approach",
     sectionId: "approach",
-    description: "Systems, understanding, and judgement — our framework for effective safeguarding."
+    description: "Systems, understanding, and judgement - our framework for effective safeguarding."
   },
   {
     title: "Our services",
@@ -26,17 +26,12 @@ const NAV_ITEMS = [
   {
     title: "Who we work with",
     sectionId: "who-we-work-with",
-    description: "From grassroots NGOs to national bodies — we work across the sporting ecosystem."
+    description: "From grassroots NGOs to national bodies - we work across the sporting ecosystem."
   },
   {
     title: "Our standards",
     sectionId: "standards",
     description: "Global best practices, adapted for the Indian legal and sporting context."
-  },
-  {
-    title: "Resources",
-    sectionId: "resources",
-    description: "Practical tools, explainers, and guides to make safeguarding actionable."
   },
   {
     title: "FAQs",
@@ -50,7 +45,7 @@ const NAV_ITEMS = [
   }
 ];
 
-const QUICK_LINKS = ["About us", "Our approach", "Our services", "Who we work with", "Resources", "Reach out"];
+const QUICK_LINKS = ["About us", "Our approach", "Our services", "Who we work with", "Reach out"];
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -79,7 +74,7 @@ export default function Navbar() {
   const scrollToSection = useCallback((sectionId: string) => {
     setIsMenuOpen(false);
     
-    const pages = ['about', 'approach', 'services', 'who-we-work-with', 'standards', 'resources', 'contact'];
+    const pages = ['about', 'approach', 'services', 'who-we-work-with', 'standards', 'contact'];
     if (pages.includes(sectionId)) {
       router.push(`/${sectionId}`);
       return;
@@ -154,12 +149,24 @@ export default function Navbar() {
                     onClick={() => scrollToSection(item.sectionId)}
                     className={cn(
                       "font-montserrat font-bold uppercase tracking-[0.15em] text-xs transition-all duration-300 relative whitespace-nowrap",
-                      showSolidHeader ? "text-[#004AAD]" : "text-white"
+                      title === "Reach out"
+                        ? showSolidHeader
+                          ? "bg-[#004AAD] text-white px-6 py-2.5 rounded-full hover:bg-black hover:scale-105 shadow-[0_0_20px_rgba(0,74,173,0.45)] border border-[#004AAD]"
+                          : "bg-white text-[#004AAD] px-6 py-2.5 rounded-full hover:bg-gray-100 hover:scale-105 shadow-[0_0_24px_rgba(255,255,255,0.45)] border border-white"
+                        : showSolidHeader ? "text-[#004AAD]" : "text-white"
                     )}
                   >
                     {title}
-                    <span className="absolute -bottom-1 left-0 w-0 h-[1.5px] bg-current transition-all duration-300 group-hover/nav:w-full" />
+                    {title !== "Reach out" && (
+                      <span className="absolute -bottom-1 left-0 w-0 h-[1.5px] bg-current transition-all duration-300 group-hover/nav:w-full" />
+                    )}
                   </button>
+
+                  {item.description && title !== "Reach out" && (
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 opacity-0 group-hover/nav:opacity-100 transition-opacity duration-300 pointer-events-none w-max max-w-[260px] bg-white/95 backdrop-blur-md text-[#004AAD] text-[10px] p-3 rounded-lg shadow-xl text-center font-montserrat leading-relaxed border border-gray-100 z-[120]">
+                      {item.description}
+                    </div>
+                  )}
                 </div>
               );
             })}
@@ -188,7 +195,7 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Full-screen tile menu — jailhouselawyers.org style */}
+      {/* Full-screen tile menu (reference layout) */}
       <div className={cn(
         "fixed inset-0 z-[105] transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] overflow-y-auto",
         isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
@@ -262,7 +269,7 @@ export default function Navbar() {
             <div className="flex flex-col md:flex-row justify-between items-center gap-6">
               <Logo size={80} className="opacity-50" variant="white" />
               <div className="flex items-center gap-8">
-                <a href="mailto:safesportindia@gmail.com" className="text-xs font-montserrat text-white/60 hover:text-white transition-colors uppercase tracking-[0.2em] font-bold">
+                <a href="mailto:info@safesportindia.com" className="text-xs font-montserrat text-white/60 hover:text-white transition-colors uppercase tracking-[0.2em] font-bold">
                   Email
                 </a>
                 <a href="https://www.linkedin.com/in/safesport-india-6854a73a0/" target="_blank" rel="noopener noreferrer" className="text-xs font-montserrat text-white/60 hover:text-white transition-colors uppercase tracking-[0.2em] font-bold">

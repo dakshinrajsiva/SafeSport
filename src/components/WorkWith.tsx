@@ -105,11 +105,11 @@ export default function WorkWith() {
             className="relative flex-shrink-0 h-full flex items-end"
             style={{ width: '100vw', minWidth: '100vw' }}
           >
-            {/* Full-bleed background image — only first gets priority */}
+            {/* Full-bleed background image - only first gets priority */}
             <div className="absolute inset-0 z-0">
               <Image
                 src={partner.image}
-                alt={`${partner.title} — ${partner.description}`}
+                alt={`${partner.title} - ${partner.description}`}
                 fill
                 className="object-cover"
                 sizes="100vw"

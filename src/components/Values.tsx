@@ -128,7 +128,7 @@ export default function Values() {
                     className="mt-4 text-xs font-montserrat font-bold uppercase tracking-widest transition-colors duration-300"
                     style={{ color: val.color }}
                   >
-                    {activeValue === idx ? '— Less' : '+ More'}
+                    {activeValue === idx ? '- Less' : '+ More'}
                   </div>
                 </div>
               </div>

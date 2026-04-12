@@ -19,7 +19,7 @@ body {
   color: #FFFFFF;
 }
 
-/* Skip to content link — visible on focus for keyboard users */
+/* Skip to content link - visible on focus for keyboard users */
 .skip-to-content {
   position: absolute;
   top: -100%;
@@ -75,7 +75,7 @@ html.lenis body {
   pointer-events: none;
 }
 
-/* Respect reduced motion preference — disable all animations and transitions */
+/* Respect reduced motion preference - disable all animations and transitions */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -153,7 +153,7 @@ html.lenis body {
     animation: fade-in-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
-  /* Scrolling marquee (left) for footer strip — slow like WWP */
+  /* Scrolling marquee (left) for footer strip - slow like WWP */
   @keyframes marquee-left {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }

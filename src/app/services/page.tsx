@@ -70,7 +70,7 @@ export default function ServicesPage() {
             </h1>
             <div className="w-full h-[1px] bg-gray-200 mb-12" />
             <p className="text-xl md:text-2xl font-montserrat text-gray-600 max-w-4xl leading-relaxed">
-              We support organisations at different stages of their safeguarding journey — from building foundational understanding, to strengthening systems, to providing ongoing guidance and assurance.
+              We support organisations at different stages of their safeguarding journey - from building foundational understanding, to strengthening systems, to providing ongoing guidance and assurance.
             </p>
           </div>
         </section>

@@ -191,9 +191,6 @@ export default function AboutPage() {
                 <p>
                   The principles of safeguarding extend far beyond the world of sport. Wherever there is a duty of care in schools, youth programmes, organisations, and residential settings, the same foundations apply: clear boundaries, shared understanding, accountable systems, and cultures where people feel safe to speak up.
                 </p>
-                <p>
-                  Whether you&apos;re a school, academy, NGO, or national body, the question isn&apos;t whether safeguarding applies to you. It&apos;s whether you&apos;re ready to make it part of how you operate.
-                </p>
               </div>
             </div>
           </div>

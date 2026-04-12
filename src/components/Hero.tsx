@@ -108,10 +108,6 @@ export default function Hero() {
       <div ref={contentRef} className="absolute inset-0 z-20 flex flex-col items-center justify-end pb-24 pointer-events-none">
         <div className="pointer-events-auto flex flex-col items-center">
           <div className="flex flex-col items-center gap-6">
-            <div className="w-1 h-12 bg-white/30 rounded-full overflow-hidden relative" aria-hidden="true">
-              <div className="absolute top-0 left-0 w-full h-1/2 bg-white animate-bounce" />
-            </div>
-
             <div className="flex flex-col items-center gap-4 text-center px-4 max-w-4xl">
               <div className="overflow-hidden">
                 <h1 className="text-white font-league text-4xl md:text-6xl uppercase tracking-wide leading-none">
