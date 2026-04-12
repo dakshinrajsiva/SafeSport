@@ -7,7 +7,7 @@ const SECTORS = [
   {
     title: "NGOs & S4D Organisations",
     whyMatters: [
-      "NGOs and sport-for-development organisations work in high-trust environments, often with children and young people from vulnerable or underserved communities. These settings involve close relationships, informal structures, travel, and long hours — all of which increase both impact and responsibility.",
+      "NGOs and sport-for-development organisations work in high-trust environments, often with children and young people from vulnerable or underserved communities. These settings involve close relationships, informal structures, travel, and long hours - all of which increase both impact and responsibility.",
       "Safeguarding in this context is not just about protection. It is about maintaining trust, ensuring ethical practice, and protecting both participants and staff. When safeguarding systems are unclear or inconsistent, responsibility often falls on individuals rather than being shared by the organisation.",
       "Strong safeguarding enables NGOs to deliver programmes with confidence, credibility, and long-term sustainability."
     ],
@@ -28,11 +28,11 @@ const SECTORS = [
     title: "Private Academies & Training Centres",
     whyMatters: [
       "Private academies operate in performance-driven environments where ambition, authority, and trust intersect. Coaches and staff hold significant influence, and young athletes or trainees may be reluctant to raise concerns due to fear of selection, progression, or reputation.",
-      "Safeguarding in academies is not about limiting coaching or performance. It is about creating environments where development can happen safely, consistently, and sustainably — without fear, silence, or harm.",
+      "Safeguarding in academies is not about limiting coaching or performance. It is about creating environments where development can happen safely, consistently, and sustainably - without fear, silence, or harm.",
       "Strong safeguarding protects athletes, staff, and the academy itself."
     ],
     howWeWork: [
-      "We work closely with academies to embed safeguarding into coaching practice, leadership behaviour, and daily operations — not just policy documents. Our approach focuses on clarity around boundaries and professional conduct, confidence in handling concerns without overreaction or avoidance.",
+      "We work closely with academies to embed safeguarding into coaching practice, leadership behaviour, and daily operations - not just policy documents. Our approach focuses on clarity around boundaries and professional conduct, confidence in handling concerns without overreaction or avoidance.",
       "We align safeguarding with performance and wellbeing, and reduce reliance on informal judgement through clear systems. We respect the realities of high-performance environments and design safeguarding that supports, rather than undermines, excellence."
     ],
     support: [
@@ -47,7 +47,7 @@ const SECTORS = [
     title: "Educational Institutions",
     whyMatters: [
       "Educational institutions are responsible for more than academic outcomes. They are environments where children and young people learn, socialise, travel, and develop their understanding of boundaries, authority, and trust.",
-      "Safeguarding in schools and colleges is a professional skill — one that supports teachers and staff to recognise concerns early, respond appropriately, and create safe learning environments. It also helps students understand their rights, boundaries, and sense of agency.",
+      "Safeguarding in schools and colleges is a professional skill - one that supports teachers and staff to recognise concerns early, respond appropriately, and create safe learning environments. It also helps students understand their rights, boundaries, and sense of agency.",
       "Effective safeguarding strengthens trust with families, protects staff, and supports institutional integrity."
     ],
     howWeWork: [
@@ -66,11 +66,11 @@ const SECTORS = [
     title: "National Bodies & Federations",
     whyMatters: [
       "National bodies and governing institutions play a critical role in setting expectations, standards, and culture across entire sectors. Safeguarding at this level is about governance, consistency, and credibility.",
-      "As expectations from athletes, parents, partners, and international stakeholders increase, national bodies are expected to demonstrate leadership in safeguarding — not only through policy, but through implementation and oversight.",
+      "As expectations from athletes, parents, partners, and international stakeholders increase, national bodies are expected to demonstrate leadership in safeguarding - not only through policy, but through implementation and oversight.",
       "Strong safeguarding frameworks support integrity, trust, and long-term institutional legitimacy."
     ],
     howWeWork: [
-      "We support national bodies to design and strengthen safeguarding systems that are scalable, consistent, and aligned with international best practice — while remaining practical for diverse Indian contexts.",
+      "We support national bodies to design and strengthen safeguarding systems that are scalable, consistent, and aligned with international best practice - while remaining practical for diverse Indian contexts.",
       "Our work focuses on translating safeguarding standards into implementable frameworks, supporting leadership and governance structures, strengthening reporting and response systems, and aligning safeguarding with broader governance and performance goals. We work as thought partners, not just service providers."
     ],
     support: [
@@ -87,14 +87,14 @@ export default function WhoWeWorkWithPage() {
   return (
     <main className="relative bg-white text-[#1A1A1A]">
       <div className="relative z-10 bg-white shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] mb-[100vh] min-h-screen pt-32">
-        
+
         {/* Header */}
         <section className="px-6 md:px-12 lg:px-24 mb-20 md:mb-32">
           <div className="max-w-7xl mx-auto">
             <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-league uppercase leading-[0.8] tracking-tighter text-[#004AAD] mb-8">
               Who We Work With
             </h1>
-            <div className="w-full h-[1px] bg-gray-200" />
+            <div className="w-full h-[1px] bg-gray-200" aria-hidden="true" />
           </div>
         </section>
 
@@ -114,19 +114,13 @@ export default function WhoWeWorkWithPage() {
                 <div className="grid lg:grid-cols-12 gap-12 lg:gap-24">
                   {/* Left Column: Title & Sticky Header */}
                   <div className="lg:col-span-4 lg:sticky lg:top-32 h-fit">
-                    <motion.div
-                       initial={{ opacity: 0, x: -20 }}
-                       whileInView={{ opacity: 1, x: 0 }}
-                       transition={{ delay: 0.2 }}
-                    >
-                      <div className="text-base font-black font-montserrat text-[#004AAD] uppercase tracking-widest mb-6 flex items-center gap-4">
-                         <span className="w-12 h-2 bg-[#004AAD]" />
-                         Sector {String(i + 1).padStart(2, '0')}
-                      </div>
-                      <h2 className="text-6xl md:text-7xl lg:text-8xl font-league uppercase leading-[0.8] mb-10 text-[#1A1A1A] tracking-tighter">
-                        {sector.title}
-                      </h2>
-                    </motion.div>
+                    <div className="text-base font-black font-montserrat text-[#004AAD] uppercase tracking-widest mb-6 flex items-center gap-4">
+                       <span className="w-12 h-2 bg-[#004AAD]" aria-hidden="true" />
+                       Sector {String(i + 1).padStart(2, '0')}
+                    </div>
+                    <h2 className="text-6xl md:text-7xl lg:text-8xl font-league uppercase leading-[0.8] mb-10 text-[#1A1A1A] tracking-tighter">
+                      {sector.title}
+                    </h2>
                   </div>
 
                   {/* Right Column: Content */}
@@ -177,7 +171,7 @@ export default function WhoWeWorkWithPage() {
                 </div>
                 
                 {i < SECTORS.length - 1 && (
-                  <div className="w-full h-[1px] bg-gray-200 mt-24" />
+                  <div className="w-full h-[1px] bg-gray-200 mt-24" aria-hidden="true" />
                 )}
               </motion.div>
             ))}

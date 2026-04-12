@@ -14,10 +14,18 @@ export default function Preloader() {
       return;
     }
 
+    // Respect reduced motion: skip preloader entirely
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      sessionStorage.setItem('safesport-preloader-shown', 'true');
+      setIsLoading(false);
+      return;
+    }
+
     sessionStorage.setItem('safesport-preloader-shown', 'true');
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2000);
+    }, 1200);
 
     return () => clearTimeout(timer);
   }, []);
@@ -28,13 +36,15 @@ export default function Preloader() {
         <motion.div
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
+          transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
           className="fixed inset-0 z-[100] flex items-center justify-center bg-white"
+          role="status"
+          aria-label="Loading SafeSport India"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
+            transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
           >
             <Logo size={240} />
           </motion.div>

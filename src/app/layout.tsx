@@ -109,6 +109,9 @@ export const metadata: Metadata = {
     shortcut: "/safesi.png",
     apple: "/safesi.png",
   },
+};
+
+export const viewport = {
   themeColor: "#004AAD",
 };
 
@@ -144,6 +147,9 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
+        <a href="#main-content" className="skip-to-content">
+          Skip to main content
+        </a>
         <ScrollToTopOnLoad />
         <Navbar />
         <SmoothScroll>{children}</SmoothScroll>

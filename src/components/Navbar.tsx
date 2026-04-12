@@ -56,7 +56,6 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [hoveredTile, setHoveredTile] = useState<number | null>(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const router = useRouter();
   const pathname = usePathname();
 
@@ -223,55 +222,35 @@ export default function Navbar() {
                   <button
                     key={item.title}
                     onClick={() => scrollToSection(item.sectionId)}
-                    onMouseMove={(e) => {
-                      const rect = e.currentTarget.getBoundingClientRect();
-                      setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-                    }}
                     onMouseEnter={() => setHoveredTile(index)}
                     onMouseLeave={() => setHoveredTile(null)}
                     className={cn(
-                      "group relative text-left rounded-2xl border border-white/20 bg-transparent overflow-hidden cursor-pointer",
+                      "group relative text-left rounded-2xl border border-white/20 overflow-hidden cursor-pointer transition-all duration-500",
                       "p-6 md:p-8 min-h-[180px] md:min-h-[220px] flex flex-col justify-between",
-                      isMenuOpen ? "translate-y-0 opacity-100" : "translate-y-16 opacity-0"
+                      isMenuOpen ? "translate-y-0 opacity-100" : "translate-y-16 opacity-0",
+                      hoveredTile === index ? "bg-white/15 border-white/40 scale-[1.02]" : "bg-transparent"
                     )}
-                    style={{ 
+                    style={{
                       transitionDelay: isMenuOpen ? `${index * 40 + 100}ms` : '0ms',
                       transitionDuration: '500ms',
-                      transitionProperty: 'transform, opacity'
+                      transitionProperty: 'transform, opacity, background-color, border-color'
                     }}
                   >
-                    {/* Content Layer */}
-                    <div className="relative z-10 w-full h-full flex flex-col justify-between pointer-events-none">
+                    <div className="relative z-10 w-full h-full flex flex-col justify-between">
                       <div>
-                        {/* Number label */}
                         <span className="text-sm font-league font-bold text-white block mb-4">
                           {String(index + 1).padStart(2, '0')}
                         </span>
 
-                        {/* Title */}
                         <h3 className="text-2xl md:text-3xl lg:text-4xl font-league uppercase leading-[0.9] tracking-tight text-white mb-4">
                           {item.title}
                         </h3>
                       </div>
 
-                      {/* Description */}
                       <p className="text-xs md:text-sm font-montserrat leading-relaxed text-white/80 font-medium max-w-[90%]">
                         {item.description}
                       </p>
                     </div>
-
-                    {/* Spotlight Hover Circle (Mix Blend Mode) */}
-                    <div 
-                      className="absolute rounded-full pointer-events-none transition-opacity duration-300 mix-blend-difference z-20"
-                      style={{
-                        width: 300,
-                        height: 300,
-                        left: mousePos.x - 150,
-                        top: mousePos.y - 150,
-                        opacity: hoveredTile === index ? 1 : 0,
-                        background: '#FFFFFF',
-                      }}
-                    />
                   </button>
                 ))}
               </div>

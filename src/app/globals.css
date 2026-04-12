@@ -19,6 +19,40 @@ body {
   color: #FFFFFF;
 }
 
+/* Skip to content link — visible on focus for keyboard users */
+.skip-to-content {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: var(--brand-blue);
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-radius: 0 0 0.5rem 0.5rem;
+  transition: top 0.2s ease;
+}
+.skip-to-content:focus {
+  top: 0;
+  outline: 3px solid #FFFFFF;
+  outline-offset: -3px;
+}
+
+/* Focus visible styles for keyboard navigation */
+*:focus-visible {
+  outline: 3px solid var(--brand-blue);
+  outline-offset: 2px;
+}
+
+/* Remove focus outline for mouse users */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
 /* Lenis Recommended CSS */
 html.lenis,
 html.lenis body {
@@ -39,6 +73,22 @@ html.lenis body {
 
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
+}
+
+/* Respect reduced motion preference — disable all animations and transitions */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
 }
 
 @layer utilities {
@@ -109,7 +159,7 @@ html.lenis body {
     100% { transform: translateX(-50%); }
   }
   .animate-marquee-left {
-    animation: marquee-left 60s linear infinite;
+    animation: marquee-left 24s linear infinite;
   }
 
   /* Hover pause effect */

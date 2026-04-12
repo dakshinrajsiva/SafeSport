@@ -1,6 +1,7 @@
 import Preloader from '@/components/Preloader';
 import Hero from '@/components/Hero';
 import Mission from '@/components/Mission';
+import Impact from '@/components/Impact';
 import WorkWith from '@/components/WorkWith';
 import Timeline from '@/components/Timeline';
 import Footer from '@/components/Footer';
@@ -9,7 +10,7 @@ import ScrollToHash from '@/components/ScrollToHash';
 
 export default function Home() {
   return (
-    <main className="relative">
+    <main id="main-content" className="relative">
       <ScrollToHash />
       <Preloader />
       
@@ -18,16 +19,17 @@ export default function Home() {
         <Hero />
         <Mission />
         <WorkWith />
+        <Impact />
         <Timeline />
 
         {/* FAQs */}
-        <section id="faqs" className="py-32 px-4 md:px-24 bg-white border-t border-gray-100">
+        <section id="faqs" className="py-32 px-4 md:px-24 bg-white border-t border-gray-100" aria-labelledby="faq-section-heading">
           <div className="max-w-6xl mx-auto">
-            <h3 className="text-[#004AAD] font-montserrat font-bold uppercase tracking-[0.4em] mb-6 text-xs md:text-sm flex items-center gap-4">
+            <p className="text-[#004AAD] font-montserrat font-bold uppercase tracking-[0.4em] mb-6 text-xs md:text-sm flex items-center gap-4" aria-hidden="true">
               <span className="w-8 h-[1px] bg-[#004AAD]" />
               FAQs
-            </h3>
-            <h2 className="text-4xl md:text-6xl font-league text-[#1A1A1A] uppercase leading-tight mb-16">
+            </p>
+            <h2 id="faq-section-heading" className="text-4xl md:text-6xl font-league text-[#1A1A1A] uppercase leading-tight mb-16">
               Questions organisations often ask us.
             </h2>
             <FAQ />

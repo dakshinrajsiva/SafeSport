@@ -1,38 +1,38 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useMemo } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
+const MISSION_TEXT = "SafeSport India is India's first dedicated safeguarding enterprise committed to building a safe, ethical, and inclusive sporting, organizational, and educational environment across the country.";
+
 export default function Mission() {
   const sectionRef = useRef<HTMLElement>(null);
-  const textRef = useRef<HTMLParagraphElement>(null);
+  const wordsRef = useRef<(HTMLSpanElement | null)[]>([]);
+
+  const words = useMemo(() => MISSION_TEXT.split(' '), []);
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    if (textRef.current) {
-      const content = textRef.current.innerText;
-      const words = content.split(' ');
-      // Wrap words in spans; highlight "safeguarding" in blue
-      textRef.current.innerHTML = words.map(word => {
-        const isSafeguarding = word.toLowerCase().replace(/[^a-z]/g, '') === 'safeguarding';
-        const spanClass = isSafeguarding
-          ? 'opacity-10 inline-block transition-colors duration-500 vision-highlight'
-          : 'opacity-10 inline-block transition-colors duration-500';
-        const underline = isSafeguarding
-          ? ' style="text-decoration: underline; text-decoration-style: dotted; text-decoration-color: #004AAD; text-underline-offset: 6px; text-decoration-thickness: 3px;"'
-          : '';
-        return `<span class="${spanClass}"${underline}>${word}</span>`;
-      }).join(' ');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      // Show all words immediately
+      wordsRef.current.forEach(span => {
+        if (span) {
+          span.style.opacity = '1';
+          const word = span.textContent?.toLowerCase().replace(/[^a-z]/g, '');
+          span.style.color = word === 'safeguarding' ? '#004AAD' : '#1A1A1A';
+        }
+      });
+      return;
     }
 
-    const spans = textRef.current?.querySelectorAll('span');
-    
-    if (!spans || spans.length === 0) return;
+    gsap.registerPlugin(ScrollTrigger);
 
-    const normalSpans = Array.from(spans).filter((s) => !(s as HTMLElement).classList.contains('vision-highlight'));
-    const highlightSpans = Array.from(spans).filter((s) => (s as HTMLElement).classList.contains('vision-highlight'));
+    const spans = wordsRef.current.filter(Boolean) as HTMLSpanElement[];
+    if (spans.length === 0) return;
+
+    const normalSpans = spans.filter(s => !s.classList.contains('vision-highlight'));
+    const highlightSpans = spans.filter(s => s.classList.contains('vision-highlight'));
 
     const tl = gsap.timeline();
     tl.to(spans, { opacity: 1, stagger: 0.1, ease: "power2.out" }, 0);
@@ -53,14 +53,34 @@ export default function Mission() {
   }, []);
 
   return (
-    <section id="about" ref={sectionRef} className="py-48 px-4 md:px-24 bg-white relative overflow-hidden">
+    <section id="about" ref={sectionRef} className="py-48 px-4 md:px-24 bg-white relative overflow-hidden" aria-labelledby="vision-heading">
       <div className="max-w-6xl mx-auto relative z-10">
-        <h3 className="text-[#004AAD] font-montserrat font-bold uppercase tracking-[0.4em] mb-16 text-xs md:text-sm flex items-center gap-4">
-          <span className="w-8 h-[1px] bg-[#004AAD]"></span>
+        <h2 id="vision-heading" className="text-[#004AAD] font-montserrat font-bold uppercase tracking-[0.4em] mb-16 text-xs md:text-sm flex items-center gap-4">
+          <span className="w-8 h-[1px] bg-[#004AAD]" aria-hidden="true"></span>
           The Vision
-        </h3>
-        <p ref={textRef} className="text-4xl md:text-7xl font-bold leading-[1.05] text-[#1A1A1A] tracking-tight font-sans">
-          SafeSport India is India’s first dedicated safeguarding enterprise committed to building a safe, ethical, and inclusive sporting, organizational, and educational environment across the country.
+        </h2>
+        <p className="text-4xl md:text-7xl font-bold leading-[1.05] text-[#1A1A1A] tracking-tight font-sans">
+          {words.map((word, i) => {
+            const isSafeguarding = word.toLowerCase().replace(/[^a-z]/g, '') === 'safeguarding';
+            return (
+              <span key={i}>
+                <span
+                  ref={el => { wordsRef.current[i] = el; }}
+                  className={`opacity-10 inline-block transition-colors duration-500${isSafeguarding ? ' vision-highlight' : ''}`}
+                  style={isSafeguarding ? {
+                    textDecoration: 'underline',
+                    textDecorationStyle: 'dotted',
+                    textDecorationColor: '#004AAD',
+                    textUnderlineOffset: '6px',
+                    textDecorationThickness: '3px',
+                  } : undefined}
+                >
+                  {word}
+                </span>
+                {i < words.length - 1 ? ' ' : ''}
+              </span>
+            );
+          })}
         </p>
       </div>
     </section>

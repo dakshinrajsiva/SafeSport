@@ -21,14 +21,16 @@ export default function Logo({
   const finalHeight = size ?? height;
 
   return (
-    <div 
+    <div
+      role="img"
+      aria-label="SafeSport India logo"
       className={cn(
-        "transition-all duration-500", 
+        "transition-all duration-500",
         variant === 'default' ? "bg-[#004AAD]" : "bg-white",
         className
       )}
-      style={{ 
-        width: finalWidth, 
+      style={{
+        width: finalWidth,
         height: finalHeight,
         maskImage: 'url(/safesport-logo.svg)',
         maskRepeat: 'no-repeat',

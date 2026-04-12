@@ -64,13 +64,13 @@ export default function ResourcesPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="group relative p-10 md:p-12 rounded-[2.5rem] bg-[#F5F7FA] border-2 border-gray-100 hover:border-[#004AAD] hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 cursor-pointer overflow-hidden"
+                  className="group relative p-10 md:p-12 rounded-[2rem] bg-[#F5F7FA] border-2 border-gray-100 hover:border-[#004AAD] hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden"
                 >
                   {/* Background decoration */}
-                  <div className="absolute top-0 right-0 w-40 h-40 bg-[#004AAD]/5 rounded-bl-[150px] transition-all duration-500 group-hover:scale-150 group-hover:bg-[#004AAD]/10" />
+                  <div className="absolute top-0 right-0 w-40 h-40 bg-[#004AAD]/5 rounded-bl-[150px] transition-all duration-500 group-hover:scale-150 group-hover:bg-[#004AAD]/10" aria-hidden="true" />
                   
                   {/* Number watermark */}
-                  <div className="absolute bottom-4 right-6 text-[8rem] font-league text-gray-100 group-hover:text-[#004AAD]/10 transition-colors duration-500 leading-none">
+                  <div className="absolute bottom-4 right-6 text-[8rem] font-league text-gray-100 group-hover:text-[#004AAD]/10 transition-colors duration-500 leading-none" aria-hidden="true">
                     {resource.number}
                   </div>
 

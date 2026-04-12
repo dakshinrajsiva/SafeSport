@@ -31,23 +31,18 @@ export default function ContactPage() {
                 <h2 className="text-3xl md:text-4xl font-league uppercase text-[#1A1A1A] mb-12">Get In Touch</h2>
                 
                 <div className="space-y-10">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      const subject = encodeURIComponent("Safeguarding Inquiry");
-                      const body = encodeURIComponent("");
-                      const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=safesportindia@gmail.com&su=${subject}&body=${body}`;
-                      window.open(gmailUrl, "_blank");
-                    }}
+                  <a
+                    href="mailto:info@safesportindia.com?subject=Safeguarding%20Inquiry"
                     className="flex items-start gap-6 group text-left"
+                    aria-label="Email SafeSport India at info@safesportindia.com"
                   >
-                    <div className="w-16 h-16 rounded-2xl bg-[#004AAD]/5 flex items-center justify-center group-hover:bg-[#004AAD] transition-colors duration-500 flex-shrink-0">
+                    <div className="w-16 h-16 rounded-2xl bg-[#004AAD]/5 flex items-center justify-center group-hover:bg-[#004AAD] transition-colors duration-500 flex-shrink-0" aria-hidden="true">
                       <Mail className="w-7 h-7 text-[#004AAD] group-hover:text-white transition-colors duration-500" />
                     </div>
                     <div>
                       <p className="text-xs font-montserrat font-bold uppercase tracking-[0.2em] text-gray-400 mb-2">Email</p>
                       <p className="text-xl md:text-2xl font-montserrat font-bold text-[#1A1A1A] group-hover:text-[#004AAD] transition-colors">
-                        safesportindia@gmail.com
+                        info@safesportindia.com
                       </p>
                     </div>
                   </a>
@@ -67,21 +62,23 @@ export default function ContactPage() {
                   <div>
                     <p className="text-xs font-montserrat font-bold uppercase tracking-[0.2em] text-gray-400 mb-6">Follow Us</p>
                     <div className="flex items-center gap-4">
-                      <a 
-                        href="https://www.linkedin.com/in/safesport-india-6854a73a0/" 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
+                      <a
+                        href="https://www.linkedin.com/in/safesport-india-6854a73a0/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="SafeSport India on LinkedIn"
                         className="w-14 h-14 rounded-2xl bg-[#004AAD]/5 flex items-center justify-center hover:bg-[#0077B5] hover:text-white text-[#004AAD] transition-all duration-500"
                       >
-                        <Linkedin size={24} />
+                        <Linkedin size={24} aria-hidden="true" />
                       </a>
-                      <a 
-                        href="https://www.instagram.com/safesportindia" 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
+                      <a
+                        href="https://www.instagram.com/safesportindia"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="SafeSport India on Instagram"
                         className="w-14 h-14 rounded-2xl bg-[#004AAD]/5 flex items-center justify-center hover:bg-[#E4405F] hover:text-white text-[#004AAD] transition-all duration-500"
                       >
-                        <Instagram size={24} />
+                        <Instagram size={24} aria-hidden="true" />
                       </a>
                     </div>
                   </div>
@@ -91,8 +88,7 @@ export default function ContactPage() {
                     <div className="space-y-4">
                       {[
                         "We'll respond within 48 hours",
-                        "We'll schedule an initial conversation to understand your context",
-                        "We'll share a tailored recommendation for your organisation"
+                        "We'll schedule an initial conversation to understand your context"
                       ].map((step, i) => (
                         <div key={i} className="flex items-start gap-4">
                           <div className="w-8 h-8 rounded-full border-2 border-[#004AAD] flex items-center justify-center text-[#004AAD] font-league text-sm flex-shrink-0 mt-0.5">
@@ -112,11 +108,15 @@ export default function ContactPage() {
                 <p className="text-base font-montserrat text-white/70 leading-relaxed mb-10">
                   Whether you&apos;re exploring safeguarding for the first time or looking to strengthen existing systems, we&apos;re here to help.
                 </p>
-                
-                <form 
-                  className="space-y-6" 
-                  onSubmit={(e) => { 
-                    e.preventDefault(); 
+                <p className="text-xs font-montserrat text-white/50 mb-6" id="form-note">
+                  This form will open your email client with a pre-filled message to info@safesportindia.com.
+                </p>
+
+                <form
+                  className="space-y-6"
+                  aria-describedby="form-note"
+                  onSubmit={(e) => {
+                    e.preventDefault();
                     const form = e.target as HTMLFormElement;
                     const name = (form.elements.namedItem('name') as HTMLInputElement)?.value || '';
                     const email = (form.elements.namedItem('email') as HTMLInputElement)?.value || '';
@@ -126,54 +126,61 @@ export default function ContactPage() {
                     const body = encodeURIComponent(
                       `Name: ${name}\nEmail: ${email}\nOrganisation: ${org}\n\n${msg}`
                     );
-                    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=safesportindia@gmail.com&su=${subject}&body=${body}`;
-                    window.open(gmailUrl, "_blank");
+                    const mailtoUrl = `mailto:info@safesportindia.com?subject=${subject}&body=${body}`;
+                    window.location.href = mailtoUrl;
                   }}
                 >
                   <div>
-                    <label className="text-xs font-montserrat font-bold uppercase tracking-[0.2em] text-white/50 mb-2 block">Your Name</label>
-                    <input 
+                    <label htmlFor="contact-name" className="text-xs font-montserrat font-bold uppercase tracking-[0.2em] text-white/70 mb-2 block">Your Name <span aria-hidden="true">*</span></label>
+                    <input
+                      id="contact-name"
                       name="name"
-                      type="text" 
+                      type="text"
                       required
-                      className="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-4 text-white font-montserrat placeholder:text-white/30 focus:outline-none focus:border-white/50 transition-colors" 
-                      placeholder="Full name" 
+                      autoComplete="name"
+                      className="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-4 text-white font-montserrat placeholder:text-white/30 focus:outline-none focus:border-white/50 focus:ring-2 focus:ring-white/30 transition-colors"
+                      placeholder="Full name"
                     />
                   </div>
                   <div>
-                    <label className="text-xs font-montserrat font-bold uppercase tracking-[0.2em] text-white/50 mb-2 block">Email</label>
-                    <input 
+                    <label htmlFor="contact-email" className="text-xs font-montserrat font-bold uppercase tracking-[0.2em] text-white/70 mb-2 block">Email <span aria-hidden="true">*</span></label>
+                    <input
+                      id="contact-email"
                       name="email"
-                      type="email" 
+                      type="email"
                       required
-                      className="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-4 text-white font-montserrat placeholder:text-white/30 focus:outline-none focus:border-white/50 transition-colors" 
-                      placeholder="your@email.com" 
+                      autoComplete="email"
+                      className="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-4 text-white font-montserrat placeholder:text-white/30 focus:outline-none focus:border-white/50 focus:ring-2 focus:ring-white/30 transition-colors"
+                      placeholder="your@email.com"
                     />
                   </div>
                   <div>
-                    <label className="text-xs font-montserrat font-bold uppercase tracking-[0.2em] text-white/50 mb-2 block">Organisation</label>
-                    <input 
+                    <label htmlFor="contact-org" className="text-xs font-montserrat font-bold uppercase tracking-[0.2em] text-white/70 mb-2 block">Organisation</label>
+                    <input
+                      id="contact-org"
                       name="organisation"
-                      type="text" 
-                      className="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-4 text-white font-montserrat placeholder:text-white/30 focus:outline-none focus:border-white/50 transition-colors" 
-                      placeholder="Organisation name" 
+                      type="text"
+                      autoComplete="organization"
+                      className="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-4 text-white font-montserrat placeholder:text-white/30 focus:outline-none focus:border-white/50 focus:ring-2 focus:ring-white/30 transition-colors"
+                      placeholder="Organisation name"
                     />
                   </div>
                   <div>
-                    <label className="text-xs font-montserrat font-bold uppercase tracking-[0.2em] text-white/50 mb-2 block">Message</label>
-                    <textarea 
+                    <label htmlFor="contact-message" className="text-xs font-montserrat font-bold uppercase tracking-[0.2em] text-white/70 mb-2 block">Message</label>
+                    <textarea
+                      id="contact-message"
                       name="message"
-                      rows={4} 
-                      className="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-4 text-white font-montserrat placeholder:text-white/30 focus:outline-none focus:border-white/50 transition-colors resize-none" 
-                      placeholder="Tell us about your safeguarding needs..." 
+                      rows={4}
+                      className="w-full bg-white/10 border border-white/20 rounded-xl px-5 py-4 text-white font-montserrat placeholder:text-white/30 focus:outline-none focus:border-white/50 focus:ring-2 focus:ring-white/30 transition-colors resize-none"
+                      placeholder="Tell us about your safeguarding needs..."
                     />
                   </div>
-                  <button 
-                    type="submit" 
-                    className="w-full flex items-center justify-center gap-3 bg-white text-[#004AAD] font-montserrat font-bold uppercase tracking-[0.2em] text-sm py-4 rounded-xl hover:bg-gray-100 transition-colors duration-300"
+                  <button
+                    type="submit"
+                    className="w-full flex items-center justify-center gap-3 bg-white text-[#004AAD] font-montserrat font-bold uppercase tracking-[0.2em] text-sm py-4 rounded-xl hover:bg-gray-100 transition-colors duration-300 min-h-[48px]"
                   >
                     Send Message
-                    <Send size={16} />
+                    <Send size={16} aria-hidden="true" />
                   </button>
                 </form>
               </div>

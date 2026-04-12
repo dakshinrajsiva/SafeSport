@@ -1,0 +1,1 @@
+- [SafeSport patterns](project_safesport_patterns.md) — Next.js 14 site arch, GSAP/Framer Motion, Tailwind, brand tokens, curtain-footer pattern

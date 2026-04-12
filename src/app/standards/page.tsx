@@ -1,27 +1,26 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import Footer from '@/components/Footer';
-import { ShieldCheck, BookOpen, UserCheck, Layers } from 'lucide-react';
+import { ShieldCheck, BookOpen, UserCheck } from 'lucide-react';
 
 const STANDARDS = [
   {
-    title: "We've done the work for you",
-    description: "We work with expert partners to curate high-impact restoration projects that promote positive change for communities and nature. We will also tailor your support to projects that reflect your specific goals and your fans’ ethos.",
+    title: "Assess where you stand",
+    description: "We begin with a thorough assessment of your organisation's current safeguarding environment, policies, and practices, benchmarking them against global standards and Indian legal requirements including POCSO and child protection frameworks.",
     icon: <ShieldCheck className="w-12 h-12 text-[#004AAD]" />,
     align: 'left',
     number: '01'
   },
   {
-    title: "Pick your path",
-    description: "We work together to select a funding model that works for you. Whether you choose to designate proceeds from an existing piece of merch or a percentage of event/tour revenue, we make sure that more of every dollar donated goes directly to your high-impact restoration projects.",
+    title: "Build your framework",
+    description: "Working collaboratively with your leadership, we design a safeguarding framework tailored to your context, covering policies, codes of conduct, reporting pathways, training protocols, and governance structures that are practical and implementable.",
     icon: <BookOpen className="w-12 h-12 text-[#004AAD]" />,
     align: 'right',
     number: '02'
   },
   {
-    title: "Amplify your impact",
-    description: "This first-of-its-kind platform shows exactly where your money is going, and constantly monitors progress to ensure transparency and measurable results. Showcase the impact of your contributions with fans through custom social media reports.",
+    title: "Embed and sustain",
+    description: "Standards only matter when they are lived. We support your organisation to embed safeguarding into daily operations through training, ongoing advisory support, periodic audits, and continuous improvement, ensuring long-term accountability and credibility.",
     icon: <UserCheck className="w-12 h-12 text-[#004AAD]" />,
     align: 'left',
     number: '03'
@@ -50,7 +49,7 @@ export default function StandardsPage() {
         <section className="px-6 md:px-12 lg:px-24 pb-32">
           <div className="max-w-7xl mx-auto relative">
             {/* Center Line */}
-            <div className="absolute left-1/2 top-0 bottom-0 w-[1px] bg-gray-200 -translate-x-1/2 hidden md:block" />
+            <div className="absolute left-1/2 top-0 bottom-0 w-[1px] bg-gray-200 -translate-x-1/2 hidden md:block" aria-hidden="true" />
 
             <div className="space-y-24">
               {STANDARDS.map((std, i) => (
