@@ -7,7 +7,7 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 const SAFESPORT_STEPS = [
   {
     title: "Intake Process",
-    content: "We conduct an intake process with your organization to understand where it stands, its strengths and weaknesses, and how we can add value. This is done to make sure we provide each organization with a tailored approach appropriate to its needs.",
+    content: "To understand your organization’s current position, strengths, and gaps, ensuring a tailored approach that delivers real value.",
     badge: "Step 0"
   },
   {
@@ -16,14 +16,9 @@ const SAFESPORT_STEPS = [
     badge: "Step 1"
   },
   {
-    title: "Applied Practice",
-    content: "Implementing customized safeguarding frameworks and training modules that integrate seamlessly into your daily operations.",
+    title: "Safeguarding Frameworks, Reviews, and Audits",
+    content: "Implementing customised safeguarding frameworks, reviews, and audits to ensure long-term accountability, athlete welfare, and holistic development",
     badge: "Step 2"
-  },
-  {
-    title: "Consulting, Advisory, and Auditing",
-    content: "Independent reviews, advisory support, and audits aligned to Indian law and global safeguarding standards for long-term accountability.",
-    badge: "Step 3"
   }
 ];
 

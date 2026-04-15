@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { cn } from '@/lib/utils';
 
 const STATS = [
   {
@@ -67,21 +66,13 @@ export default function Impact() {
                 delay: index * 0.05,
                 ease: [0.215, 0.61, 0.355, 1]
               }}
-              className="break-inside-avoid p-10 md:p-14 flex flex-col justify-center text-center group hover:shadow-3xl transition-all duration-700 cursor-default rounded-[2rem] relative overflow-hidden border border-transparent hover:border-white/20 bg-[#004AAD] text-white"
+              className="break-inside-avoid p-8 md:p-10 flex flex-col justify-center text-center group hover:shadow-3xl transition-all duration-700 cursor-default rounded-[2rem] relative overflow-hidden border border-transparent hover:border-white/20 bg-[#004AAD] text-white"
             >
-              <span className={cn(
-                "font-league font-bold leading-none mb-4 block",
-                stat.size === 'large' ? 'text-6xl md:text-8xl' :
-                stat.size === 'medium' ? 'text-5xl md:text-7xl' : 'text-4xl md:text-6xl'
-              )}>
+              <span className="font-league font-bold leading-none mb-4 block text-5xl md:text-7xl">
                 {stat.number}
               </span>
 
-              <p className={cn(
-                "font-montserrat font-medium leading-relaxed transition-transform duration-700 group-hover:scale-105",
-                stat.size === 'large' ? 'text-lg md:text-xl' :
-                stat.size === 'medium' ? 'text-base md:text-lg' : 'text-sm md:text-base'
-              )}>
+              <p className="font-montserrat font-medium leading-relaxed transition-transform duration-700 group-hover:scale-105 text-base md:text-lg">
                 {stat.text}
               </p>
 

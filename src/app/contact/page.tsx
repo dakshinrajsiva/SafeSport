@@ -9,20 +9,20 @@ export default function ContactPage() {
       <div className="relative z-10 bg-white shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] mb-[100vh] min-h-screen pt-32">
         
         {/* Header */}
-        <section className="px-6 md:px-12 lg:px-24 mb-20 md:mb-32">
+        <section className="px-6 md:px-12 lg:px-24 mb-12 md:mb-16">
           <div className="max-w-7xl mx-auto">
             <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-league uppercase leading-[0.8] tracking-tighter text-[#004AAD] mb-8">
               Reach Out
             </h1>
             <div className="w-full h-[1px] bg-gray-200 mb-12" />
-            <p className="text-2xl md:text-3xl font-montserrat text-gray-600 max-w-4xl leading-relaxed">
+            <p className="text-2xl md:text-3xl font-montserrat text-gray-600 max-w-5xl leading-relaxed">
               Ready to start your safeguarding journey? <span className="font-bold text-[#004AAD]">We&apos;d love to hear from you.</span>
             </p>
           </div>
         </section>
 
         {/* Contact Content */}
-        <section className="px-6 md:px-12 lg:px-24 pb-32">
+        <section className="px-6 md:px-12 lg:px-24 pb-32 -mt-12 md:-mt-20">
           <div className="max-w-7xl mx-auto">
             <div className="grid md:grid-cols-2 gap-16 md:gap-24">
               
