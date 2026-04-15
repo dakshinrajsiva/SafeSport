@@ -22,7 +22,7 @@ export default function ContactPage() {
         </section>
 
         {/* Contact Content */}
-        <section className="px-6 md:px-12 lg:px-24 pb-32 -mt-12 md:-mt-20">
+        <section className="px-6 md:px-12 lg:px-24 pb-32 mt-4 md:mt-8">
           <div className="max-w-7xl mx-auto">
             <div className="grid md:grid-cols-2 gap-16 md:gap-24">
               
