@@ -15,8 +15,8 @@ export default function ContactPage() {
               Reach Out
             </h1>
             <div className="w-full h-[1px] bg-gray-200 mb-12" />
-            <p className="text-2xl md:text-3xl font-montserrat text-gray-600 max-w-5xl leading-relaxed">
-              Ready to start your safeguarding journey? <span className="font-bold text-[#004AAD]">We&apos;d love to hear from you.</span>
+            <p className="text-xl md:text-3xl font-montserrat text-gray-600 max-w-6xl leading-tight md:leading-relaxed md:whitespace-nowrap">
+              Ready to start your safeguarding journey? <strong className="font-bold text-[#004AAD] not-italic">We&apos;d love to hear from you.</strong>
             </p>
           </div>
         </section>
