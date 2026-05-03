@@ -92,38 +92,21 @@ export default function Navbar() {
     return () => { document.body.style.overflow = ''; };
   }, [isMenuOpen]);
 
-  const scrollToSection = useCallback((sectionId: string) => {
+  /** FAQs live only on the home page (`#faqs`). All other items use `/[route]` via `<Link>`. */
+  const goToFaqs = useCallback(() => {
     setIsMenuOpen(false);
-
-    if (isPageRoute(sectionId)) {
-      router.push(`/${sectionId}`);
+    if (pathname !== '/') {
+      requestScrollToFaqs();
+      router.push('/');
       return;
     }
-
-    if (sectionId === 'faqs') {
-      if (pathname !== '/') {
-        requestScrollToFaqs();
-        router.push('/');
-        return;
+    const el = document.getElementById('faqs');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (window.location.hash !== '#faqs') {
+        window.history.replaceState(null, '', `${window.location.pathname}#faqs`);
       }
-      const el = document.getElementById('faqs');
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        if (window.location.hash !== '#faqs') {
-          window.history.replaceState(null, '', `${window.location.pathname}#faqs`);
-        }
-      }
-      return;
     }
-
-    setTimeout(() => {
-      const el = document.getElementById(sectionId);
-      if (el) {
-        const offset = 80;
-        const top = el.getBoundingClientRect().top + window.scrollY - offset;
-        window.scrollTo({ top, behavior: 'smooth' });
-      }
-    }, 300);
   }, [router, pathname]);
 
   const showSolidHeader = pathname !== '/' || isScrolled;
@@ -159,14 +142,15 @@ export default function Navbar() {
           )}>
             {QUICK_LINKS.map((title) => {
               const item = NAV_ITEMS.find(n => n.title === title);
-              if (!item) return null;
-              
+              if (!item || !isPageRoute(item.sectionId)) return null;
+
               return (
                 <div key={title} className="relative group/nav py-4">
-                  <button
-                    onClick={() => scrollToSection(item.sectionId)}
+                  <Link
+                    href={`/${item.sectionId}`}
+                    onClick={() => setIsMenuOpen(false)}
                     className={cn(
-                      "font-montserrat font-bold uppercase tracking-[0.15em] text-xs transition-all duration-300 relative whitespace-nowrap",
+                      "font-montserrat font-bold uppercase tracking-[0.15em] text-xs transition-all duration-300 relative whitespace-nowrap inline-block",
                       title === "Reach out"
                         ? showSolidHeader
                           ? "bg-[#004AAD] text-white px-6 py-2.5 rounded-full hover:bg-black hover:scale-105 shadow-[0_0_20px_rgba(0,74,173,0.45)] border border-[#004AAD]"
@@ -178,7 +162,7 @@ export default function Navbar() {
                     {title !== "Reach out" && (
                       <span className="absolute -bottom-1 left-0 w-0 h-[1.5px] bg-current transition-all duration-300 group-hover/nav:w-full" />
                     )}
-                  </button>
+                  </Link>
 
                   {item.description && title !== "Reach out" && (
                     <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 opacity-0 group-hover/nav:opacity-100 transition-opacity duration-300 pointer-events-none w-max max-w-[260px] bg-white/95 backdrop-blur-md text-[#004AAD] text-[10px] p-3 rounded-lg shadow-xl text-center font-montserrat leading-relaxed border border-gray-100 z-[120]">
@@ -244,23 +228,18 @@ export default function Navbar() {
               {/* Full-screen list menu (numbered, reference layout) */}
               <nav aria-label="Site sections" className="w-full max-w-5xl">
                 <ul className="flex flex-col gap-1 md:gap-2">
-                  {NAV_ITEMS.map((item, index) => (
-                    <li key={item.sectionId}>
-                      <button
-                        type="button"
-                        onClick={() => scrollToSection(item.sectionId)}
-                        onMouseEnter={() => setHoveredTile(index)}
-                        onMouseLeave={() => setHoveredTile(null)}
-                        className={cn(
-                          "group w-full flex items-center gap-4 md:gap-10 py-3 md:py-5 text-left cursor-pointer border-0 bg-transparent",
-                          isMenuOpen ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-                        )}
-                        style={{
-                          transitionDelay: isMenuOpen ? `${index * 45 + 80}ms` : '0ms',
-                          transitionDuration: '500ms',
-                          transitionProperty: 'transform, opacity',
-                        }}
-                      >
+                  {NAV_ITEMS.map((item, index) => {
+                    const rowClass = cn(
+                      "group w-full flex items-center gap-4 md:gap-10 py-3 md:py-5 text-left cursor-pointer border-0 bg-transparent no-underline",
+                      isMenuOpen ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+                    );
+                    const rowStyle = {
+                      transitionDelay: isMenuOpen ? `${index * 45 + 80}ms` : '0ms',
+                      transitionDuration: '500ms',
+                      transitionProperty: 'transform, opacity',
+                    } as const;
+                    const inner = (
+                      <>
                         <span
                           className={cn(
                             "font-league text-sm md:text-base tabular-nums w-9 md:w-12 shrink-0 pt-1 transition-colors",
@@ -287,9 +266,37 @@ export default function Navbar() {
                           )}
                           aria-hidden="true"
                         />
-                      </button>
-                    </li>
-                  ))}
+                      </>
+                    );
+
+                    return (
+                      <li key={item.sectionId}>
+                        {isPageRoute(item.sectionId) ? (
+                          <Link
+                            href={`/${item.sectionId}`}
+                            onClick={() => setIsMenuOpen(false)}
+                            onMouseEnter={() => setHoveredTile(index)}
+                            onMouseLeave={() => setHoveredTile(null)}
+                            className={rowClass}
+                            style={rowStyle}
+                          >
+                            {inner}
+                          </Link>
+                        ) : (
+                          <button
+                            type="button"
+                            onClick={goToFaqs}
+                            onMouseEnter={() => setHoveredTile(index)}
+                            onMouseLeave={() => setHoveredTile(null)}
+                            className={rowClass}
+                            style={rowStyle}
+                          >
+                            {inner}
+                          </button>
+                        )}
+                      </li>
+                    );
+                  })}
                 </ul>
               </nav>
             </div>

@@ -14,7 +14,7 @@ export function requestScrollToFaqs() {
 function scrollFaqsElementIntoView() {
   const el = document.getElementById('faqs');
   if (!el) return false;
-  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  el.scrollIntoView({ behavior: 'smooth', block: 'start' }); /* scroll-mt on #faqs clears fixed nav */
   if (window.location.hash !== '#faqs') {
     window.history.replaceState(null, '', `${window.location.pathname}#faqs`);
   }

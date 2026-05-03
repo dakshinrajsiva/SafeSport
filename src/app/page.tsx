@@ -23,7 +23,7 @@ export default function Home() {
         <Timeline />
 
         {/* FAQs */}
-        <section id="faqs" className="py-32 px-4 md:px-24 bg-white border-t border-gray-100" aria-labelledby="faq-section-heading">
+        <section id="faqs" className="scroll-mt-[108px] py-32 px-4 md:px-24 bg-white border-t border-gray-100" aria-labelledby="faq-section-heading">
           <div className="max-w-6xl mx-auto">
             <p className="text-[#004AAD] font-montserrat font-bold uppercase tracking-[0.4em] mb-6 text-xs md:text-sm flex items-center gap-4" aria-hidden="true">
               <span className="w-8 h-[1px] bg-[#004AAD]" />

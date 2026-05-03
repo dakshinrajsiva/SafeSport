@@ -31,7 +31,7 @@ export default function Footer() {
               </a>
 
               {/* Social links */}
-              <nav aria-label="Social media links" className="flex flex-wrap items-center gap-4 mt-4">
+              <nav aria-label="Social media links" className="flex flex-wrap items-center gap-4 mt-2">
                 <a
                   href="https://www.linkedin.com/in/safesport-india-6854a73a0/"
                   target="_blank"
@@ -131,8 +131,6 @@ export default function Footer() {
                   <Link href="/contact" className="hover:text-[#004AAD] transition-colors">Contact</Link>
                   <Link href="/safeguarding-policy" className="hover:text-[#004AAD] transition-colors">Safeguarding Policy</Link>
                   <Link href="/privacy" className="hover:text-[#004AAD] transition-colors">Privacy Policy</Link>
-                  <Link href="/terms" className="hover:text-[#004AAD] transition-colors">Terms &amp; Conditions</Link>
-                  <Link href="/glossary" className="hover:text-[#004AAD] transition-colors">Glossary</Link>
                 </nav>
                 <p className="text-xs text-gray-400 font-bold uppercase tracking-widest font-montserrat">
                   &copy; {new Date().getFullYear()} SafeSport India.
