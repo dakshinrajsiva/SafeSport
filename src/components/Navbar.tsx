@@ -5,7 +5,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import Logo from './Logo';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ArrowRight } from 'lucide-react';
 
 const NAV_ITEMS = [
   {
@@ -34,6 +34,11 @@ const NAV_ITEMS = [
     description: "Global best practices, adapted for the Indian legal and sporting context."
   },
   {
+    title: "Resources",
+    sectionId: "resources",
+    description: "Practical tools, explainers, and guides to make safeguarding actionable."
+  },
+  {
     title: "FAQs",
     sectionId: "faqs",
     description: "Common questions organisations ask us about safeguarding."
@@ -45,7 +50,7 @@ const NAV_ITEMS = [
   }
 ];
 
-const QUICK_LINKS = ["About us", "Our approach", "Our services", "Who we work with", "Reach out"];
+const QUICK_LINKS = ["About us", "Our approach", "Our services", "Who we work with", "Resources", "Reach out"];
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -74,7 +79,7 @@ export default function Navbar() {
   const scrollToSection = useCallback((sectionId: string) => {
     setIsMenuOpen(false);
     
-    const pages = ['about', 'approach', 'services', 'who-we-work-with', 'standards', 'contact'];
+    const pages = ['about', 'approach', 'services', 'who-we-work-with', 'standards', 'resources', 'contact'];
     if (pages.includes(sectionId)) {
       router.push(`/${sectionId}`);
       return;
@@ -222,60 +227,86 @@ export default function Navbar() {
           </div>
 
           <div className="flex-1 flex items-start">
-            <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12">
-              {/* Tile grid - Compact 4-column layout */}
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                {NAV_ITEMS.map((item, index) => (
-                  <button
-                    key={item.title}
-                    onClick={() => scrollToSection(item.sectionId)}
-                    onMouseEnter={() => setHoveredTile(index)}
-                    onMouseLeave={() => setHoveredTile(null)}
-                    className={cn(
-                      "group relative text-left rounded-2xl border border-white/20 overflow-hidden cursor-pointer transition-all duration-500",
-                      "p-6 md:p-8 min-h-[180px] md:min-h-[220px] flex flex-col justify-between",
-                      isMenuOpen ? "translate-y-0 opacity-100" : "translate-y-16 opacity-0",
-                      hoveredTile === index ? "bg-white/15 border-white/40 scale-[1.02]" : "bg-transparent"
-                    )}
-                    style={{
-                      transitionDelay: isMenuOpen ? `${index * 40 + 100}ms` : '0ms',
-                      transitionDuration: '500ms',
-                      transitionProperty: 'transform, opacity, background-color, border-color'
-                    }}
-                  >
-                    <div className="relative z-10 w-full h-full flex flex-col justify-between">
-                      <div>
-                        <span className="text-sm font-league font-bold text-white block mb-4">
+            <div className="w-full max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16">
+              {/* Full-screen list menu (numbered, reference layout) */}
+              <nav aria-label="Site sections" className="w-full max-w-5xl">
+                <ul className="flex flex-col gap-1 md:gap-2">
+                  {NAV_ITEMS.map((item, index) => (
+                    <li key={item.sectionId}>
+                      <button
+                        type="button"
+                        onClick={() => scrollToSection(item.sectionId)}
+                        onMouseEnter={() => setHoveredTile(index)}
+                        onMouseLeave={() => setHoveredTile(null)}
+                        className={cn(
+                          "group w-full flex items-center gap-4 md:gap-10 py-3 md:py-5 text-left cursor-pointer border-0 bg-transparent",
+                          isMenuOpen ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+                        )}
+                        style={{
+                          transitionDelay: isMenuOpen ? `${index * 45 + 80}ms` : '0ms',
+                          transitionDuration: '500ms',
+                          transitionProperty: 'transform, opacity',
+                        }}
+                      >
+                        <span
+                          className={cn(
+                            "font-league text-sm md:text-base tabular-nums w-9 md:w-12 shrink-0 pt-1 transition-colors",
+                            hoveredTile === index ? "text-white" : "text-white/50 group-hover:text-white"
+                          )}
+                          aria-hidden="true"
+                        >
                           {String(index + 1).padStart(2, '0')}
                         </span>
-
-                        <h3 className="text-2xl md:text-3xl lg:text-4xl font-league uppercase leading-[0.9] tracking-tight text-white mb-4">
+                        <span
+                          className={cn(
+                            "flex-1 font-league uppercase text-[clamp(2rem,6vw,4.5rem)] leading-[0.95] tracking-tight transition-colors",
+                            hoveredTile === index ? "text-white" : "text-white/45 group-hover:text-white"
+                          )}
+                        >
                           {item.title}
-                        </h3>
-                      </div>
-
-                      <p className="text-xs md:text-sm font-montserrat leading-relaxed text-white/80 font-medium max-w-[90%]">
-                        {item.description}
-                      </p>
-                    </div>
-                  </button>
-                ))}
-              </div>
+                        </span>
+                        <ArrowRight
+                          className={cn(
+                            "w-7 h-7 md:w-9 md:h-9 shrink-0 text-white transition-all duration-300",
+                            hoveredTile === index
+                              ? "opacity-100 translate-x-0"
+                              : "opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0"
+                          )}
+                          aria-hidden="true"
+                        />
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
             </div>
           </div>
 
-          {/* Bottom bar */}
-          <div className="max-w-[1600px] mx-auto px-6 md:px-12 w-full mt-10">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-              <Logo size={80} className="opacity-50" variant="white" />
-              <div className="flex items-center gap-8">
-                <a href="mailto:info@safesportindia.com" className="text-xs font-montserrat text-white/60 hover:text-white transition-colors uppercase tracking-[0.2em] font-bold">
+          {/* Bottom bar — wordmark only, matches reference */}
+          <div className="max-w-[1600px] mx-auto px-6 md:px-12 w-full mt-auto pt-16 pb-6">
+            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-8">
+              <Logo size={72} className="opacity-90" variant="white" />
+              <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
+                <a
+                  href="mailto:info@safesportindia.com"
+                  className="text-[10px] md:text-xs font-montserrat text-white/55 hover:text-white transition-colors uppercase tracking-[0.25em] font-bold"
+                >
                   Email
                 </a>
-                <a href="https://www.linkedin.com/in/safesport-india-6854a73a0/" target="_blank" rel="noopener noreferrer" className="text-xs font-montserrat text-white/60 hover:text-white transition-colors uppercase tracking-[0.2em] font-bold">
+                <a
+                  href="https://www.linkedin.com/in/safesport-india-6854a73a0/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[10px] md:text-xs font-montserrat text-white/55 hover:text-white transition-colors uppercase tracking-[0.25em] font-bold"
+                >
                   LinkedIn
                 </a>
-                <a href="https://www.instagram.com/safesportindia" target="_blank" rel="noopener noreferrer" className="text-xs font-montserrat text-white/60 hover:text-white transition-colors uppercase tracking-[0.2em] font-bold">
+                <a
+                  href="https://www.instagram.com/safesportindia"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[10px] md:text-xs font-montserrat text-white/55 hover:text-white transition-colors uppercase tracking-[0.25em] font-bold"
+                >
                   Instagram
                 </a>
               </div>

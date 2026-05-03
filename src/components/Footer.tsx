@@ -1,6 +1,6 @@
 'use client';
 
-import { Mail, Instagram, Linkedin } from 'lucide-react';
+import { Mail, Instagram, Linkedin, Facebook, Twitter } from 'lucide-react';
 import Link from 'next/link';
 import Logo from './Logo';
 import MarqueeBanner from './MarqueeBanner';
@@ -31,7 +31,7 @@ export default function Footer() {
               </a>
 
               {/* Social links */}
-              <nav aria-label="Social media links" className="flex items-center gap-4 mt-4">
+              <nav aria-label="Social media links" className="flex flex-wrap items-center gap-4 mt-4">
                 <a
                   href="https://www.linkedin.com/in/safesport-india-6854a73a0/"
                   target="_blank"
@@ -49,6 +49,22 @@ export default function Footer() {
                   className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-sm hover:bg-[#E4405F] hover:text-white transition-all duration-500 border border-gray-100"
                 >
                   <Instagram size={24} aria-hidden="true" />
+                </a>
+                <a
+                  href="#"
+                  onClick={(e) => e.preventDefault()}
+                  aria-label="Facebook (profile coming soon)"
+                  className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-sm hover:bg-[#1877F2] hover:text-white transition-all duration-500 border border-gray-100"
+                >
+                  <Facebook size={24} aria-hidden="true" />
+                </a>
+                <a
+                  href="#"
+                  onClick={(e) => e.preventDefault()}
+                  aria-label="X / Twitter (profile coming soon)"
+                  className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-sm hover:bg-[#1DA1F2] hover:text-white transition-all duration-500 border border-gray-100"
+                >
+                  <Twitter size={24} aria-hidden="true" />
                 </a>
               </nav>
             </div>
@@ -114,7 +130,7 @@ export default function Footer() {
                   <Link href="/services" className="hover:text-[#004AAD] transition-colors">Services</Link>
                   <Link href="/contact" className="hover:text-[#004AAD] transition-colors">Contact</Link>
                   <Link href="/safeguarding-policy" className="hover:text-[#004AAD] transition-colors">Safeguarding Policy</Link>
-                  <Link href="/privacy-policy" className="hover:text-[#004AAD] transition-colors">Privacy Policy</Link>
+                  <Link href="/privacy" className="hover:text-[#004AAD] transition-colors">Privacy Policy</Link>
                   <Link href="/terms" className="hover:text-[#004AAD] transition-colors">Terms &amp; Conditions</Link>
                   <Link href="/glossary" className="hover:text-[#004AAD] transition-colors">Glossary</Link>
                 </nav>

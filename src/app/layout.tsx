@@ -102,13 +102,6 @@ export const metadata: Metadata = {
       "en-IN": "/",
     },
   },
-  icons: {
-    icon: [
-      { url: "/safesi.png", type: "image/png" },
-    ],
-    shortcut: "/safesi.png",
-    apple: "/safesi.png",
-  },
 };
 
 export const viewport = {

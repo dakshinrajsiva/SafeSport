@@ -86,7 +86,7 @@ export default function Services() {
               key={service.number}
               className="service-card group p-10 rounded-3xl bg-[#F5F7FA] border border-gray-100 hover:bg-[#004AAD] hover:border-[#004AAD] transition-all duration-700 cursor-default relative overflow-hidden"
             >
-              <span className="absolute top-6 right-6 text-7xl font-league font-bold text-[#004AAD]/5 group-hover:text-white/10 transition-colors duration-700 leading-none">
+              <span className="absolute top-6 right-6 text-7xl font-league font-bold text-[#004AAD] group-hover:text-white transition-colors duration-700 leading-none">
                 {service.number}
               </span>
               <h4 className="text-lg md:text-xl font-bold text-[#1A1A1A] group-hover:text-white mb-4 transition-colors duration-700 relative z-10 leading-snug">

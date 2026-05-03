@@ -178,16 +178,16 @@ export default function AboutPage() {
         </section>
 
         {/* Why SafeSport */}
-        <section className="px-6 md:px-12 lg:px-24 mb-32">
+        <section className="px-6 md:px-12 lg:px-24 mb-32 bg-[#004AAD] py-24 text-white">
           <div className="max-w-7xl mx-auto">
             <div className="grid md:grid-cols-12 gap-12 md:gap-16">
               <div className="md:col-span-5">
-                <h2 className="text-4xl md:text-5xl font-league uppercase mb-6 text-[#1A1A1A] leading-tight">
+                <h2 className="text-4xl md:text-5xl font-league uppercase mb-6 text-white leading-tight">
                   Why SafeSport -<br />And Beyond Sport
                 </h2>
-                <div className="w-20 h-1 bg-[#004AAD] mb-8" />
+                <div className="w-20 h-1 bg-white/30 mb-8" />
               </div>
-              <div className="md:col-span-7 space-y-8 text-lg font-montserrat text-gray-600 leading-relaxed">
+              <div className="md:col-span-7 space-y-8 text-lg font-montserrat text-white/80 leading-relaxed">
                 <p>
                   The principles of safeguarding extend far beyond the world of sport. Wherever there is a duty of care in schools, youth programmes, organisations, and residential settings, the same foundations apply: clear boundaries, shared understanding, accountable systems, and cultures where people feel safe to speak up.
                 </p>

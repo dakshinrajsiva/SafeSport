@@ -91,7 +91,7 @@ export default function ServicesPage() {
 
                   {/* Left: Number + Title */}
                   <div className="lg:col-span-4">
-                    <span className="text-8xl md:text-9xl font-league font-bold text-[#004AAD]/10 leading-none block mb-4">
+                    <span className="text-8xl md:text-9xl font-league font-bold text-[#004AAD] leading-none block mb-4">
                       {service.number}
                     </span>
                     <h2 className="text-4xl md:text-5xl lg:text-6xl font-league uppercase leading-[0.85] tracking-tight text-[#1A1A1A] mb-6">

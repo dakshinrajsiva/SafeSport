@@ -16,7 +16,7 @@ const SAFESPORT_STEPS = [
     badge: "Step 1"
   },
   {
-    title: "Safeguarding Frameworks, Reviews, and Audits",
+    title: "Frameworks, Reviews, and Audits",
     content: "Implementing customised safeguarding frameworks, reviews, and audits to ensure long-term accountability, athlete welfare, and holistic development",
     badge: "Step 2"
   }
@@ -96,11 +96,11 @@ export default function Timeline() {
                 {/* Content Area */}
                 <div className="w-full md:w-1/2 flex justify-center px-4 md:px-12 z-10">
                   <div
-                    className={`w-full max-w-lg bg-[#F5F7FA] p-8 md:p-12 rounded-[2rem] group hover:bg-white hover:shadow-2xl transition-all duration-500 border border-transparent hover:border-[#004AAD]/20 ${
+                    className={`w-full max-w-lg bg-[#F5F7FA] p-8 md:p-12 rounded-[2rem] group hover:bg-white hover:shadow-2xl transition-all duration-500 border border-transparent hover:border-[#004AAD]/20 flex flex-col min-h-[360px] md:min-h-[380px] ${
                       index % 2 === 0 ? 'md:ml-auto' : 'md:mr-auto'
                     }`}
                   >
-                    <div className="inline-block px-4 py-1 rounded-full bg-[#004AAD]/10 text-[#004AAD] text-xs font-montserrat font-bold uppercase tracking-widest mb-6 transition-colors group-hover:bg-[#004AAD] group-hover:text-white">
+                    <div className="inline-block self-start px-4 py-1 rounded-full bg-[#004AAD]/10 text-[#004AAD] text-xs font-montserrat font-bold uppercase tracking-widest mb-6 transition-colors group-hover:bg-[#004AAD] group-hover:text-white">
                       {step.badge}
                     </div>
                     <h3 className="text-3xl md:text-4xl font-bold text-[#1A1A1A] mb-4 group-hover:text-[#004AAD] transition-colors leading-tight">
