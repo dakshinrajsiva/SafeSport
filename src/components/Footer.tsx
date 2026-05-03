@@ -31,7 +31,7 @@ export default function Footer() {
               </a>
 
               {/* Social links */}
-              <nav aria-label="Social media links" className="flex flex-wrap items-center gap-4 mt-2">
+              <nav aria-label="Social media links" className="flex flex-wrap items-center gap-4 -mt-2">
                 <a
                   href="https://www.linkedin.com/in/safesport-india-6854a73a0/"
                   target="_blank"
