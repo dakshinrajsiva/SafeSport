@@ -6,6 +6,22 @@ import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import Logo from './Logo';
 import { Menu, X, ArrowRight } from 'lucide-react';
+import { requestScrollToFaqs } from '@/components/ScrollToHash';
+
+/** Menu section ids that map 1:1 to `src/app/[segment]/page.tsx` routes */
+const PAGE_ROUTE_IDS = [
+  'about',
+  'approach',
+  'services',
+  'who-we-work-with',
+  'standards',
+  'resources',
+  'contact',
+] as const;
+
+function isPageRoute(sectionId: string): sectionId is (typeof PAGE_ROUTE_IDS)[number] {
+  return (PAGE_ROUTE_IDS as readonly string[]).includes(sectionId);
+}
 
 const NAV_ITEMS = [
   {
@@ -78,26 +94,23 @@ export default function Navbar() {
 
   const scrollToSection = useCallback((sectionId: string) => {
     setIsMenuOpen(false);
-    
-    const pages = ['about', 'approach', 'services', 'who-we-work-with', 'standards', 'resources', 'contact'];
-    if (pages.includes(sectionId)) {
+
+    if (isPageRoute(sectionId)) {
       router.push(`/${sectionId}`);
       return;
     }
 
     if (sectionId === 'faqs') {
       if (pathname !== '/') {
+        requestScrollToFaqs();
         router.push('/');
-        setTimeout(() => {
-          const el = document.getElementById('faqs');
-          if (el) {
-            el.scrollIntoView({ behavior: 'smooth' });
-          }
-        }, 500);
-      } else {
-        const el = document.getElementById('faqs');
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+      const el = document.getElementById('faqs');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (window.location.hash !== '#faqs') {
+          window.history.replaceState(null, '', `${window.location.pathname}#faqs`);
         }
       }
       return;
