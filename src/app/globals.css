@@ -153,6 +153,28 @@ html.lenis body {
     animation: fade-in-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
+  /* Scroll-down cue under the hero wordmark */
+  @keyframes scroll-cue {
+    0%, 100% {
+      transform: translateY(0);
+      opacity: 0.45;
+    }
+    50% {
+      transform: translateY(10px);
+      opacity: 1;
+    }
+  }
+
+  .animate-scroll-cue {
+    animation: scroll-cue 1.8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-scroll-cue {
+      animation: none;
+    }
+  }
+
   /* Scrolling marquee (left) for footer strip - slow like WWP */
   @keyframes marquee-left {
     0% { transform: translateX(0); }

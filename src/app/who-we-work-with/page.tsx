@@ -87,7 +87,7 @@ export default function WhoWeWorkWithPage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, delay: i * 0.1 }}
-                className="scroll-mt-32"
+                className="scroll-mt-[108px]"
                 id={`sector-${i}`}
               >
                 <div className="grid lg:grid-cols-12 gap-12 lg:gap-24">

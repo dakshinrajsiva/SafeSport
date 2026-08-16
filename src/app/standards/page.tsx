@@ -53,7 +53,7 @@ export default function StandardsPage() {
 
             <div className="space-y-24">
               {STANDARDS.map((std, i) => (
-                <div key={i} className={`flex flex-col md:flex-row items-center gap-12 md:gap-24 ${i % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
+                <div key={i} id={`standard-${i}`} className={`flex flex-col md:flex-row items-center gap-12 md:gap-24 scroll-mt-[108px] ${i % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
                   
                   {/* Text Side */}
                   <div className="flex-1 text-center md:text-left">

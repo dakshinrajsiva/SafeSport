@@ -5,17 +5,25 @@ import Link from 'next/link';
 import Logo from './Logo';
 import MarqueeBanner from './MarqueeBanner';
 
+const FOOTER_NAV = [
+  { href: '/about', label: 'About Us' },
+  { href: '/approach', label: 'Approach' },
+  { href: '/services', label: 'Services' },
+  { href: '/contact', label: 'Contact' },
+] as const;
+
 export default function Footer() {
   return (
     <footer className="fixed bottom-0 left-0 w-full bg-[#F5F7FA] text-[#1A1A1A] -z-10 flex flex-col h-[100vh]" role="contentinfo">
 
-      {/* Main footer content */}
-      <div className="flex-1 flex flex-col justify-center pt-32 md:pt-40 pb-20 md:pb-24">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24 w-full items-start">
+      {/* Main footer content - `flex-1` stops above the marquee so nothing sits under it */}
+      <div className="flex-1 min-h-0 flex flex-col justify-center pt-28 md:pt-32 pb-8">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-24 w-full items-start">
 
           {/* Left: CTA + Socials */}
           <div className="flex flex-col w-full">
-            <h2 className="text-7xl md:text-9xl font-league text-[#004AAD] mb-12 tracking-tight uppercase leading-[0.8]">
+            {/* Height-aware so the footer always fits above the marquee */}
+            <h2 className="text-[clamp(3.25rem,13vh,8rem)] font-league text-[#004AAD] mb-8 tracking-tight uppercase leading-[0.8]">
               Let&apos;s build a <br /> safer future - together.
             </h2>
 
@@ -70,65 +78,82 @@ export default function Footer() {
             </div>
           </div>
 
-            {/* Right: Founders */}
+            {/* Right: Founders + primary navigation */}
             <div className="flex flex-col w-full">
-              <h3 className="font-bold uppercase tracking-[0.3em] text-xs text-gray-400 mb-10 font-montserrat">Founders</h3>
-              <div className="flex flex-col gap-8">
-                <div className="flex items-center gap-6 group">
-                  <div>
-                    <div className="flex items-center gap-3">
-                      <Link href="/about" className="text-2xl md:text-3xl font-bold text-[#1A1A1A] tracking-tight group-hover:text-[#004AAD] transition-colors font-montserrat">
-                        Aman Jain
-                      </Link>
-                      <a
-                        href="https://www.linkedin.com/in/aman-jain-b648b319a/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="Aman Jain on LinkedIn"
-                        className="text-gray-400 hover:text-[#0077B5] transition-colors"
-                      >
-                        <Linkedin size={20} aria-hidden="true" />
-                      </a>
+              <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-10 sm:gap-12">
+                <div className="flex flex-col">
+                  <h3 className="font-bold uppercase tracking-[0.3em] text-xs text-gray-400 mb-8 font-montserrat">Founders</h3>
+                  <div className="flex flex-col gap-6">
+                    <div className="flex items-center gap-6 group">
+                      <div>
+                        <div className="flex items-center gap-3">
+                          <Link href="/about" className="text-2xl md:text-3xl font-bold text-[#1A1A1A] tracking-tight group-hover:text-[#004AAD] transition-colors font-montserrat">
+                            Aman Jain
+                          </Link>
+                          <a
+                            href="https://www.linkedin.com/in/aman-jain-b648b319a/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Aman Jain on LinkedIn"
+                            className="text-gray-400 hover:text-[#0077B5] transition-colors"
+                          >
+                            <Linkedin size={20} aria-hidden="true" />
+                          </a>
+                        </div>
+                        <p className="text-xs uppercase tracking-[0.2em] text-gray-400 font-bold font-montserrat mt-1">Co-Founder</p>
+                        <a href="mailto:amanjain@safesportindia.com" className="text-sm text-gray-500 hover:text-[#004AAD] transition-colors font-montserrat mt-1 block">
+                          amanjain@safesportindia.com
+                        </a>
+                      </div>
                     </div>
-                    <p className="text-xs uppercase tracking-[0.2em] text-gray-400 font-bold font-montserrat mt-1">Co-Founder</p>
-                    <a href="mailto:amanjain@safesportindia.com" className="text-sm text-gray-500 hover:text-[#004AAD] transition-colors font-montserrat mt-1 block">
-                      amanjain@safesportindia.com
-                    </a>
+
+                    <div className="flex items-center gap-6 group">
+                      <div>
+                        <div className="flex items-center gap-3">
+                          <Link href="/about" className="text-2xl md:text-3xl font-bold text-[#1A1A1A] tracking-tight group-hover:text-[#004AAD] transition-colors font-montserrat">
+                            Rania Mecca
+                          </Link>
+                          <a
+                            href="https://www.linkedin.com/in/rania-mecca-508805204"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Rania Mecca on LinkedIn"
+                            className="text-gray-400 hover:text-[#0077B5] transition-colors"
+                          >
+                            <Linkedin size={20} aria-hidden="true" />
+                          </a>
+                        </div>
+                        <p className="text-xs uppercase tracking-[0.2em] text-gray-400 font-bold font-montserrat mt-1">Co-Founder</p>
+                        <a href="mailto:raniamecca@safesportindia.com" className="text-sm text-gray-500 hover:text-[#004AAD] transition-colors font-montserrat mt-1 block">
+                          raniamecca@safesportindia.com
+                        </a>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-6 group">
-                  <div>
-                    <div className="flex items-center gap-3">
-                      <Link href="/about" className="text-2xl md:text-3xl font-bold text-[#1A1A1A] tracking-tight group-hover:text-[#004AAD] transition-colors font-montserrat">
-                        Rania Mecca
-                      </Link>
-                      <a
-                        href="https://www.linkedin.com/in/rania-mecca-508805204"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="Rania Mecca on LinkedIn"
-                        className="text-gray-400 hover:text-[#0077B5] transition-colors"
-                      >
-                        <Linkedin size={20} aria-hidden="true" />
-                      </a>
-                    </div>
-                    <p className="text-xs uppercase tracking-[0.2em] text-gray-400 font-bold font-montserrat mt-1">Co-Founder</p>
-                    <a href="mailto:raniamecca@safesportindia.com" className="text-sm text-gray-500 hover:text-[#004AAD] transition-colors font-montserrat mt-1 block">
-                      raniamecca@safesportindia.com
-                    </a>
-                  </div>
-                </div>
+                {/* Primary navigation, sitting alongside the founders */}
+                <nav aria-label="Footer navigation" className="flex flex-col">
+                  <h3 className="font-bold uppercase tracking-[0.3em] text-xs text-gray-400 mb-8 font-montserrat">Navigate</h3>
+                  <ul className="flex flex-col gap-4">
+                    {FOOTER_NAV.map(({ href, label }) => (
+                      <li key={href}>
+                        <Link
+                          href={href}
+                          className="text-sm font-bold uppercase tracking-[0.15em] text-gray-500 hover:text-[#004AAD] transition-colors font-montserrat"
+                        >
+                          {label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
               </div>
 
-              {/* Bottom row: copyright + nav links + big logo */}
-            <div className="pt-12 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-8 mt-12 w-full">
+              {/* Bottom row: policies + copyright + big logo */}
+            <div className="pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-6 mt-10 w-full">
               <div className="flex flex-col gap-4 items-center md:items-start">
-                <nav aria-label="Footer navigation" className="flex flex-wrap justify-center md:justify-start items-center gap-4 md:gap-6 text-[10px] md:text-xs text-gray-500 font-bold uppercase tracking-widest font-montserrat">
-                  <Link href="/about" className="hover:text-[#004AAD] transition-colors">About Us</Link>
-                  <Link href="/approach" className="hover:text-[#004AAD] transition-colors">Approach</Link>
-                  <Link href="/services" className="hover:text-[#004AAD] transition-colors">Services</Link>
-                  <Link href="/contact" className="hover:text-[#004AAD] transition-colors">Contact</Link>
+                <nav aria-label="Legal" className="flex flex-wrap justify-center md:justify-start items-center gap-4 md:gap-6 text-[10px] md:text-xs text-gray-500 font-bold uppercase tracking-widest font-montserrat">
                   <Link href="/safeguarding-policy" className="hover:text-[#004AAD] transition-colors">Safeguarding Policy</Link>
                   <Link href="/privacy" className="hover:text-[#004AAD] transition-colors">Privacy Policy</Link>
                 </nav>
@@ -136,14 +161,14 @@ export default function Footer() {
                   &copy; {new Date().getFullYear()} SafeSport India.
                 </p>
               </div>
-              <Logo size={220} className="opacity-30 grayscale hover:opacity-50 hover:grayscale-0 transition-all duration-700" variant="default" />
+              <Logo size={170} className="opacity-30 grayscale hover:opacity-50 hover:grayscale-0 transition-all duration-700" variant="default" />
             </div>
           </div>
         </div>
       </div>
 
-      {/* Marquee Banner at the bottom */}
-      <div className="absolute bottom-0 left-0 w-full z-10" aria-hidden="true">
+      {/* Marquee Banner - in flow so it never covers the content above it */}
+      <div className="w-full shrink-0 z-10" aria-hidden="true">
         <MarqueeBanner />
       </div>
     </footer>

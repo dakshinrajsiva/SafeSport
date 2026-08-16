@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import { ChevronDown } from 'lucide-react';
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -11,6 +12,7 @@ export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const scrollCueRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Respect reduced motion preference - skip scroll-driven animations
@@ -19,6 +21,7 @@ export default function Hero() {
       // Show content immediately without animation
       if (contentRef.current) contentRef.current.style.opacity = '1';
       if (maskRef.current) maskRef.current.style.opacity = '0';
+      if (scrollCueRef.current) scrollCueRef.current.style.opacity = '0';
       if (overlayRef.current) {
         overlayRef.current.style.backgroundColor = 'rgba(0, 74, 173, 1)';
         overlayRef.current.style.mixBlendMode = 'normal';
@@ -55,6 +58,9 @@ export default function Hero() {
       { scale: 100, opacity: 0, ease: "power4.inOut", duration: 2 },
       0
     );
+
+    // The scroll cue has done its job the moment the user starts scrolling
+    tl.to(scrollCueRef.current, { opacity: 0, duration: 0.3 }, 0);
 
     tl.fromTo(contentRef.current,
       { opacity: 0, y: 50 },
@@ -105,6 +111,23 @@ export default function Hero() {
         </div>
       </div>
 
+      {/* Scroll cue sitting under the wordmark - fades out as the mask opens */}
+      <div
+        ref={scrollCueRef}
+        className="absolute bottom-12 md:bottom-16 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center text-[#004AAD] pointer-events-none"
+        aria-hidden="true"
+      >
+        <span className="font-montserrat text-[10px] font-bold uppercase tracking-[0.35em] opacity-60 mb-2">
+          Scroll down
+        </span>
+        <ChevronDown className="w-7 h-7 md:w-8 md:h-8 animate-scroll-cue" strokeWidth={2.5} />
+        <ChevronDown
+          className="w-7 h-7 md:w-8 md:h-8 -mt-4 animate-scroll-cue opacity-50"
+          strokeWidth={2.5}
+          style={{ animationDelay: '0.18s' }}
+        />
+      </div>
+
       <div ref={contentRef} className="absolute inset-0 z-20 flex flex-col items-center justify-end pb-24 pointer-events-none">
         <div className="pointer-events-auto flex flex-col items-center">
           <div className="flex flex-col items-center gap-6">
@@ -123,12 +146,6 @@ export default function Hero() {
               <p className="text-white/80 font-montserrat font-medium text-sm md:text-lg tracking-wide max-w-2xl opacity-0 animate-fade-in-up" style={{ animationDelay: '2.5s', animationFillMode: 'forwards' }}>
                 We help institutions build safe, accountable environments across sport, education, and youth-facing sectors.
               </p>
-
-              <div className="flex flex-col items-center mt-8 text-white/60 opacity-0 animate-fade-in-up" style={{ animationDelay: '3s', animationFillMode: 'forwards' }} aria-hidden="true">
-                <span className="font-montserrat font-bold text-2xl tracking-[0.2em] rotate-90 inline-block">
-                  &gt;&gt;&gt;
-                </span>
-              </div>
             </div>
           </div>
         </div>

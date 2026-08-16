@@ -115,7 +115,7 @@ export default function AboutPage() {
         </section>
 
         {/* Founders */}
-        <section className="px-6 md:px-12 lg:px-24 mb-32" aria-labelledby="founders-heading">
+        <section id="founders" className="px-6 md:px-12 lg:px-24 mb-32 scroll-mt-[108px]" aria-labelledby="founders-heading">
           <div className="max-w-7xl mx-auto">
             <h2 id="founders-heading" className="text-4xl md:text-6xl font-league uppercase mb-16 text-[#1A1A1A]">Our Founders</h2>
 
@@ -155,7 +155,7 @@ export default function AboutPage() {
         </section>
 
         {/* Background */}
-        <section className="px-6 md:px-12 lg:px-24 mb-32 bg-[#004AAD] py-24 text-white">
+        <section id="our-background" className="px-6 md:px-12 lg:px-24 bg-[#004AAD] py-24 text-white scroll-mt-[108px]">
           <div className="max-w-7xl mx-auto">
             <div className="grid md:grid-cols-12 gap-12 md:gap-24">
               <div className="md:col-span-5">
@@ -178,7 +178,7 @@ export default function AboutPage() {
         </section>
 
         {/* Why SafeSport */}
-        <section className="px-6 md:px-12 lg:px-24 mb-32 bg-[#004AAD] py-24 text-white">
+        <section id="why-safesport" className="px-6 md:px-12 lg:px-24 bg-[#004AAD] py-24 text-white scroll-mt-[108px]">
           <div className="max-w-7xl mx-auto">
             <div className="grid md:grid-cols-12 gap-12 md:gap-16">
               <div className="md:col-span-5">
@@ -197,7 +197,7 @@ export default function AboutPage() {
         </section>
 
         {/* Our Values - S A F E Letters */}
-        <section className="px-6 md:px-12 lg:px-24 pb-32">
+        <section id="our-values" className="px-6 md:px-12 lg:px-24 pb-32 scroll-mt-[108px]">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-24">
               <h2 className="text-4xl md:text-6xl font-league uppercase mb-6 text-[#1A1A1A]">Our Values</h2>

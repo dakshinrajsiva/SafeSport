@@ -15,7 +15,7 @@ const PAGE_ROUTE_IDS = [
   'services',
   'who-we-work-with',
   'standards',
-  'resources',
+  'partners',
   'contact',
 ] as const;
 
@@ -27,46 +27,72 @@ const NAV_ITEMS = [
   {
     title: "About us",
     sectionId: "about",
-    description: "Meet our founders and learn about our mission to make safeguarding real in India."
+    description: "Meet our founders and learn about our mission to make safeguarding real in India.",
+    subsections: [
+      { label: "Our Founders", hash: "founders" },
+      { label: "Our Background", hash: "our-background" },
+      { label: "Why SafeSport", hash: "why-safesport" },
+      { label: "Our Values", hash: "our-values" },
+    ],
   },
   {
     title: "Our approach",
     sectionId: "approach",
-    description: "Systems, understanding, and judgement - our framework for effective safeguarding."
+    description: "Systems, understanding, and judgement - our framework for effective safeguarding.",
+    subsections: [
+      { label: "Our Philosophy", hash: "philosophy" },
+      { label: "Our Commitments", hash: "commitments" },
+    ],
   },
   {
     title: "Our services",
     sectionId: "services",
-    description: "Training, systems, and advisory support at every stage of your safeguarding journey."
+    description: "Training, systems, and advisory support at every stage of your safeguarding journey.",
+    subsections: [
+      { label: "Foundations & Training", hash: "service-0" },
+      { label: "Systems & Readiness", hash: "service-1" },
+      { label: "Consulting & Advisory", hash: "service-2" },
+    ],
   },
   {
     title: "Who we work with",
     sectionId: "who-we-work-with",
-    description: "From grassroots NGOs to national bodies - we work across the sporting ecosystem."
+    description: "From grassroots NGOs to national bodies - we work across the sporting ecosystem.",
+    subsections: [
+      { label: "NGOs & S4D", hash: "sector-0" },
+      { label: "Private Academies", hash: "sector-1" },
+      { label: "Educational Institutions", hash: "sector-2" },
+      { label: "National Bodies", hash: "sector-3" },
+    ],
   },
   {
     title: "Our standards",
     sectionId: "standards",
-    description: "Global best practices, adapted for the Indian legal and sporting context."
+    description: "Global best practices, adapted for the Indian legal and sporting context.",
+    subsections: [
+      { label: "Assess", hash: "standard-0" },
+      { label: "Build", hash: "standard-1" },
+      { label: "Embed & Sustain", hash: "standard-2" },
+    ],
   },
   {
-    title: "Resources",
-    sectionId: "resources",
-    description: "Practical tools, explainers, and guides to make safeguarding actionable."
+    title: "Our Partners",
+    sectionId: "partners",
+    description: "The organisations we have worked with across sport and education.",
   },
   {
     title: "FAQs",
     sectionId: "faqs",
-    description: "Common questions organisations ask us about safeguarding."
+    description: "Common questions organisations ask us about safeguarding.",
   },
   {
     title: "Reach out",
     sectionId: "contact",
-    description: "Get in touch to start your safeguarding journey with us."
+    description: "Get in touch to start your safeguarding journey with us.",
   }
 ];
 
-const QUICK_LINKS = ["About us", "Our approach", "Our services", "Who we work with", "Resources", "Reach out"];
+const QUICK_LINKS = ["About us", "Our approach", "Our services", "Who we work with", "Our Partners", "Reach out"];
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -144,18 +170,24 @@ export default function Navbar() {
               const item = NAV_ITEMS.find(n => n.title === title);
               if (!item || !isPageRoute(item.sectionId)) return null;
 
+              /** The CTA is the only nav element that reads on the white intro mask - keep that screen clean. */
+              const hideOnIntro = title === "Reach out" && !showSolidHeader;
+
               return (
                 <div key={title} className="relative group/nav py-4">
                   <Link
                     href={`/${item.sectionId}`}
                     onClick={() => setIsMenuOpen(false)}
+                    aria-hidden={hideOnIntro || undefined}
+                    tabIndex={hideOnIntro ? -1 : undefined}
                     className={cn(
                       "font-montserrat font-bold uppercase tracking-[0.15em] text-xs transition-all duration-300 relative whitespace-nowrap inline-block",
                       title === "Reach out"
                         ? showSolidHeader
                           ? "bg-[#004AAD] text-white px-6 py-2.5 rounded-full hover:bg-black hover:scale-105 shadow-[0_0_20px_rgba(0,74,173,0.45)] border border-[#004AAD]"
                           : "bg-white text-[#004AAD] px-6 py-2.5 rounded-full hover:bg-gray-100 hover:scale-105 shadow-[0_0_24px_rgba(255,255,255,0.45)] border border-white"
-                        : showSolidHeader ? "text-[#004AAD]" : "text-white"
+                        : showSolidHeader ? "text-[#004AAD]" : "text-white",
+                      hideOnIntro && "opacity-0 pointer-events-none"
                     )}
                   >
                     {title}
@@ -164,7 +196,24 @@ export default function Navbar() {
                     )}
                   </Link>
 
-                  {item.description && title !== "Reach out" && (
+                  {title !== "Reach out" && (item as any).subsections && (
+                    /* `pt-3` keeps the gap inside the panel so the pointer never leaves the hover group */
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 opacity-0 group-hover/nav:opacity-100 group-focus-within/nav:opacity-100 transition-opacity duration-300 pointer-events-none group-hover/nav:pointer-events-auto group-focus-within/nav:pointer-events-auto w-max min-w-[200px] max-w-[260px] z-[120]">
+                      <div className="bg-white/95 backdrop-blur-md rounded-xl shadow-xl border border-gray-100 py-2 px-1">
+                        {((item as any).subsections as { label: string; hash: string }[]).map((sub) => (
+                          <Link
+                            key={sub.hash}
+                            href={`/${item.sectionId}#${sub.hash}`}
+                            onClick={() => setIsMenuOpen(false)}
+                            className="block px-4 py-2 text-[11px] font-montserrat font-medium text-gray-600 hover:text-[#004AAD] hover:bg-[#004AAD]/5 rounded-lg transition-colors"
+                          >
+                            {sub.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  {title !== "Reach out" && !(item as any).subsections && item.description && (
                     <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 opacity-0 group-hover/nav:opacity-100 transition-opacity duration-300 pointer-events-none w-max max-w-[260px] bg-white/95 backdrop-blur-md text-[#004AAD] text-[10px] p-3 rounded-lg shadow-xl text-center font-montserrat leading-relaxed border border-gray-100 z-[120]">
                       {item.description}
                     </div>
@@ -229,10 +278,7 @@ export default function Navbar() {
               <nav aria-label="Site sections" className="w-full max-w-5xl">
                 <ul className="flex flex-col gap-1 md:gap-2">
                   {NAV_ITEMS.map((item, index) => {
-                    const rowClass = cn(
-                      "group w-full flex items-center gap-4 md:gap-10 py-3 md:py-5 text-left cursor-pointer border-0 bg-transparent no-underline",
-                      isMenuOpen ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-                    );
+                    const rowClass = "group w-full flex items-center gap-4 md:gap-8 py-2.5 md:py-4 text-left cursor-pointer border-0 bg-transparent no-underline";
                     const rowStyle = {
                       transitionDelay: isMenuOpen ? `${index * 45 + 80}ms` : '0ms',
                       transitionDuration: '500ms',
@@ -242,24 +288,34 @@ export default function Navbar() {
                       <>
                         <span
                           className={cn(
-                            "font-league text-sm md:text-base tabular-nums w-9 md:w-12 shrink-0 pt-1 transition-colors",
+                            "font-league text-xs md:text-sm tabular-nums w-8 md:w-10 shrink-0 pt-0.5 transition-colors",
                             hoveredTile === index ? "text-white" : "text-white/50 group-hover:text-white"
                           )}
                           aria-hidden="true"
                         >
                           {String(index + 1).padStart(2, '0')}
                         </span>
-                        <span
-                          className={cn(
-                            "flex-1 font-league uppercase text-[clamp(2rem,6vw,4.5rem)] leading-[0.95] tracking-tight transition-colors",
-                            hoveredTile === index ? "text-white" : "text-white/45 group-hover:text-white"
-                          )}
-                        >
-                          {item.title}
-                        </span>
+                        <div className="flex-1 min-w-0">
+                          <span
+                            className={cn(
+                              "block font-league uppercase text-[clamp(1.5rem,4.5vw,3.2rem)] leading-[0.95] tracking-tight transition-colors",
+                              hoveredTile === index ? "text-white" : "text-white/45 group-hover:text-white"
+                            )}
+                          >
+                            {item.title}
+                          </span>
+                          <span
+                            className={cn(
+                              "block text-[11px] md:text-xs font-montserrat leading-snug mt-1 transition-colors max-w-[90%]",
+                              hoveredTile === index ? "text-white/70" : "text-white/30 group-hover:text-white/60"
+                            )}
+                          >
+                            {item.description}
+                          </span>
+                        </div>
                         <ArrowRight
                           className={cn(
-                            "w-7 h-7 md:w-9 md:h-9 shrink-0 text-white transition-all duration-300",
+                            "w-6 h-6 md:w-7 md:h-7 shrink-0 text-white transition-all duration-300",
                             hoveredTile === index
                               ? "opacity-100 translate-x-0"
                               : "opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0"
@@ -271,29 +327,46 @@ export default function Navbar() {
 
                     return (
                       <li key={item.sectionId}>
-                        {isPageRoute(item.sectionId) ? (
-                          <Link
-                            href={`/${item.sectionId}`}
-                            onClick={() => setIsMenuOpen(false)}
-                            onMouseEnter={() => setHoveredTile(index)}
-                            onMouseLeave={() => setHoveredTile(null)}
-                            className={rowClass}
-                            style={rowStyle}
-                          >
-                            {inner}
-                          </Link>
-                        ) : (
-                          <button
-                            type="button"
-                            onClick={goToFaqs}
-                            onMouseEnter={() => setHoveredTile(index)}
-                            onMouseLeave={() => setHoveredTile(null)}
-                            className={rowClass}
-                            style={rowStyle}
-                          >
-                            {inner}
-                          </button>
-                        )}
+                        {/* Subsection links are siblings of the row link - an <a> may never nest inside an <a> */}
+                        <div
+                          onMouseEnter={() => setHoveredTile(index)}
+                          onMouseLeave={() => setHoveredTile(null)}
+                          className={cn(isMenuOpen ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0")}
+                          style={rowStyle}
+                        >
+                          {isPageRoute(item.sectionId) ? (
+                            <Link
+                              href={`/${item.sectionId}`}
+                              onClick={() => setIsMenuOpen(false)}
+                              className={rowClass}
+                            >
+                              {inner}
+                            </Link>
+                          ) : (
+                            <button
+                              type="button"
+                              onClick={goToFaqs}
+                              className={rowClass}
+                            >
+                              {inner}
+                            </button>
+                          )}
+
+                          {(item as any).subsections && (
+                            <div className="flex flex-wrap gap-2 pl-12 md:pl-[72px] pb-3 -mt-2">
+                              {((item as any).subsections as { label: string; hash: string }[]).map((sub) => (
+                                <Link
+                                  key={sub.hash}
+                                  href={`/${item.sectionId}#${sub.hash}`}
+                                  onClick={() => setIsMenuOpen(false)}
+                                  className="inline-block text-[10px] md:text-[11px] font-montserrat font-semibold uppercase tracking-wider px-3 py-1 rounded-full border border-white/20 text-white/50 hover:text-white hover:border-white/60 transition-colors"
+                                >
+                                  {sub.label}
+                                </Link>
+                              ))}
+                            </div>
+                          )}
+                        </div>
                       </li>
                     );
                   })}

@@ -85,7 +85,8 @@ export default function ServicesPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.7, ease: [0.215, 0.61, 0.355, 1] }}
-                className={`py-20 md:py-28 ${i < SERVICES.length - 1 ? 'border-b border-gray-200' : ''}`}
+                id={`service-${i}`}
+                className={`py-20 md:py-28 scroll-mt-[108px] ${i < SERVICES.length - 1 ? 'border-b border-gray-200' : ''}`}
               >
                 <div className="grid lg:grid-cols-12 gap-12 lg:gap-20">
 
