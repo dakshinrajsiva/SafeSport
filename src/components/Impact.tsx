@@ -17,7 +17,8 @@ const STATS = [
     source: "NCPCR via International Journal of Law, Social Sciences and Humanities (IJLSSS), 2025",
   },
   {
-    number: "~10%",
+    prefix: "~",
+    number: "10%",
     text: "of abuse cases are ever reported in India.",
     source: "National Crime Records Bureau (NCRB), Government of India",
   },
@@ -57,6 +58,15 @@ export default function Impact() {
               className="p-8 md:p-10 flex flex-col justify-center text-center cursor-default rounded-[2rem] relative overflow-hidden border border-transparent bg-[#004AAD] text-white shadow-lg hover:shadow-2xl transition-shadow duration-300"
             >
               <span className="font-league font-bold leading-none mb-4 block text-5xl md:text-7xl">
+                {/* League Gothic sets "~" high and full size; scale it down and drop it onto the numeral's midline */}
+                {'prefix' in stat && (
+                  <>
+                    <span className="sr-only">Approximately </span>
+                    <span className="inline-block text-[0.5em] align-middle relative top-[0.08em] mr-[0.04em]" aria-hidden="true">
+                      {stat.prefix}
+                    </span>
+                  </>
+                )}
                 {stat.number}
               </span>
 

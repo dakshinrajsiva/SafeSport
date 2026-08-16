@@ -278,7 +278,7 @@ export default function Navbar() {
               <nav aria-label="Site sections" className="w-full max-w-5xl">
                 <ul className="flex flex-col gap-1 md:gap-2">
                   {NAV_ITEMS.map((item, index) => {
-                    const rowClass = "group w-full flex items-center gap-4 md:gap-8 py-2.5 md:py-4 text-left cursor-pointer border-0 bg-transparent no-underline";
+                    const rowClass = "group w-full flex items-center gap-4 md:gap-8 py-3 md:py-5 text-left cursor-pointer border-0 bg-transparent no-underline";
                     const rowStyle = {
                       transitionDelay: isMenuOpen ? `${index * 45 + 80}ms` : '0ms',
                       transitionDuration: '500ms',
@@ -304,14 +304,6 @@ export default function Navbar() {
                           >
                             {item.title}
                           </span>
-                          <span
-                            className={cn(
-                              "block text-[11px] md:text-xs font-montserrat leading-snug mt-1 transition-colors max-w-[90%]",
-                              hoveredTile === index ? "text-white/70" : "text-white/30 group-hover:text-white/60"
-                            )}
-                          >
-                            {item.description}
-                          </span>
                         </div>
                         <ArrowRight
                           className={cn(
@@ -327,7 +319,6 @@ export default function Navbar() {
 
                     return (
                       <li key={item.sectionId}>
-                        {/* Subsection links are siblings of the row link - an <a> may never nest inside an <a> */}
                         <div
                           onMouseEnter={() => setHoveredTile(index)}
                           onMouseLeave={() => setHoveredTile(null)}
@@ -350,21 +341,6 @@ export default function Navbar() {
                             >
                               {inner}
                             </button>
-                          )}
-
-                          {(item as any).subsections && (
-                            <div className="flex flex-wrap gap-2 pl-12 md:pl-[72px] pb-3 -mt-2">
-                              {((item as any).subsections as { label: string; hash: string }[]).map((sub) => (
-                                <Link
-                                  key={sub.hash}
-                                  href={`/${item.sectionId}#${sub.hash}`}
-                                  onClick={() => setIsMenuOpen(false)}
-                                  className="inline-block text-[10px] md:text-[11px] font-montserrat font-semibold uppercase tracking-wider px-3 py-1 rounded-full border border-white/20 text-white/50 hover:text-white hover:border-white/60 transition-colors"
-                                >
-                                  {sub.label}
-                                </Link>
-                              ))}
-                            </div>
                           )}
                         </div>
                       </li>

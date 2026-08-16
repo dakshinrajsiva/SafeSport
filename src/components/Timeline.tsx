@@ -15,7 +15,7 @@ const SAFESPORT_STEPS = [
   },
   {
     title: "Training and Awareness",
-    content: "Building foundational knowledge and cultural buy-in through comprehensive safeguarding education for all stakeholders.",
+    content: "We provide tailored safeguarding training and awareness programmes for relevant stakeholders including athletes, coaches, staff, leadership, parents, and other members of the sporting ecosystem.",
   },
   {
     title: "Review & Continuous Improvement",
