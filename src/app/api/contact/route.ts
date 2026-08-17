@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
 const TO = process.env.CONTACT_TO || 'info@safesportindia.com';
-const FROM = process.env.CONTACT_FROM || 'SafeSport India <onboarding@resend.dev>';
+const FROM = process.env.CONTACT_FROM || 'SafeSport India <info@safesportindia.com>';
 
 function escapeHtml(str: string) {
   return str
