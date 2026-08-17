@@ -1,12 +1,15 @@
 'use client';
 
+import { useState } from 'react';
 import Footer from '@/components/Footer';
-import { Mail, Linkedin, Instagram, MapPin, ArrowRight, Send } from 'lucide-react';
+import { Mail, Linkedin, Instagram, MapPin, ArrowRight, Send, CheckCircle2, Loader2 } from 'lucide-react';
 
 export default function ContactPage() {
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
+  const [errorMsg, setErrorMsg] = useState('');
   return (
     <main className="relative bg-white text-[#1A1A1A]">
-      <div className="relative z-10 bg-white shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] mb-[100vh] min-h-screen pt-32">
+      <div className="relative z-10 bg-white shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] mb-0 md:mb-[100vh] min-h-screen pt-32">
         
         {/* Header */}
         <section className="px-6 md:px-12 lg:px-24 mb-12 md:mb-16">
@@ -41,7 +44,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="text-xs font-montserrat font-bold uppercase tracking-[0.2em] text-gray-400 mb-2">Email</p>
-                      <p className="text-xl md:text-2xl font-montserrat font-bold text-[#1A1A1A] group-hover:text-[#004AAD] transition-colors">
+                      <p className="text-lg sm:text-xl md:text-2xl font-montserrat font-bold text-[#1A1A1A] group-hover:text-[#004AAD] transition-colors break-all">
                         info@safesportindia.com
                       </p>
                     </div>
@@ -103,31 +106,53 @@ export default function ContactPage() {
               </div>
 
               {/* Right: Contact Form */}
-              <div className="bg-[#004AAD] rounded-3xl p-10 md:p-14 text-white">
+              <div className="bg-[#004AAD] rounded-3xl p-6 sm:p-10 md:p-14 text-white">
                 <h2 className="text-3xl md:text-4xl font-league uppercase mb-4">Start a Conversation</h2>
                 <p className="text-base font-montserrat text-white/70 leading-relaxed mb-10">
                   Whether you&apos;re exploring safeguarding for the first time or looking to strengthen existing systems, we&apos;re here to help.
                 </p>
                 <p className="text-xs font-montserrat text-white/50 mb-6" id="form-note">
-                  This form will open your email client with a pre-filled message to info@safesportindia.com.
+                  Your message goes straight to info@safesportindia.com.
                 </p>
 
+                {status === 'sent' ? (
+                  <div className="flex flex-col items-center text-center py-12" role="status">
+                    <CheckCircle2 className="w-16 h-16 text-white mb-6" aria-hidden="true" />
+                    <h3 className="text-2xl font-league uppercase mb-3">Message Sent</h3>
+                    <p className="text-base font-montserrat text-white/70 leading-relaxed max-w-sm">
+                      Thank you for reaching out. We&apos;ll get back to you within 48 hours.
+                    </p>
+                  </div>
+                ) : (
                 <form
                   className="space-y-6"
                   aria-describedby="form-note"
-                  onSubmit={(e) => {
+                  onSubmit={async (e) => {
                     e.preventDefault();
                     const form = e.target as HTMLFormElement;
-                    const name = (form.elements.namedItem('name') as HTMLInputElement)?.value || '';
-                    const email = (form.elements.namedItem('email') as HTMLInputElement)?.value || '';
-                    const org = (form.elements.namedItem('organisation') as HTMLInputElement)?.value || '';
-                    const msg = (form.elements.namedItem('message') as HTMLTextAreaElement)?.value || '';
-                    const subject = encodeURIComponent(`Safeguarding Inquiry from ${name}`);
-                    const body = encodeURIComponent(
-                      `Name: ${name}\nEmail: ${email}\nOrganisation: ${org}\n\n${msg}`
-                    );
-                    const mailtoUrl = `mailto:info@safesportindia.com?subject=${subject}&body=${body}`;
-                    window.location.href = mailtoUrl;
+                    const payload = {
+                      name: (form.elements.namedItem('name') as HTMLInputElement)?.value || '',
+                      email: (form.elements.namedItem('email') as HTMLInputElement)?.value || '',
+                      organisation: (form.elements.namedItem('organisation') as HTMLInputElement)?.value || '',
+                      message: (form.elements.namedItem('message') as HTMLTextAreaElement)?.value || '',
+                    };
+                    setStatus('sending');
+                    setErrorMsg('');
+                    try {
+                      const res = await fetch('/api/contact', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload),
+                      });
+                      if (!res.ok) {
+                        const data = await res.json().catch(() => null);
+                        throw new Error(data?.error || 'Something went wrong.');
+                      }
+                      setStatus('sent');
+                    } catch (err) {
+                      setStatus('error');
+                      setErrorMsg(err instanceof Error ? err.message : 'Something went wrong.');
+                    }
                   }}
                 >
                   <div>
@@ -175,14 +200,30 @@ export default function ContactPage() {
                       placeholder="Tell us about your safeguarding needs..."
                     />
                   </div>
+                  {status === 'error' && (
+                    <p className="text-sm font-montserrat text-red-200 bg-red-500/20 border border-red-300/30 rounded-xl px-5 py-4" role="alert">
+                      {errorMsg}
+                    </p>
+                  )}
                   <button
                     type="submit"
-                    className="w-full flex items-center justify-center gap-3 bg-white text-[#004AAD] font-montserrat font-bold uppercase tracking-[0.2em] text-sm py-4 rounded-xl hover:bg-gray-100 transition-colors duration-300 min-h-[48px]"
+                    disabled={status === 'sending'}
+                    className="w-full flex items-center justify-center gap-3 bg-white text-[#004AAD] font-montserrat font-bold uppercase tracking-[0.2em] text-sm py-4 rounded-xl hover:bg-gray-100 transition-colors duration-300 min-h-[48px] disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    Send Message
-                    <Send size={16} aria-hidden="true" />
+                    {status === 'sending' ? (
+                      <>
+                        Sending
+                        <Loader2 size={16} className="animate-spin" aria-hidden="true" />
+                      </>
+                    ) : (
+                      <>
+                        Send Message
+                        <Send size={16} aria-hidden="true" />
+                      </>
+                    )}
                   </button>
                 </form>
+                )}
               </div>
             </div>
           </div>
