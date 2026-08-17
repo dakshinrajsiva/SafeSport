@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
+import { scrollToElement } from '@/lib/scroll';
 
 const STORAGE_KEY = 'safesport:scrollToFaqs';
 
@@ -11,14 +12,53 @@ export function requestScrollToFaqs() {
   sessionStorage.setItem(STORAGE_KEY, '1');
 }
 
+const HEADER_OFFSET = -108;
+/** Within this many px of the target counts as landed */
+const LANDED_TOLERANCE = 24;
+
 function scrollFaqsElementIntoView() {
   const el = document.getElementById('faqs');
   if (!el) return false;
-  el.scrollIntoView({ behavior: 'smooth', block: 'start' }); /* scroll-mt on #faqs clears fixed nav */
+  scrollToElement(el, HEADER_OFFSET); /* offset clears the fixed nav */
   if (window.location.hash !== '#faqs') {
     window.history.replaceState(null, '', `${window.location.pathname}#faqs`);
   }
   return true;
+}
+
+/**
+ * The home page pins the hero and the sector slider, so its height grows by several
+ * viewports after mount and a single scroll lands short. Re-measure until #faqs is
+ * actually in place (or the user takes over by scrolling themselves).
+ */
+function scrollToFaqsWhenSettled() {
+  let attempts = 0;
+  let cancelled = false;
+
+  const stopOnUserScroll = () => { cancelled = true; };
+  window.addEventListener('wheel', stopOnUserScroll, { once: true, passive: true });
+  window.addEventListener('touchstart', stopOnUserScroll, { once: true, passive: true });
+
+  const tick = () => {
+    if (cancelled) return cleanup();
+    const el = document.getElementById('faqs');
+    if (!el) {
+      if (++attempts > 16) return cleanup();
+      return void window.setTimeout(tick, 250);
+    }
+    const landed = Math.abs(el.getBoundingClientRect().top - Math.abs(HEADER_OFFSET)) < LANDED_TOLERANCE;
+    if (landed || ++attempts > 16) return cleanup();
+    scrollFaqsElementIntoView();
+    window.setTimeout(tick, 250);
+  };
+
+  const cleanup = () => {
+    window.removeEventListener('wheel', stopOnUserScroll);
+    window.removeEventListener('touchstart', stopOnUserScroll);
+  };
+
+  tick();
+  return cleanup;
 }
 
 /**
@@ -31,29 +71,24 @@ export default function ScrollToHash() {
   useEffect(() => {
     if (pathname !== '/') return;
 
-    const tryScroll = () => {
-      const pending = sessionStorage.getItem(STORAGE_KEY);
-      if (pending) {
-        sessionStorage.removeItem(STORAGE_KEY);
-        if (scrollFaqsElementIntoView()) return;
-      }
-      if (window.location.hash === '#faqs') {
-        scrollFaqsElementIntoView();
-      }
-    };
+    const pending = sessionStorage.getItem(STORAGE_KEY);
+    if (pending) sessionStorage.removeItem(STORAGE_KEY);
 
-    tryScroll();
-    const t1 = window.setTimeout(tryScroll, 150);
-    const t2 = window.setTimeout(tryScroll, 450);
+    let cancelSettleLoop: (() => void) | undefined;
+    if (pending || window.location.hash === '#faqs') {
+      cancelSettleLoop = scrollToFaqsWhenSettled();
+    }
 
     const onHashChange = () => {
-      if (window.location.hash === '#faqs') scrollFaqsElementIntoView();
+      if (window.location.hash === '#faqs') {
+        cancelSettleLoop?.();
+        cancelSettleLoop = scrollToFaqsWhenSettled();
+      }
     };
     window.addEventListener('hashchange', onHashChange);
 
     return () => {
-      window.clearTimeout(t1);
-      window.clearTimeout(t2);
+      cancelSettleLoop?.();
       window.removeEventListener('hashchange', onHashChange);
     };
   }, [pathname]);

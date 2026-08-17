@@ -60,7 +60,7 @@ const SERVICES = [
 export default function ServicesPage() {
   return (
     <main className="relative bg-white text-[#1A1A1A]">
-      <div className="relative z-10 bg-white shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] mb-[100vh] min-h-screen pt-32">
+      <div className="relative z-10 bg-white shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] mb-0 md:mb-[100vh] min-h-screen pt-32">
 
         {/* Header */}
         <section className="px-6 md:px-12 lg:px-24 mb-20 md:mb-32">

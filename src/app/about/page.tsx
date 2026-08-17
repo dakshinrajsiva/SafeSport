@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import Image from 'next/image';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { X } from 'lucide-react';
+import { lockScroll, unlockScroll } from '@/lib/scroll';
 
 const VALUES = [
   {
@@ -84,9 +85,11 @@ export default function AboutPage() {
     };
 
     document.addEventListener('keydown', handleKeyDown);
+    lockScroll(); // Lenis keeps scrolling the page behind the modal otherwise
     return () => {
       clearTimeout(timer);
       document.removeEventListener('keydown', handleKeyDown);
+      unlockScroll();
     };
   }, [selectedFounder]);
 
@@ -102,7 +105,7 @@ export default function AboutPage() {
 
   return (
     <main className="relative bg-white text-[#1A1A1A]">
-      <div className="relative z-10 bg-white shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] mb-[100vh] min-h-screen pt-32">
+      <div className="relative z-10 bg-white shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] mb-0 md:mb-[100vh] min-h-screen pt-32">
 
         {/* Header */}
         <section className="px-6 md:px-12 lg:px-24 mb-20 md:mb-32">
@@ -206,20 +209,28 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8" role="list">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-8" role="list">
               {VALUES.map((val, i) => (
                 <div
                   key={i}
                   role="listitem"
                   tabIndex={0}
                   aria-label={`${val.letter} for ${val.title}: ${val.description}`}
-                  className="aspect-square relative group bg-white border border-gray-100 hover:border-[#004AAD] focus-within:border-[#004AAD] transition-all duration-500 flex flex-col items-center justify-center overflow-hidden cursor-default"
+                  className="md:aspect-square relative group bg-white border border-gray-100 hover:border-[#004AAD] focus-within:border-[#004AAD] transition-all duration-500 flex flex-col items-center justify-center overflow-hidden cursor-default p-8 md:p-0 text-center"
                 >
-                  <span className="text-[8rem] md:text-[12rem] font-league font-bold text-[#004AAD] transition-colors duration-500 leading-none select-none" aria-hidden="true">
+                  <span className="text-[5rem] md:text-[12rem] font-league font-bold text-[#004AAD] transition-colors duration-500 leading-none select-none" aria-hidden="true">
                     {val.letter}
                   </span>
 
-                  <div className="absolute inset-0 bg-[#004AAD] translate-x-full group-hover:translate-x-0 group-focus-within:translate-x-0 focus:translate-x-0 transition-transform duration-500 flex flex-col items-center justify-center text-white p-6 text-center" aria-hidden="true">
+                  {/* Touch devices have no hover, so the copy is shown outright below md */}
+                  <div className="md:hidden mt-2" aria-hidden="true">
+                    <h3 className="text-xl font-league uppercase tracking-wider mb-2 text-[#1A1A1A]">{val.title}</h3>
+                    <p className="text-sm font-montserrat text-gray-500 leading-relaxed">
+                      {val.description}
+                    </p>
+                  </div>
+
+                  <div className="hidden md:flex absolute inset-0 bg-[#004AAD] translate-x-full group-hover:translate-x-0 group-focus-within:translate-x-0 focus:translate-x-0 transition-transform duration-500 flex-col items-center justify-center text-white p-6 text-center" aria-hidden="true">
                     <span className="text-6xl md:text-8xl font-league font-bold mb-4">{val.letter}</span>
                     <h3 className="text-xl font-league uppercase tracking-wider mb-2">{val.title}</h3>
                     <p className="text-xs font-montserrat opacity-80 leading-relaxed">

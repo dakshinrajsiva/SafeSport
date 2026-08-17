@@ -4,6 +4,7 @@ import { ReactLenis } from 'lenis/react';
 import { useEffect, useState, ReactNode, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import { registerLenis } from '@/lib/scroll';
 
 export default function SmoothScroll({ children }: { children: ReactNode }) {
   const lenisRef = useRef<any>(null);
@@ -32,9 +33,13 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
       lenisInstance.on('scroll', ScrollTrigger.update);
     }
 
+    // Let buttons elsewhere in the tree (back-to-top, menu) scroll through Lenis
+    registerLenis(lenisInstance ?? null);
+
     return () => {
       gsap.ticker.remove(update);
       lenisInstance?.off('scroll', ScrollTrigger.update);
+      registerLenis(null);
     };
   }, [prefersReducedMotion]);
 

@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils';
 import Logo from './Logo';
 import { Menu, X, ArrowRight } from 'lucide-react';
 import { requestScrollToFaqs } from '@/components/ScrollToHash';
+import { scrollToElement, lockScroll, unlockScroll } from '@/lib/scroll';
 
 /** Menu section ids that map 1:1 to `src/app/[segment]/page.tsx` routes */
 const PAGE_ROUTE_IDS = [
@@ -111,11 +112,11 @@ export default function Navbar() {
 
   useEffect(() => {
     if (isMenuOpen) {
-      document.body.style.overflow = 'hidden';
+      lockScroll();
     } else {
-      document.body.style.overflow = '';
+      unlockScroll();
     }
-    return () => { document.body.style.overflow = ''; };
+    return () => { unlockScroll(); };
   }, [isMenuOpen]);
 
   /** FAQs live only on the home page (`#faqs`). All other items use `/[route]` via `<Link>`. */
@@ -128,7 +129,7 @@ export default function Navbar() {
     }
     const el = document.getElementById('faqs');
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      scrollToElement(el, -108); // clears the fixed 100px header
       if (window.location.hash !== '#faqs') {
         window.history.replaceState(null, '', `${window.location.pathname}#faqs`);
       }
@@ -149,11 +150,11 @@ export default function Navbar() {
             href="/" 
             className="relative z-[110] transition-transform hover:scale-105 duration-500 flex-shrink-0 flex items-center"
           >
-            <div className="mt-8">
+            {/* Sized by class so the mark stays inside the 100px header on phones */}
+            <div className="mt-1 md:mt-8">
               <Logo
-                size={150}
                 className={cn(
-                  "transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]",
+                  "w-[104px] h-[104px] md:w-[150px] md:h-[150px] transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]",
                   isMenuOpen && "brightness-0" // Makes logo black when menu is open
                 )}
                 variant={isMenuOpen ? 'default' : showSolidHeader ? 'default' : 'white'}
@@ -228,7 +229,7 @@ export default function Navbar() {
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className={cn(
-                "flex items-center gap-2 px-6 py-2.5 font-montserrat font-bold uppercase tracking-[0.2em] text-xs transition-all duration-500 border rounded-full relative z-[110]",
+                "flex items-center gap-2 px-6 py-3.5 md:py-2.5 font-montserrat font-bold uppercase tracking-[0.2em] text-xs transition-all duration-500 border rounded-full relative z-[110]",
                 isMenuOpen
                   ? "opacity-0 pointer-events-none" // Hide the original button when open
                   : showSolidHeader 
@@ -266,7 +267,7 @@ export default function Navbar() {
           )}>
             <button
               onClick={() => setIsMenuOpen(false)}
-              className="flex items-center gap-2 px-6 py-2.5 font-montserrat font-bold uppercase tracking-[0.2em] text-xs transition-all duration-500 border rounded-full bg-white border-white text-[#004AAD] hover:bg-transparent hover:text-white"
+              className="flex items-center gap-2 px-6 py-3.5 md:py-2.5 font-montserrat font-bold uppercase tracking-[0.2em] text-xs transition-all duration-500 border rounded-full bg-white border-white text-[#004AAD] hover:bg-transparent hover:text-white"
             >
               Close <X size={14} />
             </button>
@@ -289,7 +290,7 @@ export default function Navbar() {
                         <span
                           className={cn(
                             "font-league text-xs md:text-sm tabular-nums w-8 md:w-10 shrink-0 pt-0.5 transition-colors",
-                            hoveredTile === index ? "text-white" : "text-white/50 group-hover:text-white"
+                            hoveredTile === index ? "text-white" : "text-white/80 md:text-white/50 group-hover:text-white"
                           )}
                           aria-hidden="true"
                         >
@@ -299,7 +300,7 @@ export default function Navbar() {
                           <span
                             className={cn(
                               "block font-league uppercase text-[clamp(1.5rem,4.5vw,3.2rem)] leading-[0.95] tracking-tight transition-colors",
-                              hoveredTile === index ? "text-white" : "text-white/45 group-hover:text-white"
+                              hoveredTile === index ? "text-white" : "text-white md:text-white/45 group-hover:text-white"
                             )}
                           >
                             {item.title}
@@ -358,7 +359,7 @@ export default function Navbar() {
               <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
                 <a
                   href="mailto:info@safesportindia.com"
-                  className="text-[10px] md:text-xs font-montserrat text-white/55 hover:text-white transition-colors uppercase tracking-[0.25em] font-bold"
+                  className="text-[10px] md:text-xs font-montserrat text-white/80 md:text-white/55 hover:text-white transition-colors uppercase tracking-[0.25em] font-bold py-4 md:py-0"
                 >
                   Email
                 </a>
@@ -366,7 +367,7 @@ export default function Navbar() {
                   href="https://www.linkedin.com/in/safesport-india-6854a73a0/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[10px] md:text-xs font-montserrat text-white/55 hover:text-white transition-colors uppercase tracking-[0.25em] font-bold"
+                  className="text-[10px] md:text-xs font-montserrat text-white/80 md:text-white/55 hover:text-white transition-colors uppercase tracking-[0.25em] font-bold py-4 md:py-0"
                 >
                   LinkedIn
                 </a>
@@ -374,7 +375,7 @@ export default function Navbar() {
                   href="https://www.instagram.com/safesportindia"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[10px] md:text-xs font-montserrat text-white/55 hover:text-white transition-colors uppercase tracking-[0.25em] font-bold"
+                  className="text-[10px] md:text-xs font-montserrat text-white/80 md:text-white/55 hover:text-white transition-colors uppercase tracking-[0.25em] font-bold py-4 md:py-0"
                 >
                   Instagram
                 </a>

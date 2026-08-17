@@ -13,10 +13,11 @@ interface LogoProps {
 export default function Logo({
   className,
   size,
-  width = 160,
-  height = 160,
+  width,
+  height,
   variant = 'default',
 }: LogoProps) {
+  /** Omit inline sizing when no size is passed so callers can size responsively via className */
   const finalWidth = size ?? width;
   const finalHeight = size ?? height;
 
@@ -30,8 +31,8 @@ export default function Logo({
         className
       )}
       style={{
-        width: finalWidth,
-        height: finalHeight,
+        ...(finalWidth === undefined ? {} : { width: finalWidth }),
+        ...(finalHeight === undefined ? {} : { height: finalHeight }),
         maskImage: 'url(/safesport-logo.svg)',
         maskRepeat: 'no-repeat',
         maskSize: 'contain',

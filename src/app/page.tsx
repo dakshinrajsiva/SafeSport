@@ -15,12 +15,12 @@ export default function Home() {
       <Preloader />
       
       {/* Content wrapper with higher z-index and solid background to cover the footer */}
-      <div className="relative z-10 bg-white shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] mb-[100vh]">
+      <div className="relative z-10 bg-white shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] mb-0 md:mb-[100vh]">
         <Hero />
         <Mission />
         <WorkWith />
-        <Impact />
         <Timeline />
+        <Impact />
 
         {/* FAQs */}
         <section id="faqs" className="scroll-mt-[108px] py-32 px-4 md:px-24 bg-white border-t border-gray-100" aria-labelledby="faq-section-heading">

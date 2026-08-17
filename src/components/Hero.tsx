@@ -77,7 +77,7 @@ export default function Hero() {
   return (
     <section
       ref={containerRef}
-      className="relative h-screen w-full overflow-hidden bg-white"
+      className="relative h-screen [@supports(height:100svh)]:h-[100svh] w-full overflow-hidden bg-white"
       aria-label="Hero introduction"
     >
       <div className="absolute inset-0 z-0">
@@ -105,7 +105,8 @@ export default function Hero() {
           <span className="text-[clamp(4rem,20vw,20rem)] font-league tracking-tight uppercase leading-[0.7] text-[#004AAD] text-center">
             SAFE <br /> SPORT
           </span>
-          <span className="text-[clamp(1.5rem,5vw,5rem)] font-league tracking-[0.2em] uppercase text-[#004AAD] -mt-4">
+          {/* Pull-up scales with the type so "India" never collides with "Sport" on small screens */}
+          <span className="text-[clamp(1.5rem,5vw,5rem)] font-league tracking-[0.2em] uppercase text-[#004AAD] -mt-[0.22em]">
             India
           </span>
         </div>
@@ -128,7 +129,8 @@ export default function Hero() {
         />
       </div>
 
-      <div ref={contentRef} className="absolute inset-0 z-20 flex flex-col items-center justify-end pb-24 pointer-events-none">
+      {/* Centred on phones so the copy is not stranded at the bottom; lower-third composition from md up */}
+      <div ref={contentRef} className="absolute inset-0 z-20 flex flex-col items-center justify-center md:justify-end pb-0 md:pb-24 pointer-events-none">
         <div className="pointer-events-auto flex flex-col items-center">
           <div className="flex flex-col items-center gap-6">
             <div className="flex flex-col items-center gap-4 text-center px-4 max-w-4xl">

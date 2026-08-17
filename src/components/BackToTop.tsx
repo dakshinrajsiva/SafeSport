@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { ChevronUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { scrollToTop } from '@/lib/scroll';
 
 export default function BackToTop() {
   const [isVisible, setIsVisible] = useState(false);
@@ -15,13 +16,6 @@ export default function BackToTop() {
     window.addEventListener('scroll', toggleVisibility, { passive: true });
     return () => window.removeEventListener('scroll', toggleVisibility);
   }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
 
   return (
     <button

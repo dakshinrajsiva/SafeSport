@@ -13,17 +13,19 @@ const FOOTER_NAV = [
 ] as const;
 
 export default function Footer() {
+  // Phones: a normal block that scrolls with the page (the content is taller than a phone viewport).
+  // md and up: the fixed 100vh "curtain" the page content slides away to reveal.
   return (
-    <footer className="fixed bottom-0 left-0 w-full bg-[#F5F7FA] text-[#1A1A1A] -z-10 flex flex-col h-[100vh]" role="contentinfo">
+    <footer className="w-full bg-[#F5F7FA] text-[#1A1A1A] flex flex-col static md:fixed md:bottom-0 md:left-0 md:-z-10 md:h-[100vh]" role="contentinfo">
 
       {/* Main footer content - `flex-1` stops above the marquee so nothing sits under it */}
-      <div className="flex-1 min-h-0 flex flex-col justify-center pt-28 md:pt-32 pb-8">
+      <div className="flex-1 min-h-0 flex flex-col justify-center pt-16 md:pt-32 pb-10 md:pb-8">
         <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-24 w-full items-start">
 
           {/* Left: CTA + Socials */}
           <div className="flex flex-col w-full">
             {/* Height-aware so the footer always fits above the marquee */}
-            <h2 className="text-[clamp(3.25rem,13vh,8rem)] font-league text-[#004AAD] mb-8 tracking-tight uppercase leading-[0.8]">
+            <h2 className="text-[clamp(2.75rem,12vw,4rem)] md:text-[clamp(3.25rem,13vh,8rem)] font-league text-[#004AAD] mb-8 tracking-tight uppercase leading-[0.8]">
               Let&apos;s build a <br /> safer future - together.
             </h2>
 
@@ -87,7 +89,7 @@ export default function Footer() {
                     <div className="flex items-center gap-6 group">
                       <div>
                         <div className="flex items-center gap-3">
-                          <Link href="/about" className="text-2xl md:text-3xl font-bold text-[#1A1A1A] tracking-tight group-hover:text-[#004AAD] transition-colors font-montserrat">
+                          <Link href="/about" className="text-2xl md:text-3xl font-bold text-[#1A1A1A] tracking-tight group-hover:text-[#004AAD] transition-colors font-montserrat inline-block py-1.5 md:py-0">
                             Aman Jain
                           </Link>
                           <a
@@ -95,13 +97,13 @@ export default function Footer() {
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label="Aman Jain on LinkedIn"
-                            className="text-gray-400 hover:text-[#0077B5] transition-colors"
+                            className="text-gray-400 hover:text-[#0077B5] transition-colors p-3 -m-3 md:p-0 md:m-0"
                           >
                             <Linkedin size={20} aria-hidden="true" />
                           </a>
                         </div>
                         <p className="text-xs uppercase tracking-[0.2em] text-gray-400 font-bold font-montserrat mt-1">Co-Founder</p>
-                        <a href="mailto:amanjain@safesportindia.com" className="text-sm text-gray-500 hover:text-[#004AAD] transition-colors font-montserrat mt-1 block">
+                        <a href="mailto:amanjain@safesportindia.com" className="text-sm text-gray-500 hover:text-[#004AAD] transition-colors font-montserrat mt-1 inline-block py-3 md:py-0">
                           amanjain@safesportindia.com
                         </a>
                       </div>
@@ -110,7 +112,7 @@ export default function Footer() {
                     <div className="flex items-center gap-6 group">
                       <div>
                         <div className="flex items-center gap-3">
-                          <Link href="/about" className="text-2xl md:text-3xl font-bold text-[#1A1A1A] tracking-tight group-hover:text-[#004AAD] transition-colors font-montserrat">
+                          <Link href="/about" className="text-2xl md:text-3xl font-bold text-[#1A1A1A] tracking-tight group-hover:text-[#004AAD] transition-colors font-montserrat inline-block py-1.5 md:py-0">
                             Rania Mecca
                           </Link>
                           <a
@@ -118,13 +120,13 @@ export default function Footer() {
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label="Rania Mecca on LinkedIn"
-                            className="text-gray-400 hover:text-[#0077B5] transition-colors"
+                            className="text-gray-400 hover:text-[#0077B5] transition-colors p-3 -m-3 md:p-0 md:m-0"
                           >
                             <Linkedin size={20} aria-hidden="true" />
                           </a>
                         </div>
                         <p className="text-xs uppercase tracking-[0.2em] text-gray-400 font-bold font-montserrat mt-1">Co-Founder</p>
-                        <a href="mailto:raniamecca@safesportindia.com" className="text-sm text-gray-500 hover:text-[#004AAD] transition-colors font-montserrat mt-1 block">
+                        <a href="mailto:raniamecca@safesportindia.com" className="text-sm text-gray-500 hover:text-[#004AAD] transition-colors font-montserrat mt-1 inline-block py-3 md:py-0">
                           raniamecca@safesportindia.com
                         </a>
                       </div>
@@ -140,7 +142,7 @@ export default function Footer() {
                       <li key={href}>
                         <Link
                           href={href}
-                          className="text-sm font-bold uppercase tracking-[0.15em] text-gray-500 hover:text-[#004AAD] transition-colors font-montserrat"
+                          className="text-sm font-bold uppercase tracking-[0.15em] text-gray-500 hover:text-[#004AAD] transition-colors font-montserrat block py-3 md:py-0"
                         >
                           {label}
                         </Link>
@@ -154,8 +156,8 @@ export default function Footer() {
             <div className="pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-6 mt-10 w-full">
               <div className="flex flex-col gap-4 items-center md:items-start">
                 <nav aria-label="Legal" className="flex flex-wrap justify-center md:justify-start items-center gap-4 md:gap-6 text-[10px] md:text-xs text-gray-500 font-bold uppercase tracking-widest font-montserrat">
-                  <Link href="/safeguarding-policy" className="hover:text-[#004AAD] transition-colors">Safeguarding Policy</Link>
-                  <Link href="/privacy" className="hover:text-[#004AAD] transition-colors">Privacy Policy</Link>
+                  <Link href="/safeguarding-policy" className="hover:text-[#004AAD] transition-colors inline-block py-4 md:py-0">Safeguarding Policy</Link>
+                  <Link href="/privacy" className="hover:text-[#004AAD] transition-colors inline-block py-4 md:py-0">Privacy Policy</Link>
                 </nav>
                 <p className="text-xs text-gray-400 font-bold uppercase tracking-widest font-montserrat">
                   &copy; {new Date().getFullYear()} SafeSport India.
