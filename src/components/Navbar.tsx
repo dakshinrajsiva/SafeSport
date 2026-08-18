@@ -15,7 +15,6 @@ const PAGE_ROUTE_IDS = [
   'approach',
   'services',
   'who-we-work-with',
-  'standards',
   'partners',
   'contact',
 ] as const;
@@ -64,16 +63,6 @@ const NAV_ITEMS = [
       { label: "Private Academies", hash: "sector-1" },
       { label: "Educational Institutions", hash: "sector-2" },
       { label: "National Bodies", hash: "sector-3" },
-    ],
-  },
-  {
-    title: "Our standards",
-    sectionId: "standards",
-    description: "Global best practices, adapted for the Indian legal and sporting context.",
-    subsections: [
-      { label: "Assess", hash: "standard-0" },
-      { label: "Build", hash: "standard-1" },
-      { label: "Embed & Sustain", hash: "standard-2" },
     ],
   },
   {

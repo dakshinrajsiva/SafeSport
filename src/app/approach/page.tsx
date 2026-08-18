@@ -42,7 +42,7 @@ export default function ApproachPage() {
         <section id="philosophy" className="px-6 md:px-12 lg:px-24 mb-32 bg-white py-16 md:py-20 relative z-10 overflow-hidden scroll-mt-[108px]" aria-labelledby="philosophy-heading">
           <div className="max-w-7xl mx-auto relative z-10">
             <div className="grid md:grid-cols-12 gap-12 md:gap-16 items-start">
-              <div className="md:col-span-4 sticky top-32">
+              <div className="md:col-span-4 md:sticky md:top-32">
                 <h2 id="philosophy-heading" className="text-4xl md:text-6xl font-league uppercase mb-6 text-[#1A1A1A] leading-tight">
                   Our Philosophy
                 </h2>

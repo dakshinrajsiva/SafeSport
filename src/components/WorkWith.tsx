@@ -159,7 +159,7 @@ export default function WorkWith() {
                       <span className="text-5xl md:text-[8vw] font-league text-white/30 leading-none tracking-tighter" aria-hidden="true">
                         {partner.number}
                       </span>
-                      <span className="text-xs md:text-sm font-montserrat font-medium text-white/70 uppercase tracking-[0.3em]">
+                      <span className="hidden md:inline text-xs md:text-sm font-montserrat font-medium text-white/70 uppercase tracking-[0.3em]">
                         {partner.category}
                       </span>
                     </div>
@@ -170,7 +170,7 @@ export default function WorkWith() {
 
                   {/* Right: Description + CTA */}
                   <div className="flex flex-col gap-8 max-w-md md:max-w-lg">
-                    <p className="text-lg md:text-2xl font-montserrat font-medium text-white/90 leading-relaxed">
+                    <p className="hidden md:block text-lg md:text-2xl font-montserrat font-medium text-white/90 leading-relaxed">
                       {partner.description}
                     </p>
                     <Link
@@ -193,10 +193,10 @@ export default function WorkWith() {
 
       {/* Section heading */}
       <div className="absolute top-32 left-6 md:left-16 z-20 pointer-events-none">
-        <h2 className="text-2xl md:text-4xl font-league text-white uppercase tracking-tight">
+        <h2 className="text-4xl md:text-4xl font-league text-white uppercase tracking-tight leading-none">
           Who We Work With
         </h2>
-        <p className="text-xs md:text-sm font-montserrat text-white/70 mt-1 tracking-wide">
+        <p className="text-xs md:text-sm font-montserrat text-white/70 mt-2 tracking-wide">
           One framework. Context-specific delivery.
         </p>
       </div>

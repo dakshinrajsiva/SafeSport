@@ -158,12 +158,12 @@ export default function AboutPage() {
         </section>
 
         {/* Background */}
-        <section id="our-background" className="px-6 md:px-12 lg:px-24 bg-[#004AAD] py-24 text-white scroll-mt-[108px]">
+        <section id="our-background" className="px-6 md:px-12 lg:px-24 bg-[#004AAD] py-14 md:py-24 text-white scroll-mt-[108px]">
           <div className="max-w-7xl mx-auto">
-            <div className="grid md:grid-cols-12 gap-12 md:gap-24">
+            <div className="grid md:grid-cols-12 gap-6 md:gap-24">
               <div className="md:col-span-5">
-                <h2 className="text-4xl md:text-5xl font-league uppercase mb-6 text-white">Our Background</h2>
-                <div className="w-20 h-1 bg-white/20 mb-8" />
+                <h2 className="text-4xl md:text-5xl font-league uppercase mb-4 md:mb-6 text-white">Our Background</h2>
+                <div className="w-20 h-1 bg-white/20 mb-0 md:mb-8" />
               </div>
               <div className="md:col-span-7 space-y-8 text-lg font-montserrat text-white/80 leading-relaxed">
                 <p>
@@ -181,14 +181,14 @@ export default function AboutPage() {
         </section>
 
         {/* Why SafeSport */}
-        <section id="why-safesport" className="px-6 md:px-12 lg:px-24 bg-[#004AAD] py-24 text-white scroll-mt-[108px]">
+        <section id="why-safesport" className="px-6 md:px-12 lg:px-24 bg-[#004AAD] py-14 md:py-24 text-white scroll-mt-[108px]">
           <div className="max-w-7xl mx-auto">
-            <div className="grid md:grid-cols-12 gap-12 md:gap-16">
+            <div className="grid md:grid-cols-12 gap-6 md:gap-16">
               <div className="md:col-span-5">
                 <h2 className="text-4xl md:text-5xl font-league uppercase mb-6 text-white leading-tight">
                   Why SafeSport -<br />And Beyond Sport
                 </h2>
-                <div className="w-20 h-1 bg-white/30 mb-8" />
+                <div className="w-20 h-1 bg-white/30 mb-0 md:mb-8" />
               </div>
               <div className="md:col-span-7 space-y-8 text-lg font-montserrat text-white/80 leading-relaxed">
                 <p>

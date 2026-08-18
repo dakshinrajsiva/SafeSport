@@ -82,14 +82,14 @@ export default function Footer() {
 
             {/* Right: Founders + primary navigation */}
             <div className="flex flex-col w-full">
-              <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-10 sm:gap-12">
-                <div className="flex flex-col">
+              <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-4 sm:gap-12">
+                <div className="flex flex-col min-w-0">
                   <h3 className="font-bold uppercase tracking-[0.3em] text-xs text-gray-400 mb-8 font-montserrat">Founders</h3>
                   <div className="flex flex-col gap-6">
                     <div className="flex items-center gap-6 group">
                       <div>
                         <div className="flex items-center gap-3">
-                          <Link href="/about" className="text-2xl md:text-3xl font-bold text-[#1A1A1A] tracking-tight group-hover:text-[#004AAD] transition-colors font-montserrat inline-block py-1.5 md:py-0">
+                          <Link href="/about" className="text-xl sm:text-2xl md:text-3xl font-bold text-[#1A1A1A] tracking-tight group-hover:text-[#004AAD] transition-colors font-montserrat inline-block py-1.5 md:py-0">
                             Aman Jain
                           </Link>
                           <a
@@ -103,7 +103,7 @@ export default function Footer() {
                           </a>
                         </div>
                         <p className="text-xs uppercase tracking-[0.2em] text-gray-400 font-bold font-montserrat mt-1">Co-Founder</p>
-                        <a href="mailto:amanjain@safesportindia.com" className="text-sm text-gray-500 hover:text-[#004AAD] transition-colors font-montserrat mt-1 inline-block py-3 md:py-0">
+                        <a href="mailto:amanjain@safesportindia.com" className="text-xs sm:text-sm text-gray-500 hover:text-[#004AAD] transition-colors font-montserrat mt-1 inline-block break-all py-3 md:py-0">
                           amanjain@safesportindia.com
                         </a>
                       </div>
@@ -112,7 +112,7 @@ export default function Footer() {
                     <div className="flex items-center gap-6 group">
                       <div>
                         <div className="flex items-center gap-3">
-                          <Link href="/about" className="text-2xl md:text-3xl font-bold text-[#1A1A1A] tracking-tight group-hover:text-[#004AAD] transition-colors font-montserrat inline-block py-1.5 md:py-0">
+                          <Link href="/about" className="text-xl sm:text-2xl md:text-3xl font-bold text-[#1A1A1A] tracking-tight group-hover:text-[#004AAD] transition-colors font-montserrat inline-block py-1.5 md:py-0">
                             Rania Mecca
                           </Link>
                           <a
@@ -126,7 +126,7 @@ export default function Footer() {
                           </a>
                         </div>
                         <p className="text-xs uppercase tracking-[0.2em] text-gray-400 font-bold font-montserrat mt-1">Co-Founder</p>
-                        <a href="mailto:raniamecca@safesportindia.com" className="text-sm text-gray-500 hover:text-[#004AAD] transition-colors font-montserrat mt-1 inline-block py-3 md:py-0">
+                        <a href="mailto:raniamecca@safesportindia.com" className="text-xs sm:text-sm text-gray-500 hover:text-[#004AAD] transition-colors font-montserrat mt-1 inline-block break-all py-3 md:py-0">
                           raniamecca@safesportindia.com
                         </a>
                       </div>
@@ -142,7 +142,7 @@ export default function Footer() {
                       <li key={href}>
                         <Link
                           href={href}
-                          className="text-sm font-bold uppercase tracking-[0.15em] text-gray-500 hover:text-[#004AAD] transition-colors font-montserrat block py-3 md:py-0"
+                          className="text-xs sm:text-sm font-bold uppercase tracking-[0.1em] sm:tracking-[0.15em] text-gray-500 hover:text-[#004AAD] transition-colors font-montserrat block whitespace-nowrap py-3 md:py-0"
                         >
                           {label}
                         </Link>

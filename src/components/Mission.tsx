@@ -53,9 +53,9 @@ export default function Mission() {
   }, []);
 
   return (
-    <section id="about" ref={sectionRef} className="py-48 px-4 md:px-24 bg-white relative overflow-hidden" aria-labelledby="vision-heading">
+    <section id="about" ref={sectionRef} className="py-24 md:py-48 px-4 md:px-24 bg-white relative overflow-hidden" aria-labelledby="vision-heading">
       <div className="max-w-6xl mx-auto relative z-10">
-        <h2 id="vision-heading" className="text-[#004AAD] font-montserrat font-bold uppercase tracking-[0.4em] mb-16 text-xs md:text-sm flex items-center gap-4">
+        <h2 id="vision-heading" className="text-[#004AAD] font-montserrat font-bold uppercase tracking-[0.4em] mb-8 md:mb-16 text-xs md:text-sm flex items-center gap-4">
           <span className="w-8 h-[1px] bg-[#004AAD]" aria-hidden="true"></span>
           The Vision
         </h2>
