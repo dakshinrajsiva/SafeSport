@@ -48,21 +48,23 @@ export default function Timeline() {
       }
     );
 
-    // Animate items on scroll
+    // Animate items on scroll. Cards are full-width on phones, so a horizontal
+    // entrance pushes them past both edges - come up vertically there instead.
+    const sideEntrance = window.matchMedia('(min-width: 768px)').matches;
     const items = gsap.utils.toArray('.collaboration-item');
     items.forEach((item: any, index) => {
       gsap.fromTo(item,
-        {
-          opacity: 0,
-          x: index % 2 === 0 ? 50 : -50
-        },
+        sideEntrance
+          ? { opacity: 0, x: index % 2 === 0 ? 50 : -50 }
+          : { opacity: 0, y: 28 },
         {
           opacity: 1,
           x: 0,
+          y: 0,
           duration: 1,
           scrollTrigger: {
             trigger: item,
-            start: "top 80%",
+            start: "top 85%",
             toggleActions: "play none none reverse"
           }
         }
